@@ -1,0 +1,71 @@
+@font-face {
+    font-family: "Nirmala UI Semilight";
+    src: url("http://db.onlinewebfonts.com/t/b5eae9bab2129f4acd5fcd349dc804fe.woff");
+}
+html, body {
+  font-family: Nirmala UI Semilight;
+  background-color: white;
+}
+
+.navbar{
+     padding-left: 50px;
+     background-color: rgb(245,245,245);
+}
+.pacos-input-search{
+  width: 400px;
+}
+.pacos-foto-perfil-nav{
+  border-radius: 50%;
+}
+.pacos-foto-perfil-pacos{
+  position: absolute; 
+    left: 8%; 
+    bottom: 0;
+    top:22%;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.pacos-managepacos-hero{
+  height: 25vh;
+  background-color: rgb(245,245,245);
+  padding-top: 3%;
+}
+.pacos-managepacos-cityimage-hero{
+  width: 50%;
+  padding-top: 0%;
+  display: block;
+  margin: auto;
+}
+.pacos-managepacos-menu-namepacos{
+  text-align: center;
+  margin-top: 40px;
+}
+.pacos-btnmenu-pacos{
+  border-radius: 50%;
+  width: 35px;
+  background-color: rgb(245,245,245);
+  color: rgb(82, 86, 89);
+  font-size: 14px;
+  border: 0px;
+}
+.pacos-title-menu{
+  position: absolute;
+  margin-top: 7px;
+  margin-left: 5px;
+}
+.is-active-pacos{
+  font-weight: bold;
+  color: rgb(210,23,52);
+}
+
+
+
+@media only screen
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+    .navbar{
+     padding-left: 0px;
+  }
+}
