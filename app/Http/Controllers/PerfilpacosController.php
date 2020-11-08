@@ -79,7 +79,7 @@ class PerfilpacosController extends Controller
                 ->leftjoin('redesxrest as rr', 'rr.id_Rest', '=', 'rest.id')
                 ->leftjoin('redes as red', 'rr.id_Redes', '=', 'red.id')
                 ->leftjoin('tiporedes as tred', 'tred.id', '=', 'red.Tipo')
-                ->select('red.Url', 'red.Tipo', 'tred.Nombre AS tipored')
+                ->select('red.Url', 'red.Icono', 'red.Tipo', 'tred.Nombre AS tipored')
                 ->where('rest.nombre', $namepacos)
                 ->get();
 

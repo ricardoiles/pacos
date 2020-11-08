@@ -66,10 +66,10 @@
               </div>
             </div>
             <footer class="card-footer">
-              <a href="#crearvistaparaeditar" class="card-footer-item">Editar</a>
+              <a href="#crearvistaparaeditar" class="card-footer-item">Administrar</a>
               
               <a href="{{ action('PerfilpacosController@show', ['namepacos' => $mispacoscreados->nombre]) }}" class="card-footer-item">Visitar</a>
-              <a href="#" class="card-footer-item">Delete</a>
+              <a href="{{ url('/manage/mipacos/'.$mispacoscreados->nombre) }}" class="card-footer-item">Editar detalles</a>
             </footer>
           </div>
         </div>

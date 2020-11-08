@@ -35,9 +35,9 @@
             <article class="box" style="width: 100%">
                 <b>Contacto</b>
                 @foreach($redes as $red)  
-                  <div class="columns" style="margin-top: -10px">
-                    <div class="column" style="padding: 0px;">
-                        <i data-feather="phone-call"></i> {{ $red->Url }}
+                  <div class="columns" style="margin-top: 10px">
+                    <div class="column is-12" style="padding: 0px;margin-top: -10px">
+                        <img src="{{ $red->Icono }}" style="width: 15px; height: 15px; border-radius: 20%"> {{ $red->Url }}
                     </div>
                   </div>
                 @endforeach

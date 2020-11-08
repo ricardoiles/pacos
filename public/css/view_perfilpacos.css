@@ -17,7 +17,7 @@ html, body {
 	width: 400px;
 }
 .div-pacos-tile-cover{
-	background-image: url(../images/coverpacos.jpg);
+	/*background-image: url(../images/coverpacos.jpg);*/
 	background-size: cover;
 	height: 25vh;
 }
