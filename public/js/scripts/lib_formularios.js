@@ -9,3 +9,13 @@ function CmbValue(id){
 	}
 
 }
+function modalOpen(){
+	var btnabrir = document.getElementById("modalAddCategory");
+	btnabrir.classList.add('is-active','is-clipped');
+	
+}
+function modalClose(){
+	var btnabrir = document.getElementById("modalAddCategory");
+	btnabrir.classList.remove('is-active','is-clipped');
+	
+}

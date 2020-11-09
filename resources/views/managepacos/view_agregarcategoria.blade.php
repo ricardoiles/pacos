@@ -28,21 +28,8 @@
 		</label>
 	  </div>
 	</div>
-  	<!-- mas infor abajo -->
-  	<div class="columns is-mobile">
-  		<div class="column is-12 box" style="margin: 5px; text-align: center;">
-        <button class="button pacos-btnmenu-pacos">
-          <span class="icon is-small">
-              <span class="material-icons">add</span>
-          </span>
-        </button>
-        <label class="">
-            <a href="{{ url('/manage/nuevo/pacos') }}">Agregar Categoria</a>
-        </label>
-  		</div>
-	 </div>
 	<div class="columns is-mobile">
-		<div class="column is-6 box" style="margin: 5px;">
+		<div class="column is-12 box" style="margin: 5px;">
 			<form method="post" action="{{ url('manage/registrarPACOS')}}">
                 {{ csrf_field() }}
                	<input type="hidden" name="id_usuario" value="{{ Auth::user()->id }}">
@@ -71,9 +58,25 @@
 				    </div>
 				  </div>
 				</div>
+				<div class="field is-horizontal">
+				  <div class="field-body">
+				    <div class="field">
+				      
+					    @if(!empty($message))
+							<input class="button is-rounded" style="color: green; border: 1px solid green; width: 100%">
+						@else
+							<a href="{{url('/home')}}" class="button is-rounded" style="width: 30%;">
+								Cancelar
+							</a>
+							<input class="button is-rounded" type="submit" value="Guardar" style="background-color: rgb(210,23,52); color: white; width: 30%;">
+						@endif
+				      
+				    </div>
+				  </div>
+				</div>
+			</form>
 		</div>
 	</div>
-	</form>
   </div>
 </div>
 @endsection

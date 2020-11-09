@@ -33,9 +33,13 @@ Route::get('/prueba', function () {
 //administrar mi pacos
 Route::get('/manage/nuevo/pacos', 'NuevoPacosController@index')->middleware('auth');
 Route::get('/manage/mipacos/{namepacos}', 'ManagePacosController@index')->middleware('auth');
-Route::get('/manage/pacos/menu/{namepacos}' , 'ComidaController@index')->middleware('auth');
+Route::get('/manage/pacos/menu/{namepacos}' , 'ComidaController@show')->middleware('auth');
+Route::get('/manage/{namepacos}/categorias', 'CategoryController@show')->middleware('auth');
+Route::get('/manage/{namepacos}/categorias/nueva', 'CategoryController@agregar')->middleware('auth');
+
 //Route::resource('registrarPACOS', 'RestaurantesController');
-Route::resource('manage/registrarPACOS', 'NuevoPacosController');
+Route::resource('manage/registrarPACOS', 'NuevoPacosController')->middleware('auth');
 Route::resource('manage/agregar/detallesPACOS', 'ManagePacosController')->middleware('auth');
-Route::get('manage/registrar/comida', 'ComidaController@show');
+Route::resource('manage/categorias/registrarCategoria', 'CategoryController')->middleware('auth');
+
 

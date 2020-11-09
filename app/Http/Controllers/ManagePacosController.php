@@ -125,6 +125,7 @@ class ManagePacosController extends Controller
                 foreach ($queryfacebook as $qfacebook) {
                     $facebook = $qfacebook->id;
                 }
+                
                 //insertar en tabla redesxrest
                 DB::table('redesxrest')->insert(
                     ['id_Rest' => $idpacos, 'id_Redes' => $facebook]

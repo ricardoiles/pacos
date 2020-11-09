@@ -44,9 +44,9 @@
   		</div>
 	 </div>
    <div class="columns is-mobile">
-    <div class="column is-12" style="width: 100%">
+    <div class="column is-12" style="max-width: 100%">
         @foreach($mispacos as $mispacoscreados) 
-        <div class="column is-12">
+        <div class="column is-4">
           <div class="card">
             <header class="card-header">
               <p class="card-header-title">
@@ -66,7 +66,7 @@
               </div>
             </div>
             <footer class="card-footer">
-              <a href="#crearvistaparaeditar" class="card-footer-item">Administrar</a>
+              <a href="{{ url('/manage/'.$mispacoscreados->nombre.'/categorias') }}" class="card-footer-item">Administrar</a>
               
               <a href="{{ action('PerfilpacosController@show', ['namepacos' => $mispacoscreados->nombre]) }}" class="card-footer-item">Visitar</a>
               <a href="{{ url('/manage/mipacos/'.$mispacoscreados->nombre) }}" class="card-footer-item">Editar detalles</a>
