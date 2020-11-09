@@ -69,10 +69,9 @@ class CategoryController extends Controller
     	//guardar primero la foto en tabla foto_vid con principal 2
     	$fotos=request()->except('_token', 'id_pacos', 'namepacos', 'Descripcion');
     	
-        if ($request->hasFile('Foto')) {
-            $fotos['Foto']=$request->file('Foto')->store('fotospacos/categorias', 'public');
+        if ($request->hasFile('foto')) {
+            $fotos['foto']=$request->file('foto')->store('fotospacos/categorias', 'public');
             $fotos = (implode($fotos));
-            
             //almacenar foto en tabla foto_vid
             DB::table('foto_vid')->insert(
             		['Url' => $fotos,  'Principal' => '2']

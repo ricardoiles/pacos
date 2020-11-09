@@ -14,18 +14,24 @@
   	<div class="pacos-managepacos-menu-namepacos">
   		{{ Auth::user()->name }} 
   	</div>
+  	<div class="pacos-managepacos-menu-namepacos">
+      <a href="{{ url('/home') }}" class="is-active-pacos">Mis PACOS</a><br>
+      <a href="{{ url('/home') }}" class="">Opción</a><br>
+      <a href="{{ url('/home') }}" class="">Otra opción</a><br>
+    </div>
   </div>
   <div class="column is-9" style="width: 65%">
   	<div class="columns is-mobile">
 	  <div class="column is-12">
-	  	<button class="button pacos-btnmenu-pacos">
-			<span class="icon is-small">
-			    <span class="material-icons">category</span>
-			</span>
-		</button>
-        <label class="pacos-title-menu">
-            Categorias
-		</label>
+	  	<nav class="breadcrumb" aria-label="breadcrumbs">
+		  <ul>
+		    <li><a href="{{ url('/home') }}">Mis PACOS</a></li>
+		    @foreach($pacosinfo as $pacos)
+		    <li><a>{{ $pacos->nombre }}</a></li>
+		    @endforeach
+		    <li class="is-active"><a href="#" aria-current="page">Categorias</a></li>
+		  </ul>
+		</nav>
 	  </div>
 	</div>
   	<!-- mas infor abajo -->
@@ -43,43 +49,27 @@
 	</div>
 	<div class="columns is-mobile flex-container">
 		@foreach($categoriasinfo as $categoria)
-	    <div class="column is-3" style="max-width: 100%">  
-	    	<div class="box">
-			  <article class="media">
-			    <div class="media-left">
-			      <figure class="image is-64x64">
-			        <img src="{{ asset('storage').'/'.'/'.$categoria->fotocategoria  }}" alt="Image">
-			      </figure>
-			    </div>
-			    <div class="media-content">
-			      <div class="content">
-			        <p>
-			          <strong>John Smith</strong> <small>@johnsmith</small> <small>31m</small>
-			        </p>
-			      </div>
-			      <nav class="level is-mobile">
-			        <div class="level-left">
-			          <a class="level-item" aria-label="reply">
-			            <span class="icon is-small">
-			              <i class="material-icons">home</i>
-			            </span>
-			          </a>
-			          <a class="level-item" aria-label="retweet">
-			            <span class="icon is-small">
-			              <i class="material-icons">home</i>
-			            </span>
-			          </a>
-			          <a class="level-item" aria-label="like">
-			            <span class="icon is-small">
-			              <i class="material-icons">home</i>
-			            </span>
-			          </a>
-			        </div>
-			      </nav>
-			    </div>
-			  </article>
-			</div>      
+	    <div class="column is-2" style="text-align: center;">  
+	    	<div class="navbar-item has-dropdown is-hoverable" style="position: absolute;float: right; margin: 0px 100px; cursor: pointer;">
+                <i class="material-icons" aria-haspopup="true" aria-controls="dropdown-menu4">more_vert</i>
+                <div class="navbar-dropdown is-right">
+                    <a class="navbar-item" href="">
+                        Editar
+                    </a>
+                    <a class="navbar-item" href="">
+                        Eliminar
+                    </a>
+                </div>
+            </div>
+            @foreach($pacosinfo as $pacos)
+	    		<a href="{{ url('/manage/'.$pacos->nombre.'/'.$categoria->nombrecategoria.'/comida') }}">
+	    	@endforeach
+			<img src="{{ asset('storage').'/'.'/'.$categoria->fotocategoria  }}" style="border-radius: 50%; width: 70px; height: 70px">
+			<br>
+			{{ $categoria->nombrecategoria }}
+			</a>
 	    </div>
+	    
 	    @endforeach
    	</div>
   </div>
@@ -130,8 +120,7 @@
 	</div>
     </section>
     <footer class="modal-card-foot">
-      <button class="button is-rounded" onclick="modalClose()" style="width: 50%">Cancelar</button>
-      <input type="submit" class="button is-rounded" value="Agregar" style="background-color: rgb(210,23,52); color: white; width: 50%;">
+      <input type="submit" class="button is-rounded" value="Agregar" style="background-color: rgb(210,23,52); color: white; width: 100%;">
     </footer>
 	</form>
   </div>

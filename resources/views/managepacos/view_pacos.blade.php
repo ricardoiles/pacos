@@ -21,12 +21,18 @@
   <div class="column is-9" style="width: 65%">
   	<div class="columns is-mobile">
 	  <div class="column is-12">
+      <nav class="breadcrumb" aria-label="breadcrumbs">
+          <ul>
+            <li class="is-active"><a href="#" aria-current="page">Mis PACOS</a></li>
+            <li><a href=""></a></li>
+          </ul>
+        </nav>
 	  	<button class="button pacos-btnmenu-pacos">
 			<span class="icon is-small">
 			    <span class="material-icons">home</span>
 			</span>
 		</button>
-        <label class="pacos-title-menu">
+    <label class="pacos-title-menu">
             Mis sitios de comida
 		</label>
 	  </div>
@@ -60,9 +66,7 @@
             </header>
             <div class="card-content">
               <div class="content">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris
-                <br>
-                <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+                {{ $mispacoscreados->Descripcion }}
               </div>
             </div>
             <footer class="card-footer">

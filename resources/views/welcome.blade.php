@@ -95,7 +95,7 @@
                     @else
                         <a href="{{ url('/register') }}">Tengo un sitio de comida</a>
                         <a href="{{ url('/login') }}">Iniciar sesion</a>
-                        <a class="button is-danger" href="">Register</a>
+                        <a href="{{ url('/registrarme') }}" class="button is-danger" >Registrarme</a>
                     @endif
                 </div>
             @endif

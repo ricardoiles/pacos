@@ -1,0 +1,38 @@
+@font-face {
+    font-family: "Nirmala UI Semilight";
+    src: url("http://db.onlinewebfonts.com/t/b5eae9bab2129f4acd5fcd349dc804fe.woff");
+}
+html, body {
+    font-family: Nirmala UI Semilight;
+	background-color: white;
+}
+
+.navbar{
+	-webkit-box-shadow: 0 4px 6px -6px #222;
+     -moz-box-shadow: 0 4px 6px -6px #222;
+     box-shadow: 0 4px 6px -6px #222;
+     padding-left: 50px;
+}
+.pacos-input-search{
+	width: 400px;
+}
+.pacos-foto-perfil-nav{
+	border-radius: 50%;
+}
+.box-pacos {
+  border-radius: 5px;
+  color: #4a4a4a;
+  display: block;
+  padding: 1.25rem;
+  padding-bottom: 0rem;
+  padding-top: 0.5rem;
+}
+
+
+@media only screen
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+    .navbar{
+     padding-left: 0px;
+	}
+}

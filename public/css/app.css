@@ -8116,7 +8116,7 @@ a.navbar-item.is-active,
     background-color: white;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    border-top: 2px solid #dbdbdb;
+    /*border-top: 2px solid #dbdbdb;*/
     box-shadow: 0 8px 8px rgba(10, 10, 10, 0.1);
     display: none;
     font-size: 0.875rem;
