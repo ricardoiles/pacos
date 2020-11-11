@@ -138,6 +138,7 @@ html, body {
 .tab-pane.is-active{
 	transform: translateX(0%);
 	left: 0%;
+	width: 100%
 }
 
 /*flexbox para queries*/
@@ -158,7 +159,13 @@ html, body {
 .pacos-is-active{
 	color: rgb(210, 23, 52);
 }
+.column.is-4, .column.is-4-tablet{
+	width: 30%
+}
 
+@media screen and (min-width: 769px){
+	
+}
 
 @media only screen
 and (min-device-width : 320px) 

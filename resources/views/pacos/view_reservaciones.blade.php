@@ -41,11 +41,11 @@ pacos-btnmenu-pacos
                 </ul>
             </div>
             <div class="tab-content">
-                <div class="tab-pane is-active flex-container" id="pane-1">
-                   <div class="columns is-desktop">
+                <div class="tab-pane is-active " id="pane-1">
+                   <div class="columns is-desktop flex-container">
                     @foreach($reservaciones as $reserva)
                     @if($reserva->iduser == Auth::user()->id)
-                       <div class="column is-7 box" style="line-height: 100%; text-align: justify; margin-right: 10px;">
+                       <div class="column is-4 box" style="line-height: 100%; text-align: justify; margin-right: 10px; margin-bottom: 10px;">
                             <div class="columns is-desktop">
                                 @foreach($fotos as $foto)
                                 <div class="column is-3">
@@ -89,7 +89,7 @@ pacos-btnmenu-pacos
                                             <div class="field">
                                                 <small>Fecha Reservacion</small>
                                               <p class="control is-expanded">    
-                                                <input class="input" type="text" name="fecha" required="" placeholder="Fecha reservación (año/mes/dia)">
+                                                <input class="input" type="date" name="fecha" required="" placeholder="Fecha reservación" required="">
                                               </p>
                                             </div>
                                             <div class="field">
@@ -160,19 +160,19 @@ pacos-btnmenu-pacos
                                             <div class="field">
                                                 <small>Iva</small>
                                               <p class="control is-expanded ">
-                                                <input class="input" type="number" name="totaliva" required="" placeholder="Total IVA" value="100">
+                                                <input class="input" type="number" name="totaliva" required="" placeholder="Total IVA" value="100" readonly="">
                                               </p>
                                             </div>
                                             <div class="field">
                                                 <small>Descuento</small>
                                               <p class="control is-expanded ">
-                                                <input class="input" type="number" name="totaldcto" required="" placeholder="Total descuento" value="150">
+                                                <input class="input" type="number" name="totaldcto" required="" placeholder="Total descuento" value="150" readonly="">
                                               </p>
                                             </div>
                                             <div class="field">
                                                 <small>Valor total</small>
                                               <p class="control is-expanded ">
-                                               <input class="input" type="number" name="valortotal" required="" placeholder="Valor Total" value="1.000">
+                                               <input class="input" type="number" name="valortotal" required="" placeholder="Valor Total" value="1.000" readonly="">
                                               </p>
                                             </div>
                                           </div>

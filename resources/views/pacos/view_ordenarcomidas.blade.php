@@ -21,180 +21,34 @@ pacos-btnmenu-pacos
     
   </div>
   <div class="tile pacos-multimediadiv-pacos" style="margin-top: -40px;">
-        <article class="box" style="width: 100%;">
-            <b></b>
-            <br>
-            <div class="tabs is-left main-menu" id="nav" style="margin-top: -30px">
-                <ul>
-                    <li data-target="pane-1" class="is-active" id="1">
-                        <a>
-                            <span class="icon is-small"><span class="material-icons">receipt_long</span></span>
-                            <span>Reservaciones</span>
-                        </a>
-                    </li>
-                    <li data-target="pane-2" id="2">
-                        <a>
-                            <span class="icon is-small"><span class="material-icons">post_add</span></span>
-                            <span>Hacer una reservacion</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <div class="tab-content">
-                <div class="tab-pane is-active flex-container" id="pane-1">
-                   <div class="columns is-desktop">
-                    @foreach($reservaciones as $reserva)
-                    @if($reserva->iduser == Auth::user()->id)
-                       <div class="column is-7 box" style="line-height: 100%; text-align: justify; margin-right: 10px;">
-                            <div class="columns is-desktop">
-                                @foreach($fotos as $foto)
-                                <div class="column is-3">
-                                    <div class="pacos-reservas-fotopacos" style="background-image: url('{{ asset('storage'.'/'.$foto->Perfil) }}');margin-top: 20%"></div>
-                                </div>
-                                @endforeach
-                                <div class="column is-9">
-                                    <b>{{ $reserva->nombrerest }}</b>
-                                    <p>Reservacion N° <b>{{ $reserva->idreserva }}</b></p>
-                                    <p>{{ $reserva->fechareserva }} &middot; {{ $reserva->horareserva }} </p>
-                                    @if($reserva->consincomida == 0)
-                                    <p><b class="pacos-is-active">Sin comida</b></p>
-                                    @endif
-                                </div>
-                            </div>
-                       </div>
-                    @endif
-                    @endforeach
-                   </div>
-                </div>
-                <div class="tab-pane" id="pane-2">
-                    <div class="columns is-desktop">
-                        <div class="column is-12 box" style="line-height: 100%">
-                            <div class="columns is-desktop">
-                                @foreach($fotos as $foto)
-                                <div class="column is-1">
-                                    <div class="pacos-reservas-fotopacos" style="background-image: url('{{ asset('storage'.'/'.$foto->Perfil) }}');margin-top: 20%"></div>
-                                </div>
-                                @endforeach
-                                <div class="column is-11">
-                                    <form method="post" action="{{ url('pacos/reservar/nueva') }}">
-                                        {{ csrf_field() }}
-                                        @foreach($pacosinfo as $pacos)
-                                            <b>{{ $pacos->nombre }}</b> &middot; <small>{{ $pacos->category }}</small>
-                                            <input type="hidden" name="idrest" value="{{ $pacos->idrest }}">
-                                            <input type="hidden" name="namepacos" value="{{ $pacos->nombre }}">
-                                        @endforeach
-                                        <br>
-                                        <div class="field is-horizontal">
-                                          <div class="field-body">
-                                            <div class="field">
-                                                <small>Fecha Reservacion</small>
-                                              <p class="control is-expanded">    
-                                                <input class="input" type="text" name="fecha" required="" placeholder="Fecha reservación (año/mes/dia)">
-                                              </p>
-                                            </div>
-                                            <div class="field">
-                                                <small>Hora Inicio</small>
-                                              <p class="control is-expanded">
-                                                <input class="input" type="time" name="horainicio" required="">
-                                              </p>
-                                            </div>
-                                            <div class="field">
-                                                <small>Hora fin (duracion espera reservacion)</small>
-                                              <p class="control is-expanded">
-                                                <input class="input" type="time" name="horafin" required="">
-                                              </p>
-                                            </div>
-                                          </div>
-                                        </div>
-                                        <div class="field is-horizontal">
-                                          <div class="field-body">
-                                            <div class="field">
-                                                <small>Elige la mesa</small>
-                                              <p class="control is-expanded ">
-                                                <select class="input" name="mesa">
-                                                    @foreach($mesasxrest as $mesa)
-                                                        <option value="{{ $mesa->idmesa }}"> Mesa N° {{ $mesa->numeromesa }}  &middot; {{ $mesa->puestosmesa }} puestos </option>
-                                                    @endforeach
-                                                </select>
-                                              </p>
-                                            </div>
-                                            <div class="field">
-                                                <small>¿Quién reserva?</small>
-                                              <p class="control is-expanded ">
-                                                <input class="input" type="text" name="quienreserva" required="" placeholder="Quién reserva" value="{{ Auth::user()->name }}">
-                                                <input type="hidden" name="iduser" value="{{ Auth::user()->id }}">
-                                              </p>
-                                            </div>
-                                            <div class="field">
-                                                <small>Teléfono</small>
-                                              <p class="control is-expanded ">
-                                                <input class="input" type="number" name="telefono" required="" placeholder="Telefono">
-                                              </p>
-                                            </div>
-                                          </div>
-                                        </div>
-                                        <div class="field is-horizontal">
-                                          <div class="field-body">
-                                            <div class="field">
-                                                <small>Número de identificación</small>
-                                              <p class="control is-expanded ">
-                                                <input class="input" type="number" name="cedula" required="" placeholder="Numero de identificación">
-                                              </p>
-                                            </div>
-                                            <div class="field">
-                                                <small>¿Reservación para cuántas personas?</small>
-                                              <p class="control is-expanded ">
-                                                <input class="input" type="number" name="cantpersonas" required="" placeholder="Cantidad personas">
-                                              </p>
-                                            </div>
-                                            <div class="field">
-                                                <small>Información adicional (opcional)</small>
-                                              <p class="control is-expanded ">
-                                                <textarea class="input" name="infoadicional" placeholder="Añada aqui información adicional que considere necesaria" rows="3"></textarea>
-                                              </p>
-                                            </div>
-                                          </div>
-                                        </div>
-                                        <div class="field is-horizontal">
-                                          <div class="field-body">
-                                            <div class="field">
-                                                <small>Iva</small>
-                                              <p class="control is-expanded ">
-                                                <input class="input" type="number" name="totaliva" required="" placeholder="Total IVA" value="100">
-                                              </p>
-                                            </div>
-                                            <div class="field">
-                                                <small>Descuento</small>
-                                              <p class="control is-expanded ">
-                                                <input class="input" type="number" name="totaldcto" required="" placeholder="Total descuento" value="150">
-                                              </p>
-                                            </div>
-                                            <div class="field">
-                                                <small>Valor total</small>
-                                              <p class="control is-expanded ">
-                                               <input class="input" type="number" name="valortotal" required="" placeholder="Valor Total" value="1.000">
-                                              </p>
-                                            </div>
-                                          </div>
-                                        </div>
-                                        <div class="field is-horizontal">
-                                          <div class="field-body">
-                                            <div class="field">
-                                              <p class="control is-expanded ">
-                                                <input class="button is-rounded" type="submit" value="Reservar">
-                                              </p>
-                                            </div>
-                                          </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        
-        </article>
+    <article class="box" style="width: 100%">
+        <div class="columns is-desktop">
+          @foreach($reservaciones as $reserva)
+          @if($reserva->iduser == Auth::user()->id)
+             <div class="column is-3" style="line-height: 100%; text-align: justify; height: auto; border-right: 1px solid slategray">
+                  <div class="columns is-desktop">
+                      @foreach($fotos as $foto)
+                      <div class="column is-3">
+                          <div class="pacos-reservas-fotopacos" style="background-image: url('{{ asset('storage'.'/'.$foto->Perfil) }}');margin-top: 20%"></div>
+                      </div>
+                      @endforeach
+                      <div class="column is-9" style="padding-left: 20px">
+                          <b>{{ $reserva->nombrerest }}</b>
+                          <p>Reservacion N° <b>{{ $reserva->idreserva }}</b></p>
+                          <p>{{ $reserva->fechareserva }} &middot; {{ $reserva->horareserva }} </p>
+                          @if($reserva->consincomida == 0)
+                          <p><b class="pacos-is-active">Sin comida</b></p>
+                          @endif
+                      </div>
+                  </div>
+             </div>
+             <div class="column is-9">
+               aqui las comidas
+             </div>
+          @endif
+          @endforeach
+        </div>
+    </article>
   </div>
 </div>
 @endsection

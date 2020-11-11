@@ -88,14 +88,16 @@ class ReservacionesController extends Controller
         $idrest=request()->idrest;
         $iduser=request()->iduser;
         $mesa=request()->mesa;
-        $fecha=request()->fecha;
+        $fecha= request()->fecha;
+        $fecha = date("Y/m/d", strtotime($fecha));
         $horainicio=request()->horainicio;
         $horafin=request()->horafin;
         $cantpersonas=request()->cantpersonas;
         $infoadicional=request()->infoadicional;
         $valortotal=request()->valortotal;
         $totaldcto=request()->totaldcto;
-        $totaliva=request()->totaliva;        
+        $totaliva=request()->totaliva;
+        
         DB::table('reservas')->insert(
                 ['id_Restaurante' => $idrest,  'id_Usuario' => $iduser, 'id_Mesa' => $mesa, 'Fecha' => $fecha, 'Hora_Ini' => $horainicio, 'Hora_Fin' => $horafin, 'Cant_Personas' => $cantpersonas, 'informacionAdc' => $infoadicional, 'total' => $valortotal, 'total_desc' => $totaldcto, 'total_iva' => $totaliva]
             );

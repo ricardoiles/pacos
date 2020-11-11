@@ -4,11 +4,14 @@ namespace PACOS\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use PACOS\Http\Controllers\Auth;
 
 class OrdenarComidaController extends Controller
 {
     public function index($namepacos, $reservacion){
-    	$namepacos=request()->namepacos;
+    	
+        $iduser = auth()->user()->id;
+
         $pacosinfo = DB::table('restaurantes as rest')
                     ->leftJoin('horarioxrest as hores', 'hores.idRest', '=', 'rest.id')
                     ->leftJoin('horario as hor', 'hor.id', '=', 'hores.idHor')
@@ -42,14 +45,21 @@ class OrdenarComidaController extends Controller
                 ->leftjoin('mesas AS mesas', 'mesas.id', '=', 'reserv.id_Mesa')
                 ->leftjoin('restaurantes AS rest', 'rest.id', '=', 'mesas.Restaurante')
                 ->select('rest.id AS idrest', 'rest.nombre AS nombrerest', 'reserv.id AS idreserva', 'reserv.Fecha AS fechareserva', 'reserv.Hora_Ini AS horareserva', 'reserv.Detalle_Reserv AS consincomida', 'reserv.id_Usuario AS iduser')
-                ->where('rest.nombre', $namepacos)
+                ->where('reserv.id_Usuario', '=', $iduser)
+                ->where(function ($query) use($namepacos, $reservacion) {
+                    $query->where('rest.nombre', '=', $namepacos)
+                          ->where('reserv.id', '=', $reservacion);
+                })
+                // ->whereIn('rest.nombre', $namepacos)
+                // ->whereIn('reserv.id', $reservacion)
                 ->get();
-
+        
         $mesasxrest = DB::table('mesas AS mesa')
                 ->join('restaurantes AS rest', 'rest.id', '=', 'mesa.Restaurante')
                 ->select('mesa.id AS idmesa', 'mesa.numero AS numeromesa', 'mesa.Puestos AS puestosmesa', 'rest.nombre AS nombrerest')
                 ->where('rest.nombre', $namepacos)
                 ->get();
+
 
     	return view('pacos.view_ordenarcomidas')
                 ->with('pacosinfo', $pacosinfo)
