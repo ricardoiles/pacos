@@ -91,8 +91,9 @@
                     <article class=" is-child box">
                         <aside class="menu">
                           <ul class="menu-list">
-                            <li><a class="is-active-pacos">
-                                <button class="button pacos-btnoptions--infobasica-pacos">
+                            <li>@foreach($pacosinfo as $pacos)
+                              <a href="{{ action('PerfilpacosController@show', ['namepacos' => $pacos->nombre]) }}" class="card-footer-item @yield('is-active')">
+                                <button class="button @yield('is-btn-selected')">
                                     <span class="icon is-small">
                                       <span class="material-icons">store</span>
                                     </span>
@@ -100,9 +101,10 @@
                                 <label class="pacos-title-menu">
                                   Perfil sitio
                                 </label>
-                            </a></li>@foreach($pacosinfo as $pacos)
-                            <li><a href="{{ url('/manage/pacos/menu/'.$pacos->nombre) }}">@endforeach
-                              <button class="button pacos-btnmenu-pacos">
+                            </a></li>@endforeach
+                            @foreach($pacosinfo as $pacos)
+                            <li><a href="{{ url('/manage/pacos/menu/'.$pacos->nombre) }}" class="@yield('is-active-1')">@endforeach
+                              <button class="button @yield('is-btn-selected-comida')">
                                   <span class="icon is-small">
                                     <span class="material-icons">food_bank</span>
                                   </span>
@@ -175,11 +177,13 @@
                               </button>
                             @endif
                             @if($pacos->reservas == 1)
-                            <button class="button pacos-btnoptions--infobasica-pacos tooltip" data-tooltip="Reservar mesa">
-                                <span class="icon is-small">
-                                  <span class="material-icons pacos-fontsize-btnoptions-pacos">receipt</span>
-                                </span>
-                            </button>
+                            <a href="{{ url('/pacos/'.$pacos->nombre.'/reservar') }}">
+                              <button class="button pacos-btnoptions--infobasica-pacos tooltip" data-tooltip="Reservar mesa">
+                                  <span class="icon is-small">
+                                    <span class="material-icons pacos-fontsize-btnoptions-pacos">receipt</span>
+                                  </span>
+                              </button>
+                            </a>
                             @endif
                           @endforeach
                             <button class="button pacos-btnoptions--infobasica-pacos tooltip" data-tooltip="Compartir sitio">

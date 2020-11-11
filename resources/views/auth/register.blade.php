@@ -1,109 +1,163 @@
-@extends('layouts.app')
-
+@extends('layouts.layout_log')
+@section('view_estilos')
+<link href="{{ asset('css/view_login.css') }}" rel="stylesheet">
+@endsection
 @section('content')
-    <div class="columns is-marginless is-centered">
-        <div class="column is-5">
-            <div class="card">
-                <header class="card-header">
-                    <p class="card-header-title">Registar sitio de comida</p>
-                </header>
+<div class="columns is-desktop">
+    <div class="column is-8 pacos-log-left" style="text-align: center;">
+        <a href="{{ url('/') }}" class="logoPACOS">
+            <img src="{{ asset('images/logoPACOS.png') }}" class="pacos-log-logoPACOS"> &nbsp;
+            <b class="title is-4">PACOS</b><br>
+            <p class="subtitle">Sitios para comer</p>
+        </a>
+        <nav class="navbar" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">   
+                <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                  <span aria-hidden="true"></span>
+                  <span aria-hidden="true"></span>
+                  <span aria-hidden="true"></span>
+                </a>
+            </div>
+            <div id="navbarBasicExample" class="navbar-menu">
+                <div class="navbar-start">
+                    <a href="{{ url('/') }}" class="navbar-item">Sitios cercanos</a>
+                    <a href="{{ url('/') }}" class="navbar-item">Sitios destacados</a>
+                    <a href="{{ url('/') }}" class="navbar-item">Comidas</a>
+                    <a href="{{ route('register') }}" class="navbar-item ">Tengo un sitio de comida</a>
+                </div>
+                <div class="navbar-end">
+                  @if (Auth::guest())
+                        
+                    @else
+                        <div class="navbar-item has-dropdown is-hoverable">
+                            <a class="navbar-link">
+                                <img class="is-rounded pacos-foto-perfil-nav" src="https://media.geeksforgeeks.org/wp-content/uploads/20200617121759/bill-gates.jpg" title="{{ Auth::user()->name }}">
+                            </a>
+                            <div class="navbar-dropdown is-right">
+                                <a class="navbar-item" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                    Cerrar sesion
+                                </a>
 
-                <div class="card-content">
-                    <form class="register-form" method="POST" action="{{ route('register') }}">
-
-                        {{ csrf_field() }}
-
-                        <div class="field is-horizontal">
-                            <div class="field-label">
-                                <label class="label">Name</label>
-                            </div>
-
-                            <div class="field-body">
-                                <div class="field">
-                                    <p class="control">
-                                        <input class="input" id="name" type="name" name="name" value="{{ old('name') }}"
-                                               required autofocus>
-                                    </p>
-
-                                    @if ($errors->has('name'))
-                                        <p class="help is-danger">
-                                            {{ $errors->first('name') }}
-                                        </p>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="field is-horizontal">
-                            <div class="field-label">
-                                <label class="label">E-mail Address</label>
-                            </div>
-
-                            <div class="field-body">
-                                <div class="field">
-                                    <p class="control">
-                                        <input class="input" id="email" type="email" name="email"
-                                               value="{{ old('email') }}" required autofocus>
-                                    </p>
-
-                                    @if ($errors->has('email'))
-                                        <p class="help is-danger">
-                                            {{ $errors->first('email') }}
-                                        </p>
-                                    @endif
-                                </div>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                      style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
                             </div>
                         </div>
-
-                        <div class="field is-horizontal">
-                            <div class="field-label">
-                                <label class="label">Password</label>
-                            </div>
-
-                            <div class="field-body">
-                                <div class="field">
-                                    <p class="control">
-                                        <input class="input" id="password" type="password" name="password" required>
-                                    </p>
-
-                                    @if ($errors->has('password'))
-                                        <p class="help is-danger">
-                                            {{ $errors->first('password') }}
-                                        </p>
-                                    @endif
-                                </div>
-                            </div>
+                    @endif
+                </div>
+            </div>
+        </nav>
+        <p class="pacos-log-descripcion">
+            Activa una cuenta para que puedas <b class="pacos-log-active">vender tus comidas</b> a las personas
+            interesadas a tu alrededor y descubre qué beneficios obtienes por unirte a nosotros.
+        </p>
+        <br>
+        <p>
+            <button class="button pacos-hero-btn-round">
+                <i class="material-icons" style="font-size: 14px;">receipt</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;
+            <button class="button pacos-hero-btn-round">
+              <i class="material-icons" style="font-size: 14px;">room_service</i>
+            </button>
+        </p>
+        <img src="{{ asset('images/cityPACOS.png') }}" class="pacos-hero-image">
+    </div>
+    <div class="column is-4 pacos-log-right">
+        <div class="field is-horizontal pacos-log-titlelog">
+            <div class="field-body">
+                <div class="field">
+                    <p class="title is-5">Registrate</p>
+                    <p class="">Nuevo PACOS</p>
+                </div>
+            </div>
+        </div>
+        <form class="pacos-log-form" method="POST" action="{{ route('register') }}">
+            {{ csrf_field() }}
+            <div class="field is-horizontal">
+                <div class="field-body">
+                    <div class="field-body">
+                        <div class="field">
+                            <p class="control">
+                                <input class="input pacos-log-inputs" id="name" type="name" name="name" value="{{ old('name') }}" required="" autofocus placeholder="Nombres (Solo nombres) ">
+                            </p>
+                            @if ($errors->has('name'))
+                                <p class="help is-danger">
+                                    {{ $errors->first('name') }}
+                                </p>
+                            @endif
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-body">
+                    <div class="field">
+                        <p class="control">
+                            <input class="input pacos-log-inputs" id="email" type="email" name="email"
+                                   value="{{ old('email') }}" required="" placeholder="Correo electronico">
+                        </p>
 
-                        <div class="field is-horizontal">
-                            <div class="field-label">
-                                <label class="label">Confirm Password</label>
-                            </div>
+                        @if ($errors->has('email'))
+                            <p class="help is-danger">
+                                {{ $errors->first('email') }}
+                            </p>
+                        @endif
+                    </div>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-body">
+                    <div class="field">
+                        <p class="control">
+                            <input class="input pacos-log-inputs" id="password" type="password" name="password" required="" placeholder="Contraseña">
+                        </p>
 
-                            <div class="field-body">
-                                <div class="field">
-                                    <p class="control">
-                                        <input class="input" id="password-confirm" type="password"
-                                               name="password_confirmation" required>
-                                    </p>
-                                </div>
-                            </div>
+                        @if ($errors->has('password'))
+                            <p class="help is-danger">
+                                {{ $errors->first('password') }}
+                            </p>
+                        @endif
+                    </div>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-body">
+                    <div class="field">
+                        <p class="control">
+                            <input class="input pacos-log-inputs" id="password-confirm" type="password"
+                                   name="password_confirmation" required="" placeholder="Confirmar contraseña">
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <input class="input" id="tipo" type="hidden" name="tipo" value="1">
+            <div class="field is-horizontal">
+                <div class="field-body">
+                    <div class="field">
+                        <div class="control">
+                            <button type="submit" class="button is-rounded pacos-registrarme-btn">Registrarme</button>
                         </div>
-                        <input class="input" id="tipo" type="hidden" name="tipo" value="1">
-                        <div class="field is-horizontal">
-                            <div class="field-label"></div>
-
-                            <div class="field-body">
-                                <div class="field is-grouped">
-                                    <div class="control">
-                                        <button type="submit" class="button is-primary">Register</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="field is-horizontal" style="text-align: center;">
+            <div class="field-body">
+                <div class="field">
+                    <p>&nbsp;</p>
+                    <p class="">O</p>
+                    <p class="">
+                        <a href="{{ route('login') }}">
+                            <b class="pacos-log-active">Iniciar sesion</b>
+                        </a>
+                    </p>
                 </div>
             </div>
         </div>
     </div>
+</div>
+    
 @endsection

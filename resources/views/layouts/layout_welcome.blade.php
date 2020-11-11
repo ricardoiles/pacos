@@ -36,24 +36,16 @@
                         <a href="{{ url('/home') }}" class="navbar-item">Sitios cercanos</a>
                         <a href="{{ url('/home') }}" class="navbar-item">Sitios destacados</a>
                         <a href="{{ url('/home') }}" class="navbar-item">Comidas</a>
-                        <div class="field navbar-item">
-                          <p class="control has-icons-right">
-                            <input class="input is-rounded pacos-input-search" type="text" placeholder="Busca sitios o comidas">
-                            <span class="icon is-small is-left">
-                              <i class="fas fa-envelope"></i>
-                            </span>
-                            <span class="icon is-small is-right">
-                              <i class="material-icons">search</i>
-                            </span>
-                          </p>
-                        </div>
                     </div>
                     <div class="navbar-end">
                       <div class="navbar-item">
                         <div class="buttons">
                           @if (Auth::guest())
+                                <a class="navbar-item " href="{{ route('register') }}">Tengo un sitio de comida</a>
                                 <a class="navbar-item " href="{{ route('login') }}">Inicar sesión</a>
-                                <a class="navbar-item " href="{{ url('/registrarme') }}">Registrarmee</a>
+                                <a class="navbar-item " href="{{ url('/registrarme') }}">
+                                    <button class="button is-rounded pacos-registrarme-btn">Registrarme</button>
+                                </a>
                             @else
                                 <div class="navbar-item has-dropdown is-hoverable">
                                     <a class="navbar-link">

@@ -20,13 +20,59 @@ html, body {
 	border-radius: 50%;
 }
 .box-pacos {
+  background-color: white;
   border-radius: 5px;
+  box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1), 0 0px 0 1px rgba(10, 10, 10, 0.02);
   color: #4a4a4a;
   display: block;
   padding: 1.25rem;
-  padding-bottom: 0rem;
-  padding-top: 0.5rem;
 }
+.input-reseña{
+	border: none;
+	border-bottom: 1px solid black;
+	outline: none;
+	width: 80%
+}
+.pacos-menu-left{
+	height: 100vh; 
+	background-color: rgb(245,245,245);
+	text-align: center;
+	padding-top: 20px;
+}
+.pacos-div-right{
+	height: 100vh;
+	padding-top: 30px;
+	padding-left: 20px;
+}
+.pacos-hacer-reseñas{
+	margin-top: 10px;
+	max-width: 99%;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.is-active-pacos{
+	color: rgb(210,23,52);
+}
+.mini-logopacos{
+	width: 20px;
+	height: 20px;
+}
+/*flexbox para queries*/
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flex-container > div {
+  text-align: center;
+}
+.pacos-sitio{
+    margin-top: 20px;
+    margin-right: 10px;
+    
+}
+
+
 
 
 @media only screen

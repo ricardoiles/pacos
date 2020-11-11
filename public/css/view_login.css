@@ -1,0 +1,136 @@
+@font-face {
+    font-family: "Nirmala UI Semilight";
+    src: url("http://db.onlinewebfonts.com/t/b5eae9bab2129f4acd5fcd349dc804fe.woff");
+}
+html, body {
+    font-family: Nirmala UI Semilight;
+	background-color: rgb(245,245,245);
+}
+
+.navbar{
+	width: 65%;
+    display: block;
+    margin: auto;
+    background-color: rgb(245,245,245);
+     
+}
+.pacos-input-search{
+	width: 400px;
+}
+.div-pacos-tile-cover{
+	/*background-image: url(../images/coverpacos.jpg);*/
+	background-size: cover;
+	height: 25vh;
+}
+.pacos-foto-perfil-nav{
+	border-radius: 50%;
+}
+.menu-list a.is-active-pacos{
+	font-weight: bold;
+	color: rgb(210,23,52);
+}
+.pacos-registrarme-btn{
+	background-color: rgb(210,23,52);
+	color: white;
+}
+.pacos-registrarme-btn:hover{
+	color: white;
+}
+a.navbar-item:hover, .navbar-link:hover{
+	background-color: rgb(245,245,245);
+	color: rgb(210,23,52);
+}
+.pacos-log-left{
+	height: 100vh;
+	background-color: rgb(245,245,245);
+	text-align: center;
+	padding-top: 10%;
+}
+.pacos-log-right{
+	height: 100vh;
+	background-color: white;
+	padding-top: 10%;
+	text-align: center;
+}
+.pacos-log-logoPACOS{
+	width: 8%;
+}
+.logoPACOS{
+	margin-top: 10%;
+}
+.navbar-brand, .navbar-tabs{
+	min-height: 0px;
+}
+.pacos-hero-image{
+	width: 80%;
+    padding-top: 15%;
+    display: block;
+    margin: auto;
+}
+.pacos-log-descripcion{
+	width: 60%;
+    display: block;
+    margin: auto;
+   	line-height: 110%;
+}
+.pacos-hero-btn-round{
+	background-color: rgb(210,23,52);
+	color: white;
+	width: 40px;
+	height: 40px;
+	font-size: 14px;
+	border-radius: 50%;
+}
+.pacos-hero-btn-round:hover{
+	color: white;
+}
+.pacos-registrarme-btn{
+	background-color: rgb(210,23,52);
+	color: white;
+	width: 100%;
+}
+.pacos-registrarme-btn:hover{
+	color: white;
+}
+.pacos-log-inputs{
+	border-radius: 0px;
+	border:none;
+	border-bottom: 1px solid gray;
+	background-color: white;
+	outline:none !important;
+    outline-width: 0 !important;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    
+}
+.pacos-log-inputs:focus{
+	outline:none ;
+	border-bottom: 1px solid gray;
+    outline-width: 0 ;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+}
+.pacos-log-form{
+	width: 60%;
+    display: block;
+    margin: auto;
+}
+.pacos-log-active{
+	color: rgb(210, 23, 52);
+}
+.pacos-log-titlelog{
+	
+    display: block;
+    margin: auto;
+}
+
+
+@media only screen
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+    .navbar{
+     padding-left: 0px;
+	}
+}

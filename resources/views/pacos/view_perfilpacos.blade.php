@@ -3,6 +3,19 @@
 <link href="{{ asset('css/view_perfilpacos.css') }}" rel="stylesheet">
 <script src="https://unpkg.com/feather-icons"></script>
 @endsection
+
+@section('is-active')
+is-active-pacos
+@endsection
+
+@section('is-btn-selected-comida')
+pacos-btnmenu-pacos
+@endsection
+
+@section('is-btn-selected')
+pacos-btnoptions--infobasica-pacos
+@endsection
+
 @section('content')
     <div class="tile">
       <div class="tile is-parent is-vertical is-3">

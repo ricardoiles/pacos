@@ -1,0 +1,81 @@
+@font-face {
+    font-family: "Nirmala UI Semilight";
+    src: url("http://db.onlinewebfonts.com/t/b5eae9bab2129f4acd5fcd349dc804fe.woff");
+}
+html, body {
+    font-family: Nirmala UI Semilight;
+	background-color: rgb(245,245,245);
+}
+
+.navbar{
+     padding-left: 50px;
+     background-color: rgb(245,245,245);
+}
+.pacos-input-search{
+	width: 400px;
+}
+.div-pacos-tile-cover{
+	/*background-image: url(../images/coverpacos.jpg);*/
+	background-size: cover;
+	height: 25vh;
+}
+.pacos-foto-perfil-nav{
+	border-radius: 50%;
+}
+.menu-list a.is-active-pacos{
+	font-weight: bold;
+	color: rgb(210,23,52);
+}
+.pacos-registrarme-btn{
+	background-color: rgb(210,23,52);
+	color: white;
+}
+.pacos-registrarme-btn:hover{
+	color: white;
+}
+a.navbar-item:hover, .navbar-link:hover{
+	background-color: rgb(245,245,245);
+	color: rgb(210,23,52);
+}
+.pacos-hero-section{
+	height: 100vh;
+	text-align: center;
+}
+.pacos-hero-image{
+	width: 65%;
+    padding-top: 9%;
+    display: block;
+    margin: auto;
+}
+.pacos-hero--input-search{
+	border: none;
+	border-bottom: 1px solid slategray;
+	outline: none;
+	background-color: rgb(245,245,245);
+	box-shadow: none;
+	color: black;
+	border-radius: 0px;
+}
+.pacos-search-section{
+	padding-top: 8%;
+}
+.pacos-hero-btn-round{
+	background-color: rgb(210,23,52);
+	color: white;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+}
+.pacos-hero-btn-round:hover{
+	color: white;
+}
+
+
+
+@media only screen
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+    .navbar{
+     padding-left: 0px;
+	}
+}

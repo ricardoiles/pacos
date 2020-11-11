@@ -21,12 +21,6 @@
   <div class="column is-9" style="width: 65%">
   	<div class="columns is-mobile">
 	  <div class="column is-12">
-      <nav class="breadcrumb" aria-label="breadcrumbs">
-          <ul>
-            <li class="is-active"><a href="#" aria-current="page">Mis PACOS</a></li>
-            <li><a href=""></a></li>
-          </ul>
-        </nav>
 	  	<button class="button pacos-btnmenu-pacos">
 			<span class="icon is-small">
 			    <span class="material-icons">home</span>

@@ -20,15 +20,8 @@
 	  <div class="column is-12">
 	  	<nav class="breadcrumb" aria-label="breadcrumbs">
           <ul>
-            <li><a href="#">Mis PACOS</a></li>
-            @foreach($pacosinfo as $pacos)
-            <li><a href="#">{{ $pacos->nombre }}</a></li>
-            <li><a href="{{ url('/manage/'.$pacos->nombre.'/categorias') }}">Categorias</a></li>
-            @endforeach
-            @foreach($categoriasinfo as $categoria)
-            <li><a href="#">{{ $categoria->nombrecategoria }}</a></li>
-            @endforeach
-            <li class="is-active"><a href="#" aria-current="page">Comida</a></li>
+          	<li class="is-active"><a href="#" aria-current="page">Inicio</a></li>
+            <li><a href="#">Crear nuevo PACOS</a></li>            
           </ul>
         </nav>
 	  </div>

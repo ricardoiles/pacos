@@ -25,7 +25,7 @@
       <div class="column is-12">
         <nav class="breadcrumb" aria-label="breadcrumbs">
           <ul>
-            <li><a href="#">Mis PACOS</a></li>
+            <li><a href="{{ url('/home') }}">Mis PACOS</a></li>
             @foreach($pacosinfo as $pacos)
             <li><a href="#">{{ $pacos->nombre }}</a></li>
             <li><a href="{{ url('/manage/'.$pacos->nombre.'/categorias') }}">Categorias</a></li>
