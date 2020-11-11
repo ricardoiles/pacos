@@ -47,7 +47,7 @@ class ReservacionesController extends Controller
         $reservaciones = DB::table('reservas AS reserv')
                 ->leftjoin('mesas AS mesas', 'mesas.id', '=', 'reserv.id_Mesa')
                 ->leftjoin('restaurantes AS rest', 'rest.id', '=', 'mesas.Restaurante')
-                ->select('rest.id AS idrest', 'rest.nombre AS nombrerest', 'reserv.id AS idreserva', 'reserv.Fecha AS fechareserva', 'reserv.Hora_Ini AS horareserva', 'reserv.Detalle_Reserv AS consincomida')
+                ->select('rest.id AS idrest', 'rest.nombre AS nombrerest', 'reserv.id AS idreserva', 'reserv.Fecha AS fechareserva', 'reserv.Hora_Ini AS horareserva', 'reserv.Detalle_Reserv AS consincomida', 'reserv.id_Usuario AS iduser')
                 ->where('rest.nombre', $namepacos)
                 ->get();
 
@@ -83,7 +83,34 @@ class ReservacionesController extends Controller
      */
     public function store(Request $request)
     {
-        return $reservas=request();
+        $namepacos=request()->namepacos;
+
+        $idrest=request()->idrest;
+        $iduser=request()->iduser;
+        $mesa=request()->mesa;
+        $fecha=request()->fecha;
+        $horainicio=request()->horainicio;
+        $horafin=request()->horafin;
+        $cantpersonas=request()->cantpersonas;
+        $infoadicional=request()->infoadicional;
+        $valortotal=request()->valortotal;
+        $totaldcto=request()->totaldcto;
+        $totaliva=request()->totaliva;        
+        DB::table('reservas')->insert(
+                ['id_Restaurante' => $idrest,  'id_Usuario' => $iduser, 'id_Mesa' => $mesa, 'Fecha' => $fecha, 'Hora_Ini' => $horainicio, 'Hora_Fin' => $horafin, 'Cant_Personas' => $cantpersonas, 'informacionAdc' => $infoadicional, 'total' => $valortotal, 'total_desc' => $totaldcto, 'total_iva' => $totaliva]
+            );
+        // consultar id de la comida antes guardada para insertarlo en tabla platosxrest
+        $reservarecienregistrada = DB::table('reservas AS reserva')
+                                ->select('reserva.id AS idreserva', 'reserva.id_Usuario')
+                                ->where('reserva.id_Usuario', $iduser)
+                                ->latest('id')
+                                ->limit(1)
+                                ->get();
+        foreach ($reservarecienregistrada as $estareserva) {
+            $reservacion = $estareserva->idreserva;
+        }
+
+        return redirect('/pacos/'.$namepacos.'/'.$reservacion.'/ordenarcomida');
     }
 
     /**

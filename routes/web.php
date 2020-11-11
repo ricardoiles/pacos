@@ -38,6 +38,7 @@ Route::get('/manage/{namepacos}/categorias', 'CategoryController@show')->middlew
 Route::get('/manage/{namepacos}/categorias/nueva', 'CategoryController@agregar')->middleware('auth');
 Route::get('/manage/{namepacos}/{category}/comida', 'ComidaController@show')->middleware('auth');
 Route::get('/pacos/{namepacos}/reservar', 'ReservacionesController@index')->middleware('auth');
+Route::get('/pacos/{namepacos}/{reserva}/ordenarcomida', 'OrdenarComidaController@index')->middleware('auth');
 
 //Route::resource('registrarPACOS', 'RestaurantesController');
 Route::resource('manage/registrarPACOS', 'NuevoPacosController')->middleware('auth');
