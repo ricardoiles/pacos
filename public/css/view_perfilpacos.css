@@ -211,6 +211,11 @@ html, body {
 .pacos-comida-elementocreado--inforightpacos{
 	text-align: left;
 }
+.pacos-perfilpacos-categorias-comida{
+	margin-left: 10px;
+    max-width: 23%;
+    margin-right: 13px;
+}
 
 
 

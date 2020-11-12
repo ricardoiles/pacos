@@ -28,6 +28,12 @@ Route::get('/pacos/{namepacos}', 'PerfilpacosController@show')->middleware('auth
 Route::get('/registrarme', function () {
     return view('auth.registeruser');
 });
+//api para insertar orden de comida
+Route::get('/api/registrarOrden/{id_Plato}/{precio}/{cant}/{Subtotal}/{Sub_desc}/{Sub_Iva}', 
+		function ($id_Plato, $precio, $cant, $Subtotal, $Sub_desc, $Sub_Iva) {
+	DB::table('detalle_reserv')->insert(['id_Plato' => $id_Plato, 'precio' => $precio, 'cant' => $cant, 'Subtotal' => $Subtotal, 'Sub_desc' => $Sub_desc, 'Sub_Iva' => $Sub_Iva]
+			);
+})->middleware('auth');
 
 
 //administrar mi pacos
@@ -39,6 +45,10 @@ Route::get('/manage/{namepacos}/categorias/nueva', 'CategoryController@agregar')
 Route::get('/manage/{namepacos}/{category}/comida', 'ComidaController@show')->middleware('auth');
 Route::get('/pacos/{namepacos}/reservar', 'ReservacionesController@index')->middleware('auth');
 Route::get('/pacos/{namepacos}/{reserva}/ordenarcomida', 'OrdenarComidaController@index')->middleware('auth');
+
+
+Route::get('/api/pacos/{namepacos}/{idcomida}', 'OrdenarComidaController@ordencomida')->middleware('auth');
+
 
 //Route::resource('registrarPACOS', 'RestaurantesController');
 Route::resource('manage/registrarPACOS', 'NuevoPacosController')->middleware('auth');

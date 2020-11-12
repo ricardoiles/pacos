@@ -61,9 +61,33 @@ class OrdenarComidaController extends Controller
     }
 
     public function store(Request $request){
-        return 'aqui se registra la orden de comida';
+        $id_Plato = request()->plato;
+        
+        $precio = request()->platoprecio;
+        $cant = request()->cant;
+        return $cant;
+        
+        
         DB::table('detalle_reserv')->insert(
-                    ['id_FotoVid' => $idfoto,  'id_Plato' => $idcomida]
-                );
+                ['id_Plato' => $id_Plato, 'precio' => $precio,  'cant' => $cant, 'Subtotal' => $Subtotal,
+                'Sub_desc' => $Sub_desc, 'Sub_Iva' => $Sub_Iva]
+            );
+        return 'se registro la orden';
+    }
+
+    public function ordencomida($namepacos, $idcomida){
+        
+        $comidas = DB::table('restaurantes AS rest')
+                ->join('platosxrest AS comidaxrest', 'comidaxrest.id_Rest', '=', 'rest.id')
+                ->join('platos AS comida', 'comida.id', '=', 'comidaxrest.id_Plat')
+                ->join('fotoxplato AS fxp', 'fxp.id_Plato', '=', 'comida.id')
+                ->join('foto_vid AS fv', 'fv.id', '=', 'fxp.id_FotoVid')
+                ->select('comida.id AS idcomida', 'comida.Nombre AS nombrecomida', 'comida.Descripcion AS ingredientes', 'comida.Precio AS preciocomida', 'comida.cant as cant',  'rest.nombre', 'fv.Url AS fotocomida')
+                ->where('rest.nombre', $namepacos)
+                ->where(function ($query) use($idcomida) {
+                    $query->where('comida.id', '=', $idcomida);
+                })
+                ->get();
+        return response()->json($comidas);
     }
 }

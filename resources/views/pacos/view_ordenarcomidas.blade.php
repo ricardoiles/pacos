@@ -33,7 +33,7 @@ pacos-btnmenu-pacos
                       </div>
                       @endforeach
                       <div class="column is-9" style="padding-left: 20px">
-                          <b>{{ $reserva->nombrerest }}</b>
+                          <b id="Paccos">{{ $reserva->nombrerest }}</b>
                           <p>Reservacion N° <b>{{ $reserva->idreserva }}</b></p>
                           <p>{{ $reserva->fechareserva }} &middot; {{ $reserva->horareserva }} </p>
                           @if($reserva->consincomida == 0)
@@ -57,9 +57,6 @@ pacos-btnmenu-pacos
                       <div class="dropdown-menu" id="dropdown-menu4" role="menu">
                         <div class="dropdown-content pacos-dropdown-comida">
                           @foreach($comidas as $comida)
-                          <a 
-                            onclick="agregarComida()" 
-                            class="navbar-item">
                             <div class="columns is-desktop">
                               <div class="column is-2">
                                 <div class="pacos-reservas-fotopacos" style="background-image: url('{{ asset('storage'.'/'.'/'.$comida->fotocomida) }}');margin-top: 20%"></div>
@@ -68,11 +65,13 @@ pacos-btnmenu-pacos
                                   <div class="dropdown-item" style="line-height: 105%;">                        
                                     <p><strong>{{ $comida->nombrecomida }}</strong></p>
                                     <p>{{ $comida->ingredientes }} </p>
-                                    <p><b>Cantidad: 2</b> &middot; <b>${{ $comida->preciocomida }}</b></p>
+                                    <p><b>Cantidad: </b> &middot; <b>${{ $comida->preciocomida }}</b></p>
+                                    <p>
+                                      <button class="button is-rounded" onclick="agregarComida({{ $comida->idcomida }})"><i class="material-icons">add</i></button>
+                                    </p>
                                   </div>
                               </div>
                             </div>
-                          </a>
                           <hr class="dropdown-divider">
                         @endforeach
                         </div>
@@ -80,24 +79,13 @@ pacos-btnmenu-pacos
                     </div>
                   </div>
                 </div>  
-                <form method="post" action="{{ url('pacos/reservar/registrarOrden') }}">  
-                  {{ csrf_field() }}
                 <div class="columns is-desktop">
                   <div class="column is-12">
                     <div class="columns is-desktop flex-container pacos-comida-paracrearelementos-comida">
-                    
-                       <div class="column is-5 box pacos-comida-elementocreado">
-                            <div class="columns is-desktop">
-                                <div class="column is-3">
-                                    <div class="pacos-reservas-fotopacos" style="background-image: url('');margin-top: 20%"></div>
-                                </div>
-                                <div class="column is-9 pacos-comida-elementocreado--inforightpacos">
-                                    <b></b>
-                                    <p></p>
-                                    <p><b> </b> &middot; <b></b> </p>
-                                </div>
-                            </div>
-                       </div>
+                        <form method="post" action="{{ url('pacos/reservar/registrarOrden') }}">  
+                          {{ csrf_field() }}
+                          <input type="hidden" name="idres" value="{{ $reserva->idreserva }}">
+                           <div id="Comidas"></div>
                    </div>
                   </div>
                 </div>  
