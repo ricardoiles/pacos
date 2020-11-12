@@ -26,14 +26,6 @@ class OrdenarComidaController extends Controller
                     ->where('rest.nombre', $namepacos)
                     ->get();
         //return $pacosinfo;
-        $redes = DB::table('restaurantes as rest')
-                ->leftjoin('redesxrest as rr', 'rr.id_Rest', '=', 'rest.id')
-                ->leftjoin('redes as red', 'rr.id_Redes', '=', 'red.id')
-                ->leftjoin('tiporedes as tred', 'tred.id', '=', 'red.Tipo')
-                ->select('red.Url', 'red.Icono', 'red.Tipo', 'tred.Nombre AS tipored')
-                ->where('rest.nombre', $namepacos)
-                ->get();
-        //return $pacosinfo;
         $fotos = DB::table('restaurantes as rest')
                 ->leftjoin('foto_vid as fv', 'rest.FotoPerfil', '=', 'fv.id')
                 ->join('foto_vid as fvp', 'rest.FotoPortada', '=', 'fvp.id')
@@ -50,22 +42,28 @@ class OrdenarComidaController extends Controller
                     $query->where('rest.nombre', '=', $namepacos)
                           ->where('reserv.id', '=', $reservacion);
                 })
-                // ->whereIn('rest.nombre', $namepacos)
-                // ->whereIn('reserv.id', $reservacion)
                 ->get();
-        
-        $mesasxrest = DB::table('mesas AS mesa')
-                ->join('restaurantes AS rest', 'rest.id', '=', 'mesa.Restaurante')
-                ->select('mesa.id AS idmesa', 'mesa.numero AS numeromesa', 'mesa.Puestos AS puestosmesa', 'rest.nombre AS nombrerest')
+
+        $comidas = DB::table('restaurantes AS rest')
+                ->join('platosxrest AS comidaxrest', 'comidaxrest.id_Rest', '=', 'rest.id')
+                ->join('platos AS comida', 'comida.id', '=', 'comidaxrest.id_Plat')
+                ->join('fotoxplato AS fxp', 'fxp.id_Plato', '=', 'comida.id')
+                ->join('foto_vid AS fv', 'fv.id', '=', 'fxp.id_FotoVid')
+                ->select('comida.id AS idcomida', 'comida.Nombre AS nombrecomida', 'comida.Descripcion AS ingredientes', 'comida.Precio AS preciocomida', 'rest.nombre', 'fv.Url AS fotocomida')
                 ->where('rest.nombre', $namepacos)
                 ->get();
 
-
     	return view('pacos.view_ordenarcomidas')
                 ->with('pacosinfo', $pacosinfo)
-                ->with('redes', $redes)
                 ->with('fotos', $fotos)
                 ->with('reservaciones', $reservaciones)
-                ->with('mesasxrest', $mesasxrest);
+                ->with('comidas', $comidas);
+    }
+
+    public function store(Request $request){
+        return 'aqui se registra la orden de comida';
+        DB::table('detalle_reserv')->insert(
+                    ['id_FotoVid' => $idfoto,  'id_Plato' => $idcomida]
+                );
     }
 }

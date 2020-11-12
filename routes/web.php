@@ -46,6 +46,9 @@ Route::resource('manage/agregar/detallesPACOS', 'ManagePacosController')->middle
 Route::resource('manage/categorias/registrarCategoria', 'CategoryController')->middleware('auth');
 Route::resource('manage/categorias/comida/registrarComida', 'ComidaController')->middleware('auth');
 Route::resource('busqueda/pacos/ciudad', 'HomeController')->middleware('auth');
+//registrar reservacion
 Route::resource('pacos/reservar/nueva', 'ReservacionesController')->middleware('auth');
+//registrar orden de comida
+Route::resource('pacos/reservar/registrarOrden', 'OrdenarComidaController')->middleware('auth');
 
 

@@ -162,6 +162,59 @@ html, body {
 .column.is-4, .column.is-4-tablet{
 	width: 30%
 }
+.pacos-btn-enviar{
+	background-color: rgb(210, 23, 52);
+	color: white;
+	width: 100%;
+}
+.pacos-btn-enviar:hover{
+	color: white;
+}
+.pacos-seccion-detalles-reserva{
+	line-height: 100%; 
+	text-align: justify; 
+	height: auto; 
+	border-right: 1px solid slategray
+}
+.pacos-chose-food{
+	width: 50px;
+	height: 50px;
+	border-color: 1px solid slategray;
+	border-radius: 50%;
+	text-align: center;
+}
+.pacos-btn-selectedfood{
+	background-color: rgb(210, 23, 52);
+	color: white;
+}
+.pacos-btn-selectedfood:hover{
+	color: white;
+}
+.pacos-dropdown-comida{
+	overflow-y: scroll;
+	height: 200px;
+	width: 300px;
+	text-align: left;
+}
+.pacos-dropdown-comida-itemcomida{
+	line-height: 100%;
+}
+.pacos-comida-paracrearelementos-comida{
+	margin-left: 10px;
+}
+.pacos-comida-elementocreado{
+	line-height: 100%; 
+	text-align: left; 
+	margin-right: 10px; 
+	margin-bottom: 10px;
+}
+.pacos-comida-elementocreado--inforightpacos{
+	text-align: left;
+}
+
+
+
+
 
 @media screen and (min-width: 769px){
 	

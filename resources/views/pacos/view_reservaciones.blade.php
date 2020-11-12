@@ -57,7 +57,11 @@ pacos-btnmenu-pacos
                                     <p>Reservacion N° <b>{{ $reserva->idreserva }}</b></p>
                                     <p>{{ $reserva->fechareserva }} &middot; {{ $reserva->horareserva }} </p>
                                     @if($reserva->consincomida == 0)
-                                    <p><b class="pacos-is-active">Sin comida</b></p>
+                                    @foreach($pacosinfo as $pacos)
+                                      <p><a href="{{ url('/pacos/'.$pacos->nombre.'/'.$reserva->idreserva.'/ordenarcomida') }}"><b class="pacos-is-active">Ordenar comida</b></a></p>
+                                    @endforeach
+                                    @else
+                                      <p><a href=""><b class="pacos-is-active">Ordenaste comida</b></a></p>
                                     @endif
                                 </div>
                             </div>
@@ -68,7 +72,7 @@ pacos-btnmenu-pacos
                 </div>
                 <div class="tab-pane" id="pane-2">
                     <div class="columns is-desktop">
-                        <div class="column is-12 box" style="line-height: 100%">
+                        <div class="column is-12" style="line-height: 100%">
                             <div class="columns is-desktop">
                                 @foreach($fotos as $foto)
                                 <div class="column is-1">
@@ -110,12 +114,14 @@ pacos-btnmenu-pacos
                                           <div class="field-body">
                                             <div class="field">
                                                 <small>Elige la mesa</small>
-                                              <p class="control is-expanded ">
-                                                <select class="input" name="mesa">
-                                                    @foreach($mesasxrest as $mesa)
-                                                        <option value="{{ $mesa->idmesa }}"> Mesa N° {{ $mesa->numeromesa }}  &middot; {{ $mesa->puestosmesa }} puestos </option>
-                                                    @endforeach
-                                                </select>
+                                              <p class="control is-expanded">
+                                                <div class="select">
+                                                  <select name="mesa">
+                                                      @foreach($mesasxrest as $mesa)
+                                                          <option value="{{ $mesa->idmesa }}"> Mesa N° {{ $mesa->numeromesa }}  &middot; {{ $mesa->puestosmesa }} puestos </option>
+                                                      @endforeach
+                                                  </select>
+                                                </div>
                                               </p>
                                             </div>
                                             <div class="field">
@@ -181,7 +187,7 @@ pacos-btnmenu-pacos
                                           <div class="field-body">
                                             <div class="field">
                                               <p class="control is-expanded ">
-                                                <input class="button is-rounded" type="submit" value="Reservar">
+                                                <input class="button is-rounded pacos-btn-enviar" type="submit" value="Reservar">
                                               </p>
                                             </div>
                                           </div>

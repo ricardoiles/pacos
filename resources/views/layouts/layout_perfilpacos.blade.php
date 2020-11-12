@@ -238,6 +238,7 @@
         <script src="{{ asset('js/bulmajs/bulma.js') }}"></script>
         <script>feather.replace()</script>
         <script src="{{ asset('js/tabs.js') }}"></script>
+        <script src="{{ asset('js/scripts/perfilpacos.js') }}"></script>
 
         <script>
           function myFunction($id) {
