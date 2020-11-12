@@ -236,7 +236,7 @@
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}"></script>
         <script src="{{ asset('js/bulmajs/bulma.js') }}"></script>
-        <script>feather.replace()</script>
+        
         <script src="{{ asset('js/tabs.js') }}"></script>
         <script src="{{ asset('js/scripts/perfilpacos.js') }}"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -246,6 +246,9 @@
             var element = document.getElementById($id);
             element.style.display="none";
           }
+        </script>
+        <script>
+            var asset_global='{{asset("/storage")}}';
         </script>
     </body>
 </html>

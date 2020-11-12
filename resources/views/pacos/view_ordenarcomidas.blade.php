@@ -79,24 +79,22 @@ pacos-btnmenu-pacos
                     </div>
                   </div>
                 </div>  
+                <form method="post" action="{{ url('pacos/reservar/registrarOrden') }}">  
+                  {{ csrf_field() }}
+                <div class="columns is-desktop">
+                  <div class="column is-12" >
+                    <div id="Comidas" class="columns is-desktop flex-container">
+                       
+                     </div>
+                  </div>
+                   <input type="hidden" name="idres" value="{{ $reserva->idreserva }}">
+                </div>          
                 <div class="columns is-desktop">
                   <div class="column is-12">
-                    <div class="columns is-desktop flex-container pacos-comida-paracrearelementos-comida">
-                        <form method="post" action="{{ url('pacos/reservar/registrarOrden') }}">  
-                          {{ csrf_field() }}
-                          <input type="hidden" name="idres" value="{{ $reserva->idreserva }}">
-                           <div id="Comidas"></div>
-                   </div>
+                    <input class="button is-rounded pacos-btn-enviar" type="submit" value="Pagar reservación">
                   </div>
-                </div>  
-              </div>
-          </div>
-          <div class="columns is-desktop">
-            <div class="column is-12">
-              <input class="button is-rounded pacos-btn-enviar" type="submit" value="Pagar reservación">
-            </div>
-          </div>
-        </form>
+                </div>
+              </form>
         @endif
       @endforeach 
     </article>

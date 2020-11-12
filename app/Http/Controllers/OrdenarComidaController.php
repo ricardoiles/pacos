@@ -65,7 +65,10 @@ class OrdenarComidaController extends Controller
         
         $precio = request()->platoprecio;
         $cant = request()->cant;
-        return $cant;
+        return $request = request();
+        
+        return response()->json($request);
+        
         
         
         DB::table('detalle_reserv')->insert(

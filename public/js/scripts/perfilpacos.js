@@ -5,7 +5,8 @@ var comresv = {
 	nombrecomida :"",
 	ingredientes : "",
 	preciocomida : 0,
-	cant: 0
+	cant: 0,
+	fotocomida: ""
 };
 
 
@@ -54,7 +55,7 @@ function limpiarmodel(){
    		comresv.ingredientes = "";
    		comresv.preciocomida = 0;
    		comresv.cant =0;
-
+   		comresv.fotocomida ="";
 }
 
 function removerComida(id) {
@@ -76,26 +77,25 @@ var platos = "" ;
 if (comidas.length != 0){
 
 comidas.forEach(cmd => platos += 
-                            '<div class="columns is-desktop">'+
-                                '<div class="column is-3">'+
-                                    '<div class="pacos-reservas-fotopacos" style="background-image: url("asset("storage"."/"."/".'+cmd.fotocomida+')");margin-top: 20%"></div>'+
-                                '</div>'+
-                                '<div class="column is-9 pacos-comida-elementocreado--inforightpacos">'+
-                                    '<b>'+cmd.nombrecomida+'</b>'+
-                                    '<p>'+cmd.ingredientes+'</p>'+
-                                    '<p><input class="form-control" type="number" min="1" value="'+cmd.cant+'" >   <b>'+cmd.preciocomida+'</b></p>'+
-                                    '<input  class="form-control" type="hidden" name="plato" value="'+cmd.idcomida+'">'+
-                                    '<input  class="form-control" type="hidden" name="platonombre" value="'+cmd.nombrecomida+'">'+
-                                    '<input  class="form-control" type="hidden" name="platoprecio" value="'+cmd.preciocomida+'">'+
-                                '</div>'+
-                                '<button class="button is-rounded" onclick="removerComida('+cmd.idcomida+')"><i class="material-icons">remove_circle</i></button>'+
-                           '</div>' );
-
-
+						"<div class='column is-4 box' style='line-height: 100%; text-align: justify; margin-left:20px; margin-right: 5px; margin-bottom: 10px; width: 33%'>"+
+                            "<div class='columns is-desktop pacos-div-ordencomida'>"+
+                                "<div class='column  pacos-ordenar-col-3-fotocomida'>"+
+                                    "<image class='pacos-ordenar-fotocomida' src='"+asset_global+"/"+cmd.fotocomida+"'>"+
+                                "</div>"+
+                                  "<div class='column is-9' style='font-size: 13px; width: 70%'>"+
+                                      "<b>"+cmd.nombrecomida+"</b>"+
+                                      "<p>"+cmd.ingredientes+"</p>"+                                                                          
+                                      "<p><b>Cantidad: <label>"+cmd.cant+"</label> </b> &middot; <b class='pacos-is-active'>$"+cmd.preciocomida+"</b></p>"+
+                                      "<label class='remove-comida' onclick='removerComida("+cmd.idcomida+")'><i class='material-icons'>remove_circle</i></label>"+
+                                      "<input class='form-control' type='hidden' name='plato' value='"+cmd.idcomida+"'>"+
+                                      "<input class='form-control' type='hidden' name='platonombre' value='"+cmd.nombrecomida+"'>"+
+                                      "<input class='form-control' type='hidden' name='platoprecio' value='"+cmd.preciocomida+"'>"+
+                                      "<input class='form-control' type='hidden' name='cant' min='1' value='"+cmd.cant+"'>"+
+                                  "</div>"+
+                             "</div>"+
+                        "</div>"
+                                );
 
 }
-
-  
-
   $('#Comidas').html(platos);
 }
