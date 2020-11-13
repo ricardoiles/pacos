@@ -36,7 +36,8 @@ class OrdenarComidaController extends Controller
         $reservaciones = DB::table('reservas AS reserv')
                 ->leftjoin('mesas AS mesas', 'mesas.id', '=', 'reserv.id_Mesa')
                 ->leftjoin('restaurantes AS rest', 'rest.id', '=', 'mesas.Restaurante')
-                ->select('rest.id AS idrest', 'rest.nombre AS nombrerest', 'reserv.id AS idreserva', 'reserv.Fecha AS fechareserva', 'reserv.Hora_Ini AS horareserva', 'reserv.Detalle_Reserv AS consincomida', 'reserv.id_Usuario AS iduser')
+                ->select('rest.id AS idrest', 'rest.nombre AS nombrerest', 'reserv.id AS idreserva', 'reserv.Fecha AS fechareserva', 'reserv.Hora_Ini AS horareserva', 'reserv.Detalle_Reserv AS consincomida', 'reserv.id_Usuario AS iduser', 
+                    'reserv.total', 'reserv.total_desc', 'reserv.total_iva')
                 ->where('reserv.id_Usuario', '=', $iduser)
                 ->where(function ($query) use($namepacos, $reservacion) {
                     $query->where('rest.nombre', '=', $namepacos)
@@ -61,21 +62,36 @@ class OrdenarComidaController extends Controller
     }
 
     public function store(Request $request){
-        $id_Plato = request()->plato;
+        // $id_Plato = request()->plato;
         
-        $precio = request()->platoprecio;
+        // $precio = request()->platoprecio;
+        // $cant = request()->cant;
+        // return $request = request();
+        return $ordenes = request()->except('_token');
+        
+        $idres = request()->idres;
+        $id_Plato = request()->idcomida;
+        $nombrecomida = request()->nombrecomida;        
+        $precio = request()->preciocomida;
         $cant = request()->cant;
-        return $request = request();
-        
-        return response()->json($request);
-        
-        
-        
-        DB::table('detalle_reserv')->insert(
+        $Subtotal = request()->total;
+        $Sub_desc = request()->total_desc;
+        $Sub_Iva = request()->total_iva;
+
+        foreach ($idres as $ireserva) {
+            DB::table('detalle_reserv')->insert(
                 ['id_Plato' => $id_Plato, 'precio' => $precio,  'cant' => $cant, 'Subtotal' => $Subtotal,
-                'Sub_desc' => $Sub_desc, 'Sub_Iva' => $Sub_Iva]
+                'Sub_desc' => $Sub_desc, 'Sub_Iva' => $Sub_Iva, 'id_reserva' => $idres]
             );
-        return 'se registro la orden';
+        }
+        
+        
+
+         DB::table('reservas')
+                ->where('id', $idres)
+                ->update(['Detalle_Reserv' => '1']);
+
+        return 'se registro la orden, revisa la BD';
     }
 
     public function ordencomida($namepacos, $idcomida){

@@ -21,14 +21,7 @@ class MenuComidasController extends Controller
                             'hor.Hora_APert as horaopen', 'hor.Hora_cierre as horaclose', 'rest.domicilios', 'rest.reservas', 'rest.ordenes')
                     ->where('rest.nombre', $namepacos)
                     ->get();
-        //return $pacosinfo;
-        $redes = DB::table('restaurantes as rest')
-                ->leftjoin('redesxrest as rr', 'rr.id_Rest', '=', 'rest.id')
-                ->leftjoin('redes as red', 'rr.id_Redes', '=', 'red.id')
-                ->leftjoin('tiporedes as tred', 'tred.id', '=', 'red.Tipo')
-                ->select('red.Url', 'red.Icono', 'red.Tipo', 'tred.Nombre AS tipored')
-                ->where('rest.nombre', $namepacos)
-                ->get();
+        
         //return $pacosinfo;
         $fotos = DB::table('restaurantes as rest')
                 ->leftjoin('foto_vid as fv', 'rest.FotoPerfil', '=', 'fv.id')
@@ -36,8 +29,42 @@ class MenuComidasController extends Controller
                 ->select('rest.id as resta', 'fv.Url as Perfil', 'fvp.Url as Portada')
                 ->where('rest.nombre', $namepacos)
                 ->get();
+
+
+        $catcomidas = DB::table('catplatos AS cat')
+                ->join('foto_vid AS fv', 'cat.Foto', '=', 'fv.id')
+                ->join('restaurantes AS rest', 'rest.id', '=', 'cat.id_restaurante')
+                ->select('cat.id AS idcat', 'cat.Descripcion AS nombrecat', 'fv.Url as fotocat')
+                ->where('rest.nombre', $namepacos)
+                ->get();
+
+        $comidas = DB::table('restaurantes AS rest')
+                ->join('platosxrest AS comidaxrest', 'comidaxrest.id_Rest', '=', 'rest.id')
+                ->join('platos AS comida', 'comida.id', '=', 'comidaxrest.id_Plat')
+                ->join('fotoxplato AS fxp', 'fxp.id_Plato', '=', 'comida.id')
+                ->join('foto_vid AS fv', 'fv.id', '=', 'fxp.id_FotoVid')
+                ->join('catplatos AS catp', 'catp.id_restaurante', '=', 'rest.id')
+                ->join('foto_vid AS fcat', 'fcat.id', '=', 'catp.Foto')
+
+                ->select('catp.id AS idcat', 'comida.id AS idcomida', 'comida.Nombre AS nombrecomida', 'comida.Descripcion AS ingredientes',
+                        'comida.Precio AS preciocomida', 'rest.nombre', 'fv.Url AS foto')
+                ->where('rest.nombre', $namepacos)
+                ->get();
         
         
-        return view('pacos.view_menucomidas')->with('pacosinfo', $pacosinfo)->with('redes', $redes)->with('fotos', $fotos);
+        return view('pacos.view_menucomidas')
+                ->with('pacosinfo', $pacosinfo)
+                ->with('fotos', $fotos)
+                ->with('catcomidas', $catcomidas)
+                ->with('comidas', $comidas);
+    }
+
+    public function vercomidas($idcat){
+        
+        $comidas = DB::table('platos AS pla')
+                ->where('pla.Categoria', $idcat)
+                ->get();
+        
+        return response()->json($comidas);
     }
 }

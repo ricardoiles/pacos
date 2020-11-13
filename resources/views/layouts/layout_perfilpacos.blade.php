@@ -239,6 +239,7 @@
         
         <script src="{{ asset('js/tabs.js') }}"></script>
         <script src="{{ asset('js/scripts/perfilpacos.js') }}"></script>
+        <script src="{{ asset('js/scripts/comidas.js') }}"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
         <script>

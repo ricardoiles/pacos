@@ -90,10 +90,10 @@ html, body {
 	padding: 0px;
 }
 .pacos-div-allinfo-pacos{
-	padding-right: 20px;
+	padding-right: 0px;
     margin-top: -12px;
     margin-bottom: 0px;
-    height: 110%;
+    
     margin-left: -12px;
     width: 100%; 
     line-height: 110%; 
@@ -223,6 +223,7 @@ html, body {
 	margin-left: 100px;
 	cursor: pointer;
 }
+
 .pacos-ordenar-fotocomida{
 	width: 50px;
 	height: 50px;
@@ -241,6 +242,16 @@ html, body {
 	width: 110%;
 }
 
+.more_vert-comida{
+	float: left;
+	margin-top: 5px;
+	margin-left: -17px;
+	cursor: pointer;
+	font-size: 12px;
+}
+.more-options-comida{
+	float: right;
+}
 
 
 

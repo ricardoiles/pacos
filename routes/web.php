@@ -48,6 +48,8 @@ Route::get('/pacos/{namepacos}/{reserva}/ordenarcomida', 'OrdenarComidaControlle
 
 
 Route::get('/api/pacos/{namepacos}/{idcomida}', 'OrdenarComidaController@ordencomida')->middleware('auth');
+Route::get('/api/pacos/{idcat}', 'MenuComidasController@vercomidas')->middleware('auth');
+
 
 
 //Route::resource('registrarPACOS', 'RestaurantesController');
@@ -61,4 +63,8 @@ Route::resource('pacos/reservar/nueva', 'ReservacionesController')->middleware('
 //registrar orden de comida
 Route::resource('pacos/reservar/registrarOrden', 'OrdenarComidaController')->middleware('auth');
 
+
+Route::post('/api/pacos/reservar/registrarOrden', function () {
+    return 'se reciben aqui';
+});
 

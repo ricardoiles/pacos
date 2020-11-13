@@ -87,10 +87,10 @@ comidas.forEach(cmd => platos +=
                                       "<p>"+cmd.ingredientes+"</p>"+                                                                          
                                       "<p><b>Cantidad: <label>"+cmd.cant+"</label> </b> &middot; <b class='pacos-is-active'>$"+cmd.preciocomida+"</b></p>"+
                                       "<label class='remove-comida' onclick='removerComida("+cmd.idcomida+")'><i class='material-icons'>remove_circle</i></label>"+
-                                      "<input class='form-control' type='hidden' name='plato' value='"+cmd.idcomida+"'>"+
-                                      "<input class='form-control' type='hidden' name='platonombre' value='"+cmd.nombrecomida+"'>"+
-                                      "<input class='form-control' type='hidden' name='platoprecio' value='"+cmd.preciocomida+"'>"+
-                                      "<input class='form-control' type='hidden' name='cant' min='1' value='"+cmd.cant+"'>"+
+                                      "<input type='hidden' name='idcomida["+cmd.idcomida+"]' value='"+cmd.idcomida+"'>"+
+                                      "<input type='hidden' name='nombrecomida["+cmd.nombrecomida+"]' value='"+cmd.nombrecomida+"'>"+
+                                      "<input type='hidden' name='preciocomida["+cmd.preciocomida+"]' value='"+cmd.preciocomida+"'>"+
+                                      "<input type='hidden' name='cant["+cmd.cant+"]' min='1' value='"+cmd.cant+"'>"+
                                   "</div>"+
                              "</div>"+
                         "</div>"
