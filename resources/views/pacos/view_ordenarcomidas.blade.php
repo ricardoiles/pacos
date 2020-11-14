@@ -84,14 +84,11 @@ pacos-btnmenu-pacos
                   <div class="column is-12" >
                     <form method="post" action="{{ url('pacos/reservar/registrarOrden') }}">  
                         {{ csrf_field() }}
-                        <input type="hidden" name="idres" value="{{ $reserva->idreserva }}"><!-- 
-                        <input type="hidden" name="total" value="{{ $reserva->total }}">
-                        <input type="hidden" name="total_desc" value="{{ $reserva->total_desc }}">
-                        <input type="hidden" name="total_iva" value="{{ $reserva->total_iva }}"> -->
+                        <input type="hidden" id="idres" name="idres" value="{{ $reserva->idreserva }}">
                     <div id="Comidas" class="columns is-desktop flex-container">
                        
                      </div>
-                     <input class="button is-rounded pacos-btn-enviar" type="submit" value="Pagar reservación">
+                     <input class="button is-rounded pacos-btn-enviar"  type="submit" value="Pagar reservación"> <!-- onclick="enviarOrden()" -->
                      </form>
                   </div>
                 </div>          
@@ -100,4 +97,49 @@ pacos-btnmenu-pacos
     </article>
   </div>
 </div>
+
+
+
+<!-- <div id="modal" class="modal is-active">
+  <div class="modal-background"></div>
+  <div class="modal-content">
+    <div class="box">
+      <article class="media">
+        <div class="media-left">
+          <figure class="image is-64x64">
+            <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
+          </figure>
+        </div>
+        <div class="media-content">
+          <div class="content">
+            <p>
+              <div class="content">
+                <p>
+                  <strong>John Smith</strong> <small>@johnsmith</small> <small>31m</small>
+                  <br>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit amet massa fringilla egestas. Nullam condimentum luctus turpis.
+                </p>
+              </div>
+            </p>
+          </div>
+          <nav class="level is-mobile">
+            <div class="level-left">
+              <a class="level-item" aria-label="retweet">
+                  <span class="icon is-small">
+                    <i class="material-icons">home</i>
+                  </span>
+                </a>
+                <a class="level-item" aria-label="like">
+                  <span class="icon is-small">
+                    <i class="material-icons">home</i>
+                </span>
+              </a>
+            </div>
+          </nav>
+        </div>
+      </article>
+    </div>
+  </div>
+  <button class="modal-close is-large" aria-label="close"></button>
+</div> -->
 @endsection

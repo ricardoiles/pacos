@@ -87,15 +87,42 @@ comidas.forEach(cmd => platos +=
                                       "<p>"+cmd.ingredientes+"</p>"+                                                                          
                                       "<p><b>Cantidad: <label>"+cmd.cant+"</label> </b> &middot; <b class='pacos-is-active'>$"+cmd.preciocomida+"</b></p>"+
                                       "<label class='remove-comida' onclick='removerComida("+cmd.idcomida+")'><i class='material-icons'>remove_circle</i></label>"+
-                                      "<input type='hidden' name='idcomida["+cmd.idcomida+"]' value='"+cmd.idcomida+"'>"+
-                                      "<input type='hidden' name='nombrecomida["+cmd.nombrecomida+"]' value='"+cmd.nombrecomida+"'>"+
-                                      "<input type='hidden' name='preciocomida["+cmd.preciocomida+"]' value='"+cmd.preciocomida+"'>"+
-                                      "<input type='hidden' name='cant["+cmd.cant+"]' min='1' value='"+cmd.cant+"'>"+
+                                      "<input type='hidden' name='idcomida[]' value='"+cmd.idcomida+"'>"+
+                                      "<input type='hidden' name='nombrecomida[]' value='"+cmd.nombrecomida+"'>"+
+                                      "<input type='hidden' name='preciocomida[]' value='"+cmd.preciocomida+"'>"+
+                                      "<input type='hidden' name='cant[]' min='1' value='"+cmd.cant+"'>"+
+
+                                      "<input type='hidden' name='sub_total[]' min='1' value='"+cmd.preciocomida/50+"'>"+
+                                      "<input type='hidden' name='sub_desc[]' min='1' value='"+cmd.preciocomida*1/100+"'>"+
+                                      "<input type='hidden' name='sub_iva[]' min='1' value='"+cmd.preciocomida*7/100+"'>"+
                                   "</div>"+
                              "</div>"+
                         "</div>"
                                 );
 
 }
+
+console.log(comidas);
   $('#Comidas').html(platos);
+}
+
+
+
+function enviarOrden(){
+
+
+$.ajax({
+    method: 'GET',
+    url: '/api/nuevaorden',
+    data: { id: $('#idres').value, resv: JSON.stringify(comidas)},
+    dataType: "json",
+    success: function (data, status, xhr) {
+
+
+    }, error: function (xhr, ajaxOptions, thrownError) {
+        alert(xhr + "\n" + ajaxOptions + "\n" + thrownError);
+        console.log(xhr);
+    }
+});
+
 }

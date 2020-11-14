@@ -5,6 +5,7 @@ namespace PACOS\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PACOS\Http\Controllers\Auth;
+use Response;
 
 class OrdenarComidaController extends Controller
 {
@@ -62,36 +63,100 @@ class OrdenarComidaController extends Controller
     }
 
     public function store(Request $request){
-        // $id_Plato = request()->plato;
+
+        /** This should output 2 */
+        $idplatos = count(collect($request)->get('idcomida'));
         
-        // $precio = request()->platoprecio;
-        // $cant = request()->cant;
-        // return $request = request();
-        return $ordenes = request()->except('_token');
+        for ($i = 0; $i < $idplatos; $i++)
+        {
+            $platoid = $request->get('idcomida')[$i];
+            $platonombre = $request->get('nombrecomida')[$i];
+            $platoprecio = $request->get('preciocomida')[$i];
+            $platocant = $request->get('cant')[$i];
+            $platosubtotal = $request->get('sub_total')[$i];
+            $platosubdesc = $request->get('sub_desc')[$i];
+            $platosubiva = $request->get('sub_iva')[$i];
+            // return $arrayName = array('platoid' => $platoid, 
+            //                         'platoprecio' => $platoprecio, 
+            //                         'platocant' => $platocant, 
+            //                         'platosubtotal' => $platosubtotal,
+            //                         'platosubdesc' => $platosubdesc,
+            //                         'platosubiva' => $platosubiva);
+        }
+        $idres = $request->idres;
+           
+
+        //para insertar en BD
+
+        DB::table('detalle_reserv')->insert(
+            ['id_Plato' => $platoid, 'precio' => $platoprecio,  'cant' => $platocant, 'Subtotal' => $platosubtotal,
+            'Sub_desc' => $platosubdesc, 'Sub_Iva' => $platosubiva, 'id_reserva' => $idres]
+        );
+
+        return 'se inserto, revisa la BD';
         
-        $idres = request()->idres;
-        $id_Plato = request()->idcomida;
-        $nombrecomida = request()->nombrecomida;        
-        $precio = request()->preciocomida;
-        $cant = request()->cant;
+        
+        // for( $i=1; $i+4; $i<$count){
+
+        // return $count[$i]; 
+        // return $request = $request->idcomida[0];
+
+        // $id_Plato = $ordenes[$i];//request()->idcomida;
+        // $nombrecomida = $ordenes[$i+1];//request()->nombrecomida;        
+        // return $precio = $ordenes[$i+2];//request()->preciocomida;
+        // $cant = $ordenes[$i+3];//request()->cant;
+
+
+        // }
+        //return $ordnes = (explode($request)) ;
+        
+
+        // $ordenes = explode ( ',' , serialize(request()->except('_token', 'idres')));
+
+        //  $cont =1;
+        //  $band =1;
+
+        // foreach ($ordenes as $value) {
+        //     # code...
+
+        //     if($band%2==0){
+        //     ($cont%4)==0 ? $cant = $value :($cont%3)==0 ? $precio = $value :($cont%2)==0 ? $nombrecomida = $value : $id_Plato =$value ;
+            
+        //     $cont++;
+        //     }
+
+
+        //     $band++;   
+
+        // }
+
+        //return $ordenes;
+        
+        //return $idres = $ordenes[0][0];//request()->idres;
+
+        
+
+        
+
+
         $Subtotal = request()->total;
         $Sub_desc = request()->total_desc;
         $Sub_Iva = request()->total_iva;
 
-        foreach ($idres as $ireserva) {
-            DB::table('detalle_reserv')->insert(
-                ['id_Plato' => $id_Plato, 'precio' => $precio,  'cant' => $cant, 'Subtotal' => $Subtotal,
-                'Sub_desc' => $Sub_desc, 'Sub_Iva' => $Sub_Iva, 'id_reserva' => $idres]
-            );
-        }
         
         
+        
+        
+        // $nombrecomida = request()->nombrecomida;        
+        // $precio = request()->preciocomida;
+        // $cant = request()->cant;
+        
 
-         DB::table('reservas')
-                ->where('id', $idres)
-                ->update(['Detalle_Reserv' => '1']);
+        //  DB::table('reservas')
+        //         ->where('id', $idres)
+        //         ->update(['Detalle_Reserv' => '1']);
 
-        return 'se registro la orden, revisa la BD';
+        // return 'se registro la orden, revisa la BD';
     }
 
     public function ordencomida($namepacos, $idcomida){
