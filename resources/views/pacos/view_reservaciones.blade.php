@@ -57,11 +57,11 @@ pacos-btnmenu-pacos
                                     <p>Reservacion N° <b>{{ $reserva->idreserva }}</b></p>
                                     <p>{{ $reserva->fechareserva }} &middot; {{ $reserva->horareserva }} </p>
                                     @if($reserva->consincomida == 0)
-                                    @foreach($pacosinfo as $pacos)
-                                      <p><a href="{{ url('/pacos/'.$pacos->nombre.'/'.$reserva->idreserva.'/ordenarcomida') }}"><b class="pacos-is-active">Ordenar comida</b></a></p>
-                                    @endforeach
+                                      @foreach($pacosinfo as $pacos)
+                                        <p><a href="{{ url('/pacos/'.$pacos->nombre.'/'.$reserva->idreserva.'/ordenarcomida') }}"><b class="pacos-is-active">Ordenar comida</b></a></p>
+                                      @endforeach
                                     @else
-                                      <p><a href=""><b class="pacos-is-active">Ordenaste comida</b></a></p>
+                                      <p><a href="{{ url('/pacos/'.$pacos->nombre.'/'.$reserva->idreserva.'/ordenarcomida') }}"><b style="color: green">Ordenaste comida</b></a></p>
                                     @endif
                                 </div>
                             </div>

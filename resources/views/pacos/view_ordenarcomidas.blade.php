@@ -35,9 +35,14 @@ pacos-btnmenu-pacos
                       <div class="column is-9" style="padding-left: 20px">
                           <b id="Paccos">{{ $reserva->nombrerest }}</b>
                           <p>Reservacion N° <b>{{ $reserva->idreserva }}</b></p>
-                          <p>{{ $reserva->fechareserva }} &middot; {{ $reserva->horareserva }} </p>
+                          <p>Fecha: <b>{{ $reserva->fechareserva }}</b></p>
+                          <p>Hora: <b>{{ $reserva->horareserva }}</b> </p>
+                          <p>Mesa N° <b>{{ $reserva->numero }}</b></p>
+                          <p>Con: <b>{{ $reserva->Puestos }}</b> puestos</p>
                           @if($reserva->consincomida == 0)
                           <p><b class="pacos-is-active">Sin comida</b></p>
+                          @else
+                          <p><b style="color: green">Ordenaste comida</b></p>
                           @endif
                       </div>
                   </div>
@@ -82,14 +87,18 @@ pacos-btnmenu-pacos
                 
                 <div class="columns is-desktop">
                   <div class="column is-12" >
-                    <form method="post" action="{{ url('pacos/reservar/registrarOrden') }}">  
+                    @if(isset($comidasordenadas))
+                    viene vacio
+                    @else
+                      <form method="post" action="{{ url('pacos/reservar/registrarOrden') }}">  
                         {{ csrf_field() }}
                         <input type="hidden" id="idres" name="idres" value="{{ $reserva->idreserva }}">
-                    <div id="Comidas" class="columns is-desktop flex-container">
-                       
-                     </div>
-                     <input class="button is-rounded pacos-btn-enviar"  type="submit" value="Pagar reservación"> <!-- onclick="enviarOrden()" -->
-                     </form>
+                        <div id="Comidas" class="columns is-desktop flex-container">
+                           
+                        </div>
+                        <input class="button is-rounded pacos-btn-enviar"  type="submit" value="Crear reservación"> <!-- onclick="enviarOrden()" -->
+                      </form>
+                    @endif
                   </div>
                 </div>          
         @endif
