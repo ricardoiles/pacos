@@ -38,19 +38,15 @@ class MenuComidasController extends Controller
                 ->where('rest.nombre', $namepacos)
                 ->get();
 
-        $comidas = DB::table('restaurantes AS rest')
-                ->join('platosxrest AS comidaxrest', 'comidaxrest.id_Rest', '=', 'rest.id')
-                ->join('platos AS comida', 'comida.id', '=', 'comidaxrest.id_Plat')
-                ->join('fotoxplato AS fxp', 'fxp.id_Plato', '=', 'comida.id')
-                ->join('foto_vid AS fv', 'fv.id', '=', 'fxp.id_FotoVid')
-                ->join('catplatos AS catp', 'catp.id_restaurante', '=', 'rest.id')
-                ->join('foto_vid AS fcat', 'fcat.id', '=', 'catp.Foto')
-
-                ->select('catp.id AS idcat', 'comida.id AS idcomida', 'comida.Nombre AS nombrecomida', 'comida.Descripcion AS ingredientes',
-                        'comida.Precio AS preciocomida', 'rest.nombre', 'fv.Url AS foto')
+        $comidas = DB::table('platos AS pla')
+                ->join('fotoxplato AS fpla', 'fpla.id_Plato', '=', 'pla.id')
+                ->join('foto_vid AS fv', 'fv.id', '=', 'fpla.id_FotoVid')
+                ->join('platosxrest AS pxr', 'pxr.id_Plat', '=', 'pla.id')
+                ->join('restaurantes AS rest', 'rest.id', '=', 'pxr.id_Rest')
+                ->select('pla.id AS idcomida', 'pla.Categoria AS catcomida', 'pla.Nombre AS nombrecomida', 'pla.Descripcion AS ingredientes', 'pla.Precio AS preciocomida', 'fv.Url AS fotocomida', 'rest.nombre AS namepacos')
                 ->where('rest.nombre', $namepacos)
                 ->get();
-        
+    
         
         return view('pacos.view_menucomidas')
                 ->with('pacosinfo', $pacosinfo)
@@ -62,8 +58,14 @@ class MenuComidasController extends Controller
     public function vercomidas($idcat){
         
         $comidas = DB::table('platos AS pla')
+                ->join('fotoxplato AS fpla', 'fpla.id_Plato', '=', 'pla.id')
+                ->join('foto_vid AS fv', 'fv.id', '=', 'fpla.id_FotoVid')
+                ->join('platosxrest AS pxr', 'pxr.id_Plat', '=', 'pla.id')
+                ->join('restaurantes AS rest', 'rest.id', '=', 'pxr.id_Rest')
+                ->select('pla.id AS idcomida', 'pla.Categoria AS catcomida', 'pla.Nombre AS nombrecomida', 'pla.Descripcion AS ingredientes', 'pla.Precio AS preciocomida', 'fv.Url AS fotocomida', 'rest.nombre AS namepacos')
                 ->where('pla.Categoria', $idcat)
                 ->get();
+
         
         return response()->json($comidas);
     }

@@ -18,9 +18,8 @@ pacos-btnoptions--infobasica-pacos
 
 @section('content')
     <div class="tile">
-      <div class="tile is-parent is-vertical is-3 box pacos-perfilpacos-categorias-comida">
+      <div class="tile is-parent is-vertical is-3 box pacos-perfilpacos-categorias-comida" style="max-height: 50%;">
         <aside class="menu">
-          
           <ul class="menu-list">
             <li>
               <button class="button @yield('is-btn-selected')">
@@ -32,7 +31,6 @@ pacos-btnoptions--infobasica-pacos
                 Categorias
               </label>
             </li>
-            <li>
             @foreach($catcomidas as $categoria)
             <li>
               <a onclick="showComida({{ $categoria->idcat }})">
@@ -52,7 +50,7 @@ pacos-btnoptions--infobasica-pacos
             <div class='column is-4 box' style='line-height: 100%; text-align: justify; margin-right: 10px; margin-bottom: 10px; height: 130px;    width: 32.16%;'>
               <div class='columns is-desktop'>
                 <div class='column is-3' style="width: 30%">
-                    <image class='pacos-ordenar-fotocomida' src="{{ asset('storage'.'/'.'/'.'/'.$comida->foto) }}">
+                    <image class='pacos-ordenar-fotocomida' src="{{ asset('storage'.'/'.'/'.'/'.$comida->fotocomida) }}">
                 </div>
                 <div class='column is-9' style='font-size: 13px; width: 70%; margin-left: -10px;'>
                     <b> {{ $comida->nombrecomida }} </b>

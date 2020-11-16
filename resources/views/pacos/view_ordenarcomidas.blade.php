@@ -42,7 +42,7 @@ pacos-btnmenu-pacos
                           @if($reserva->consincomida == 0)
                           <p><b class="pacos-is-active">Sin comida</b></p>
                           @else
-                          <p><b style="color: green">Ordenaste comida</b></p>
+                          <p><b style="color: green; font-size: 14px">Ordenaste comida</b></p>
                           @endif
                       </div>
                   </div>
@@ -50,50 +50,55 @@ pacos-btnmenu-pacos
               <div class="column is-9">  
                 <div class="columns is-desktop">
                   <div class="column is-12" style="text-align: center;">
-                    <div class="dropdown is-right is-hoverable">
-                      <div class="dropdown-trigger">
-                        <button class="button is-rounded pacos-btn-selectedfood" aria-haspopup="true" aria-controls="dropdown-menu4" title="Agregar comida a la reservación">
-                          <span><i class="material-icons">fastfood</i></span>
-                          <span class="icon is-small">
-                            <i class="material-icons">add</i>
-                          </span>
-                        </button>
-                      </div>
-                      <div class="dropdown-menu" id="dropdown-menu4" role="menu">
-                        <div class="dropdown-content pacos-dropdown-comida">
-                          @foreach($comidas as $comida)
-                            <div class="columns is-desktop">
-                              <div class="column is-2">
-                                <div class="pacos-reservas-fotopacos" style="background-image: url('{{ asset('storage'.'/'.'/'.$comida->fotocomida) }}');margin-top: 20%"></div>
-                              </div>
-                              <div class="column is-10">
-                                  <div class="dropdown-item" style="line-height: 105%;">                        
-                                    <p><strong>{{ $comida->nombrecomida }}</strong></p>
-                                    <p>{{ $comida->ingredientes }} </p>
-                                    <p><b>Cantidad: </b> &middot; <b>${{ $comida->preciocomida }}</b></p>
-                                    <p>
-                                      <button class="button is-rounded" onclick="agregarComida({{ $comida->idcomida }})"><i class="material-icons">add</i></button>
-                                    </p>
-                                  </div>
-                              </div>
-                            </div>
-                          <hr class="dropdown-divider">
-                        @endforeach
+                    @if($reserva->consincomida == 1) 
+                      <b class="pacos-is-active">Comida ordenada</b>
+                    @else
+                      <div class="dropdown is-right is-hoverable">
+                        <div class="dropdown-trigger">
+                          <button class="button is-rounded pacos-btn-selectedfood" title="Agregar comida a la reservación" onclick="modalOpenComida()">
+                            <span><i class="material-icons">fastfood</i></span>
+                            <span class="icon is-small">
+                              <i class="material-icons">add</i>
+                            </span>
+                          </button>
                         </div>
+                        
                       </div>
-                    </div>
+                    @endif
                   </div>
                 </div>  
                 
                 <div class="columns is-desktop">
                   <div class="column is-12" >
-                    @if(isset($comidasordenadas))
-                    viene vacio
+                    @if($reserva->consincomida == 1) 
+                      <div class="columns is-desktop flex-container" style="padding-left: 20px">
+                        @foreach($comidasordenadas as $orden)
+                          <div class='column is-4 box' style='line-height: 100%; text-align: justify; margin-left:20px; margin-right: 5px; margin-bottom: 10px; width: 40%'>
+                            <div class='columns is-desktop pacos-div-ordencomida'>
+                                <div class='column  pacos-ordenar-col-3-fotocomida'>
+                                    <image class='pacos-ordenar-fotocomida' src="{{ asset('storage').'/'.'/'.'/'.$orden->fotocomida }}">
+                                </div>
+                                  <div class='column is-9' style='font-size: 13px; width: 70%'>
+                                      <b>{{ $orden->nombrecomida }}</b>
+                                      <p>{{ $orden->ingredientes }}</p>                                                                         
+                                      <p><b>Cantidad: <label>{{ $orden->cantorden }}</label> </b> &middot; <b class='pacos-is-active'>${{ $orden->precio }}</b></p>
+                                      <input type='hidden' name='sub_total[]' min='1' value='"+cmd.preciocomida/50+"'>
+                                      <input type='hidden' name='sub_desc[]' min='1' value='"+cmd.preciocomida*1/100+"'>
+                                      <input type='hidden' name='sub_iva[]' min='1' value='"+cmd.preciocomida*7/100+"'>
+                                  </div>
+                             </div>
+                        </div>
+                        @endforeach
+                      </div>
+                      <a href="{{ url('/pacos/'.$reserva->nombrerest.'/reservar') }}">
+                        <button class="button is-rounded pacos-btn-volver">Volver</button>
+                      </a>
                     @else
                       <form method="post" action="{{ url('pacos/reservar/registrarOrden') }}">  
                         {{ csrf_field() }}
                         <input type="hidden" id="idres" name="idres" value="{{ $reserva->idreserva }}">
-                        <div id="Comidas" class="columns is-desktop flex-container">
+                        <input type="hidden" name="nombrepacos" value="{{ $reserva->nombrerest }}">
+                        <div id="Comidas" class="columns is-desktop flex-container" style="padding-left: 20px">
                            
                         </div>
                         <input class="button is-rounded pacos-btn-enviar"  type="submit" value="Crear reservación"> <!-- onclick="enviarOrden()" -->
@@ -107,48 +112,34 @@ pacos-btnmenu-pacos
   </div>
 </div>
 
-
-
-<!-- <div id="modal" class="modal is-active">
+<div id="modal-comidas" class="modal ">
   <div class="modal-background"></div>
   <div class="modal-content">
-    <div class="box">
-      <article class="media">
-        <div class="media-left">
-          <figure class="image is-64x64">
-            <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
-          </figure>
+    <div class="box" style="height: 80vh; width: 100%">
+      <p><b class="pacos-is-active">Elegir comida</b></p>
+      <p><small>Presiona una o más veces para aumentar la cantidad de cada comida</small></p>
+      <br>
+      <div class="columns is-desktop flex-container">
+        @foreach($comidas as $comida)
+          <div class='column is-4 box' style='line-height: 100%; text-align: justify; margin-left: 15px; margin-right: 10px; margin-bottom: 10px; width: 45%'>
+            <div class='columns is-desktop pacos-div-ordencomida'>
+                <div class='column  pacos-ordenar-col-3-fotocomida'>
+                    <image class='pacos-ordenar-fotocomida' src="{{ asset('storage').'/'.'/'.'/'.$comida->fotocomida }}">
+                </div>
+                  <div class='column is-9' style='font-size: 13px; width: 70%'>
+                      <b>{{ $comida->nombrecomida }}</b>
+                      <p>{{ $comida->ingredientes }}</p>                                                                         
+                      <p>Precio: <b class="pacos-is-active">${{ $comida->preciocomida }}</b></p>
+                      <p>
+                        <button class="button is-rounded pacos-btn-enviar" onclick="agregarComida({{ $comida->idcomida }})"><i class="material-icons">add</i></button>
+                      </p>
+                  </div>
+             </div>
         </div>
-        <div class="media-content">
-          <div class="content">
-            <p>
-              <div class="content">
-                <p>
-                  <strong>John Smith</strong> <small>@johnsmith</small> <small>31m</small>
-                  <br>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit amet massa fringilla egestas. Nullam condimentum luctus turpis.
-                </p>
-              </div>
-            </p>
-          </div>
-          <nav class="level is-mobile">
-            <div class="level-left">
-              <a class="level-item" aria-label="retweet">
-                  <span class="icon is-small">
-                    <i class="material-icons">home</i>
-                  </span>
-                </a>
-                <a class="level-item" aria-label="like">
-                  <span class="icon is-small">
-                    <i class="material-icons">home</i>
-                </span>
-              </a>
-            </div>
-          </nav>
-        </div>
-      </article>
+        @endforeach
+      </div>
     </div>
   </div>
-  <button class="modal-close is-large" aria-label="close"></button>
-</div> -->
+  <button class="modal-close is-large" aria-label="close" onclick="modalCloseComida()"></button>
+</div>
 @endsection

@@ -1,53 +1,28 @@
-var comidas= new Array();
+var platos= new Array();
 
 
 function showComida(id) {
-			$.ajax({
-                method: 'GET',
-                url: '/api/pacos/'+id,
-                dataType: "json",
-                success: function (data, status, xhr) {
-
-                	//limpiarmodel();
-                    comida = data[0];
-
-                   	if(comida != null){
-
-                   		
-                   		var i = comidas.indexOf(comidas.find(e => e.Categoria == id)); 
-
-					    if (i !== -1) {
-					    	var ini = i; var fin = i+1;
-					    	var tmp= comidas.find(e => e.Categoria == id);
-
-					    	comidas.splice(i, 1);	
-
-					        
-					    }	
-                   		comidas.push(comida);
-                   		listarplatos();
-                   	}
-
-                }, error: function (xhr, ajaxOptions, thrownError) {
-                    
-                }
-            });
-	
+	$.ajax({
+    method: 'GET',
+    url: '/api/pacos/'+id+'/comida',
+    dataType: "json",
+    success: function (data, status, xhr) {
+      console.log(id);
+      var comida = platos.indexOf(platos.find(e => e.catcomida == id));
+    	console.log(comida);
+    }, error: function (xhr, ajaxOptions, thrownError) {
+        
+    }
+  });
 }
 
-function limpiarmodel(){
-}
+function listarComidas(){
 
+var comidas = "" ;
 
-function listarplatos(){
-
-var platos = "" ;
-
-if (comidas.length != 0){
-
-comidas.forEach(cmd => platos += "comida: "+cmd.Nombre
-                                );
-
-}
-  $('#Comidas').html(platos);
+  if (platos.length != 0){
+    platos.forEach(cmd => comidas += "comida: "
+    );
+  }
+  $('#Comidas').html(comidas);
 }
