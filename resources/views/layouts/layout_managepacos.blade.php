@@ -34,9 +34,7 @@
                 </div>
                 <div id="navbarBasicExample" class="navbar-menu">
                     <div class="navbar-start">
-                        <a href="{{ url('/home') }}" class="navbar-item">Sitios cercanos</a>
-                        <a href="{{ url('/home') }}" class="navbar-item">Sitios destacados</a>
-                        <a href="{{ url('/home') }}" class="navbar-item">Comidas</a>
+                       
                     </div>
                     <div class="navbar-end">
                       <div class="navbar-item">

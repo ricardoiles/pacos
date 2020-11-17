@@ -15,6 +15,7 @@
         <link href="{{ asset('css/tabs.css') }}" rel="stylesheet">
         <link href="{{ asset('css/iconfont/material-icons.css') }}" rel="stylesheet">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script src="https://unpkg.com/feather-icons"></script>
         @yield('view_estilos')
     </head>
     <body>
@@ -33,61 +34,59 @@
                 </div>
                 <div id="navbarBasicExample" class="navbar-menu">
                     <div class="navbar-start">
-                        <!-- <a href="{{ url('/home') }}" class="navbar-item">Sitios cercanos</a> -->
-                        <a href="{{ url('/home') }}" class="navbar-item">Sitios destacados</a>
-                        <a href="{{ url('/home') }}" class="navbar-item">Comidas</a>
-                        <a class="" style="width: 100px;"></a>
-                        <div class="field navbar-item">
-                          <p class="control has-icons-right">
-                            <input class="input is-rounded pacos-input-search" type="text" placeholder="Busca sitios o comidas">
-                            <span class="icon is-small is-left">
-                              <i class="fas fa-envelope"></i>
-                            </span>
-                            <span class="icon is-small is-right">
-                              <i class="material-icons">search</i>
-                            </span>
-                          </p>
-                        </div>
+                       <a class="navbar-item " href="#SitiosCercanos">Sitios cercanos</a>
+                       <a class="navbar-item " href="#SitiosDestacados">Sitios destacados</a>
+                       <a class="navbar-item " href="#Comidas">Comidas</a>
                     </div>
                     <div class="navbar-end">
                       <div class="navbar-item">
                         <div class="buttons">
                           @if (Auth::guest())
-                                <a class="navbar-item " href="{{ route('login') }}">Inicar sesión</a>
-                                <a class="navbar-item " href="{{ url('/registrarme') }}">Registrarmee</a>
+                                <a class="navbar-item " href="{{ route('login') }}">Login</a>
+                                <a class="navbar-item " href="{{ route('register') }}">Register</a>
                             @else
-                                <a class="navbar-item" href="">{{ Auth::user()->name }}</a>
-                                <div class="navbar-item has-dropdown is-hoverable">
-
-                                    <a class="navbar-link">
-                                        <img class="is-rounded pacos-foto-perfil-nav" src="https://media.geeksforgeeks.org/wp-content/uploads/20200617121759/bill-gates.jpg" title="{{ Auth::user()->name }}">
+                            <a class="navbar-item">
+                                Option
+                            </a>
+                            <a class="navbar-item">
+                                Other option
+                            </a> 
+                            <div class="navbar-item has-dropdown is-hoverable">
+                                <a class="navbar-link">
+                                    <img class="is-rounded pacos-foto-perfil-nav" src="https://media.geeksforgeeks.org/wp-content/uploads/20200617121759/bill-gates.jpg" title="{{ Auth::user()->name }}">
+                                </a>
+                                <div class="navbar-dropdown is-right">
+                                    <a class="navbar-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                        Cerrar sesion
                                     </a>
-                                    <div class="navbar-dropdown is-right">
-                                        <a class="navbar-item" href="{{ route('logout') }}"
-                                           onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                                            Cerrar sesion
-                                        </a>
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                              style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </div>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                          style="display: none;">
+                                        {{ csrf_field() }}
+                                    </form>
                                 </div>
+                            </div>
                             @endif
                         </div>
                       </div>
                     </div>
                 </div>
             </nav>
-            @yield('content')  
         </div>
-
+        @yield('content')
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}"></script>
         <script src="{{ asset('js/bulmajs/bulma.js') }}"></script>
         <script>feather.replace()</script>
         <script src="{{ asset('js/tabs.js') }}"></script>
+
+        <!-- <script>
+          function myFunction($id) {
+            var element = document.getElementById($id);
+            element.style.display="none";
+          }
+        </script> -->
         <script src="{{ asset('js/scripts/lib_formularios.js') }}"></script>
     </body>
 </html>

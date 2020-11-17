@@ -33,7 +33,7 @@ class PacosReservacionesController extends Controller
         $reservaciones = DB::table('reservas AS reserv')
                 ->leftjoin('mesas AS mesas', 'mesas.id', '=', 'reserv.id_Mesa')
                 ->leftjoin('restaurantes AS rest', 'rest.id', '=', 'mesas.Restaurante')
-                ->select('rest.id AS idrest', 'rest.nombre AS nombrerest', 'reserv.id AS idreserva', 'reserv.Fecha AS fechareserva', 'reserv.Hora_Ini AS horareserva', 'reserv.Detalle_Reserv AS consincomida', 'reserv.id_Usuario AS iduser')
+                ->select('rest.id AS idrest', 'rest.nombre AS nombrerest', 'reserv.id AS idreserva', 'reserv.Fecha AS fechareserva', 'reserv.Hora_Ini AS horareserva', 'reserv.Detalle_Reserv AS consincomida', 'reserv.id_Usuario AS iduser', 'reserv.total')
                 ->where('rest.nombre', $namepacos)
                 ->get();
 

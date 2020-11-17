@@ -14,24 +14,35 @@
   	<div class="pacos-managepacos-menu-namepacos">
   		{{ Auth::user()->name }} 
   	</div>
-  	<div class="pacos-managepacos-menu-namepacos">
-      <a href="{{ url('/home') }}" class="is-active-pacos">Mis PACOS</a><br>
-      <a href="{{ url('/home') }}" class="">Opción</a><br>
-      <a href="{{ url('/home') }}" class="">Otra opción</a><br>
+  	<div class="pacos-managepacos-menu-namepacos" style="text-align: left; margin-left: 20%;">
+      <p>
+        <a href="#EstasEnCategorias" class="navbar-item is-active-pacos">
+          <i class="material-icons">category</i>
+          Categorias
+        </a>
+      </p>
+      <p>
+      	@foreach($pacosinfo as $pacos)
+        <a href="{{ url('/manage/mipacos/'.$pacos->nombre.'/'.$pacos->idrest.'/reservas') }}" class="navbar-item">
+          <i class="material-icons">receipt</i>
+          Reservaciones
+        </a>
+        @endforeach
+      </p>
     </div>
   </div>
   <div class="column is-9" style="width: 65%">
   	<div class="columns is-mobile">
 	  <div class="column is-12">
 	  	<nav class="breadcrumb" aria-label="breadcrumbs">
-		  <ul>
-		    <li><a href="{{ url('/home') }}">Mis PACOS</a></li>
-		    @foreach($pacosinfo as $pacos)
-		    <li><a>{{ $pacos->nombre }}</a></li>
-		    @endforeach
-		    <li class="is-active"><a href="#" aria-current="page">Categorias</a></li>
-		  </ul>
-		</nav>
+  		  <ul>
+  		    <li><a href="{{ url('/home') }}">Mis PACOS</a></li>
+  		    @foreach($pacosinfo as $pacos)
+  		    <li><a>{{ $pacos->nombre }}</a></li>
+  		    @endforeach
+  		    <li class="is-active"><a href="#" aria-current="page">Categorias</a></li>
+  		  </ul>
+  		</nav>
 	  </div>
 	</div>
   	<!-- mas infor abajo -->

@@ -18,7 +18,7 @@ pacos-btnoptions--infobasica-pacos
 
 @section('content')
     <div class="tile">
-      <div class="tile is-parent is-vertical is-3 box pacos-perfilpacos-categorias-comida" style="max-height: 50%;">
+      <div class="tile is-parent is-vertical is-3 box pacos-perfilpacos-categorias-comida">
         <aside class="menu">
           <ul class="menu-list">
             <li>

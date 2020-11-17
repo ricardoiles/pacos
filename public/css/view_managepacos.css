@@ -70,6 +70,13 @@ html, body {
   text-align: center;
   
 }
+.pacos-btn-total-servicio-reserva{
+  background-color: rgb(210,23,52);
+  color: white;
+}
+.pacos-btn-total-servicio-reserva:hover{
+  color: white;
+}
 
 
 @media only screen

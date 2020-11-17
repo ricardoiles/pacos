@@ -33,7 +33,7 @@
                 </div>
                 <div id="navbarBasicExample" class="navbar-menu">
                     <div class="navbar-start">
-                        <a href="{{ url('/') }}" class="navbar-item">Sitios cercanos</a>
+                        <a href="{{ url('/home') }}" class="navbar-item">Sitios cercanos</a>
                         <a href="{{ url('/') }}" class="navbar-item">Sitios destacados</a>
                         <a href="{{ url('/') }}" class="navbar-item">Comidas</a>
                         <div class="field navbar-item">
@@ -133,7 +133,7 @@
                     @endforeach
                       
                     
-                    <div class="dropdown is-right is-hoverable pacos-moreoption-pacos">
+                    <!-- <div class="dropdown is-right is-hoverable pacos-moreoption-pacos">
                       <div class="dropdown-trigger">
                         <label class="pacos-cursor-pointer" aria-haspopup="true" aria-controls="dropdown-menu4">
                           <span class="material-icons">more_vert</span>
@@ -152,7 +152,7 @@
                           </a>
                         </div>
                       </div>
-                    </div>
+                    </div> -->
 
                     <article class="pacos-infobasica-pacos">
                       @foreach($pacosinfo as $pacos)
@@ -191,11 +191,7 @@
                                   <span class="material-icons pacos-fontsize-btnoptions-pacos">share</span>
                                 </span>
                             </button>
-                            <button class="button pacos-btnoptions--infobasica-pacos tooltip" data-tooltip="Destacar">
-                                <span class="icon is-small">
-                                  <span class="material-icons pacos-fontsize-btnoptions-pacos">star_rate</span>
-                                </span>
-                            </button>
+                            
                             <button class="button pacos-btnoptions--infobasica-pacos tooltip" data-tooltip="Enviar mensaje">
                                 <span class="icon is-small">
                                   <span class="material-icons pacos-fontsize-btnoptions-pacos">chat_bubble</span>
@@ -211,21 +207,21 @@
                 </div>
                 <div class="tile is-parent">
                   <article class="" style="margin-top: 20px">
-                    <span class="material-icons">notifications</span>
-                    Notificaciones  &nbsp;&nbsp; (1)
+                    <span class="material-icons">batch_prediction</span>
+                    Tips  &nbsp;&nbsp;
                     <div class="notification box pacos-div-notificacion" id="6">
-                      <button class="delete" onclick="myFunction(6);"></button>
-                      <p><b>1 Notificacion</b></p>
+                      <!-- <button class="delete" onclick="myFunction(6);"></button> -->
+                      <p><b>Tip 1</b></p>
                       Esta es una corta notificacion, al recibir un mensaje o pendientes
                     </div>
                     <div class="notification box pacos-div-notificacion" id="3">
-                      <button class="delete" onclick="myFunction(3);"></button>
-                      <p><b>2 Notificacion</b></p>
+                      <!-- <button class="delete" onclick="myFunction(3);"></button> -->
+                      <p><b>Tip 2</b></p>
                       Esta es una corta notificacion, al recibir un mensaje o pendientes
                     </div>
                     <div class="notification box pacos-div-notificacion" id="hey">
-                      <button class="delete" onclick="myFunction('hey');"></button>
-                      <p><b>3 Notificacion</b></p>
+                      <!-- <button class="delete" onclick="myFunction('hey');"></button> -->
+                      <p><b>Tip 3</b></p>
                       Esta es una corta notificacion, al recibir un mensaje o pendientes
                     </div>
                   </article>

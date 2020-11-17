@@ -9,12 +9,14 @@
     <p>¿A dónde iras hoy?</p>
     <p></p>
   </div>
-  <div class="column is-9 pacos-div-right">
+  <div class="column is-9 pacos-div-right" style="width: 93%;">
     <p>
         <img src="{{ asset('images/logoPACOS.png') }}" class="mini-logopacos">
-        Sitios en <b>
+        Sitios cercanos en <b>
         @if(!empty($ciudad))
-            <a class="is-active-pacos" onclick="modalOpen()"> {{ $ciudad }} </a></b>
+          @foreach($ciudad as $ciudad)
+            <a class="is-active-pacos" onclick="modalOpen()"> {{ $ciudad->Nombre }} </a></b>
+          @endforeach
         @else
             <a class="is-active-pacos" onclick="modalOpen()">Elegir ciudad </a></b>
         @endif
@@ -24,21 +26,22 @@
             
         @else
         @foreach($sitios as $pacos)
-        <div class="column box is-5 pacos-sitio ">
+        <div class="column box is-3 pacos-sitio ">
           <article class="media">
             <div class="media-left">
-              <figure class="image is-64x64">
-                <img src="{{ asset('storage'.'/'.$pacos->fotoperfil) }}" alt="{{ $pacos->namerest }}">
+              <figure class="image">
+                <img src="{{ asset('storage'.'/'.$pacos->fotoperfil) }}" alt="{{ $pacos->namerest }}" 
+                  style="border-radius: 50%; width: 50px; height: 50px;">
               </figure>
             </div>
             <div class="media-content">
-              <div class="content" style="line-height: 100%; height: 90px">
+              <div class="content" style="line-height: 100%; height: 80px; max-height: 90px">
                 <p>
                   <strong> {{ $pacos->namerest }}</strong> &middot; <small>{{ $pacos->catrest }}</small>
                   <br>
                     <small>{{ $pacos->ciudad }} &middot; {{ $pacos->direccion }} &middot; {{ $pacos->barriovere }}</small>
                   <br>
-                    {{ $pacos->descripcion }}
+                    <small>  {{ substr("$pacos->descripcion", 0, -30).'...' }}</small>
                 </p>
               </div>
               <nav class="level is-mobile" style="margin-bottom: 5px">
@@ -48,24 +51,19 @@
                       <i class="material-icons">chat_bubble_outline</i>
                     </span>
                   </a>
-                  <a class="level-item" aria-label="retweet">
-                    <span class="icon is-small">
-                      <i class="material-icons">star_border</i>
-                    </span>
-                  </a>
                   <a href="{{ action('PerfilpacosController@show', ['namepacos' => $pacos->namerest]) }}" class="level-item" aria-label="retweet">
                     <span class="icon is-small">
                       <i class="material-icons">open_in_new</i>
                     </span>
                   </a>
                 </div>
-                <div class="level-right">
+                <!-- <div class="level-right">
                   <a class="level-item" aria-label="reply">
                     <span class="icon is-small">
                       <i class="material-icons">more_vert</i>
                     </span>
                   </a>
-                </div>
+                </div> -->
               </nav>
             </div>
           </article>
@@ -95,7 +93,12 @@
                   <div class="field-body">
                     <div class="field">
                       <p class="control is-expanded  has-icons-left" >
-                        <input name="ciudad" class="input" type="text" placeholder="Escribe aqui la ciudad  para ver PACOS" required="">
+                        <input name="ciudad" list="ciudades" class="input" type="text" placeholder="Escribe aqui la ciudad  para ver PACOS" required="">
+                        <datalist id="ciudades">
+                            @foreach($ciudades as $ciudad)
+                              <option value="{{ $ciudad->Nombre }}">
+                            @endforeach
+                        </datalist>
                         <span class="icon is-small is-left">
                           <i class="material-icons">edit_location</i>
                         </span>
