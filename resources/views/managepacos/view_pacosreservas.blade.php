@@ -19,28 +19,21 @@
     </div>
   </div>
   <div class="column is-9" style="width: 65%">
-  	<div class="columns is-mobile">
+  	<div class="columns is-desktop">
 	  <div class="column is-12">
-	  	<button class="button pacos-btnmenu-pacos">
-			<span class="icon is-small">
-			    <span class="material-icons">home</span>
-			</span>
-		</button>
-    <label class="pacos-title-menu">
-            Reservaciones
-		</label>
+	  	<nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+          <li><a href="{{ url('/home') }}">Mis PACOS</a></li>
+          @foreach($pacosinfo as $pacos)
+          <li><a href="{{ url('/manage/'.$pacos->nombre.'/categorias') }}">{{ $pacos->nombre }}</a></li>
+          @endforeach
+          <li class="is-active"><a href="#" aria-current="page">Reservaciones</a></li>
+        </ul>
+      </nav>
 	  </div>
 	</div>
   	<div class="columns is-mobile">
   		<div class="column is-12 box" style="margin: 5px; text-align: center;">
-        @foreach($pacosinfo as $pacos)
-          @if($pacos->tipopacos == 2)
-            <!-- @foreach($cantreservas as $cant)
-              {{ $cant }}
-            @endforeach -->
-            {{ $cantreservas }}
-          @endif
-        @endforeach
         <button class="button pacos-btnmenu-pacos">
           <span class="icon is-small">
               $
@@ -48,7 +41,19 @@
         </button>
         
         <label class="">
-            <a href="{{ url('/manage/nuevo/pacos') }}">Servicio actual: </a>
+            <a href="{{ url('/manage/nuevo/pacos') }}">Servicio actual: 
+              @foreach($pacosinfo as $pacos)
+                @if($pacos->tipopacos == 0)
+                  ${{ $cantreservas*500 }}
+                @endif
+                @if($pacos->tipopacos == 1)
+                  ${{ $cantreservas*1000 }}
+                @endif
+                @if($pacos->tipopacos == 2)
+                  ${{ number_format($cantreservas*2000) }}
+                @endif
+              @endforeach
+            </a>
         </label>
   		</div>
 	 </div>
@@ -58,7 +63,8 @@
           <div class="columns is-desktop">
               @foreach($fotos as $foto)
               <div class="column is-3">
-                  <div class="pacos-reservas-fotopacos" style="background-image: url('{{ asset('storage'.'/'.$foto->Perfil) }}');margin-top: 20%"></div>
+                  <!-- <div class="pacos-reservas-fotopacos" style="background-image: url('{{ asset('storage'.'/'.$foto->Perfil) }}');"></div> -->            
+                <img class="pacos-reservas-fotopacos" src="{{ asset('storage'.'/'.$foto->Perfil) }}" style="margin-top: 0%; margin-left: 10px; border-radius: 50%; width: 45px; height: 45px">
               </div>
               @endforeach
               <div class="column is-9">
