@@ -96,6 +96,7 @@ pacos-btnmenu-pacos
                     @else
                       <form method="post" action="{{ url('pacos/reservar/registrarOrden') }}">  
                         {{ csrf_field() }}
+                        
                         <input type="hidden" id="idres" name="idres" value="{{ $reserva->idreserva }}">
                         <input type="hidden" name="nombrepacos" value="{{ $reserva->nombrerest }}">
                         <div id="Comidas" class="columns is-desktop flex-container" style="padding-left: 20px">

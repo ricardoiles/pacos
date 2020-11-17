@@ -36,12 +36,17 @@ Route::get('/manage/pacos/menu/{namepacos}' , 'MenuComidasController@index')->mi
 Route::get('/manage/{namepacos}/categorias', 'CategoryController@show')->middleware('auth');
 Route::get('/manage/{namepacos}/categorias/nueva', 'CategoryController@agregar')->middleware('auth');
 Route::get('/manage/{namepacos}/{category}/comida', 'ComidaController@show')->middleware('auth');
+//administrar reservaciones
+Route::get('/manage/mipacos/{namepacos}/{idpacos}/reservas', 'PacosReservacionesController@index')->middleware('auth');
+
 Route::get('/pacos/{namepacos}/reservar', 'ReservacionesController@index')->middleware('auth');
 Route::get('/pacos/{namepacos}/{reserva}/ordenarcomida', 'OrdenarComidaController@index')->middleware('auth');
 
-
+//apis
 Route::get('/api/pacos/{namepacos}/{idcomida}', 'OrdenarComidaController@ordencomida')->middleware('auth');
 Route::get('/api/pacos/{idcat}/comida', 'MenuComidasController@vercomidas')->middleware('auth');
+//api cantidad de reservasxpacos
+Route::get('/api/manage/pacos/{idpacos}/reservaciones', 'PacosReservacionesController@reservasPacos')->middleware('auth');
 
 
 
