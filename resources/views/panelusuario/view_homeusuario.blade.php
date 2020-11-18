@@ -46,9 +46,9 @@
               </div>
               <nav class="level is-mobile" style="margin-bottom: 5px">
                 <div class="level-left">
-                  <a class="level-item" aria-label="reply">
+                  <a href="{{ url('/pacos/'.$pacos->namerest.'/reseñas') }}" class="level-item" aria-label="reply">
                     <span class="icon is-small">
-                      <i class="material-icons">chat_bubble_outline</i>
+                      <i class="material-icons">how_to_vote</i>
                     </span>
                   </a>
                   <a href="{{ action('PerfilpacosController@show', ['namepacos' => $pacos->namerest]) }}" class="level-item" aria-label="retweet">

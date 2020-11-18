@@ -15,7 +15,7 @@
         <link href="{{ asset('css/tabs.css') }}" rel="stylesheet">
         <link href="{{ asset('css/iconfont/material-icons.css') }}" rel="stylesheet">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <script src="https://unpkg.com/feather-icons"></script>
+        
         @yield('view_estilos')
     </head>
     <body>
@@ -78,7 +78,7 @@
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}"></script>
         <script src="{{ asset('js/bulmajs/bulma.js') }}"></script>
-        <script>feather.replace()</script>
+        
         <script src="{{ asset('js/tabs.js') }}"></script>
 
         <!-- <script>

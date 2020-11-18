@@ -48,18 +48,18 @@
   	<div class="columns is-desktop">
   		<div class="column is-12" style="margin: 5px; text-align: center; width: 80%">
         <button class="is-rounded button pacos-btn-total-servicio-reserva">
-              Servicio actual: 
-              @foreach($pacosinfo as $pacos)
-                @if($pacos->tipopacos == 0)
-                  ${{ $cantreservas*500 }}
-                @endif
-                @if($pacos->tipopacos == 1)
-                  ${{ $cantreservas*1000 }}
-                @endif
-                @if($pacos->tipopacos == 2)
-                  ${{ number_format($cantreservas*2000) }}
-                @endif
-              @endforeach
+          Servicio actual: 
+          @foreach($pacosinfo as $pacos)
+            @if($pacos->tipopacos == 0)
+              ${{ number_format($cantreservas*500) }}
+            @endif
+            @if($pacos->tipopacos == 1)
+              ${{ number_format($cantreservas*1000) }}
+            @endif
+            @if($pacos->tipopacos == 2)
+              ${{ number_format($cantreservas*2000) }}
+            @endif
+          @endforeach
         </button>
   		</div>
 	 </div>
@@ -88,6 +88,37 @@
           </div>
         </div>
       @endforeach
+      <div class="btn-epayco" style="position: fixed;float: right; right: 20%; top:90%">
+        @foreach($pacosinfo as $pacos)
+            @if($pacos->tipopacos == 0)
+              <input type="hidden" name="" value="{{ $costo = 500 }}">
+            @endif
+            @if($pacos->tipopacos == 1)
+              <input type="hidden" name="" value="{{ $costo = 1000 }}">
+            @endif
+            @if($pacos->tipopacos == 2)
+              <input type="hidden" name="" value="{{ $costo = 2000 }}">
+            @endif
+          <form>
+            <script
+              src="https://checkout.epayco.co/checkout.js"
+              class="epayco-button"
+              data-epayco-button="https://369969691f476073508a-60bf0867add971908d4f26a64519c2aa.ssl.cf5.rackcdn.com/btns/epayco/boton_de_cobro_epayco3.png"
+              data-epayco-key="61b9ceb846023f956ce0c7a6de452b6f"
+              data-epayco-amount="{{ $cantreservas*$costo }}"
+              data-epayco-name="Servicio por reservaciones"
+              data-epayco-description="Servicio por reservaciones"
+              data-epayco-currency="cop"
+              data-epayco-country="co"
+              data-epayco-test="true"
+              data-epayco-external="false"
+              data-epayco-response="http://192.168.100.2:8000/{{$pacos->nombre}}/{{$pacos->idrest}}/epayco/respuesta"
+              data-epayco-confirmation="http://192.168.100.2:8000/epayco/confirmacion"
+              >
+            </script>
+          </form>
+        @endforeach
+      </div>
      </div>
   </div>
 </div>

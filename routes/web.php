@@ -45,6 +45,9 @@ Route::get('/manage/mipacos/{namepacos}/{idpacos}/reservas', 'PacosReservaciones
 Route::get('/pacos/{namepacos}', 'PerfilpacosController@show')->middleware('auth');
 Route::get('/pacos/{namepacos}/reservar', 'ReservacionesController@index')->middleware('auth');
 Route::get('/pacos/{namepacos}/{reserva}/ordenarcomida', 'OrdenarComidaController@index')->middleware('auth');
+//ver reseñas sitio
+Route::get('/pacos/{namepacos}/reseñas', 'PerfilpacosController@showreseñas')->middleware('auth');
+//admin user
 Route::get('/user/{iduser}/manage', 'UserManageController@manage')->middleware('auth');
 
 //apis
@@ -53,7 +56,15 @@ Route::get('/api/pacos/{idcat}/comida', 'MenuComidasController@vercomidas')->mid
 //api cantidad de reservasxpacos
 Route::get('/api/manage/pacos/{idpacos}/reservaciones', 'PacosReservacionesController@reservasPacos')->middleware('auth');
 
-
+//epayco
+//respuesta
+Route::any('/{namepacos}/{idpacos}/epayco/respuesta', function ($namepacos, $idpacos) {
+    return view('managepacos.epayco.respuesta')->with('namepacos', $namepacos)->with('idpacos', $idpacos);
+});
+//respuesta
+Route::any('/epayco/confirmacion', function () {
+    return view('managepacos.epayco.confirmacion');
+});
 
 //Route::resource('registrarPACOS', 'RestaurantesController');
 Route::resource('manage/registrarPACOS', 'NuevoPacosController')->middleware('auth');
@@ -66,4 +77,5 @@ Route::resource('pacos/reservar/nueva', 'ReservacionesController')->middleware('
 //registrar orden de comida
 Route::resource('pacos/reservar/registrarOrden', 'OrdenarComidaController')->middleware('auth');
 //store users
+Route::resource('user/manage/edit', 'UserManageController')->middleware('auth');
 Route::resource('user/manage/edit', 'UserManageController')->middleware('auth');

@@ -24304,7 +24304,8 @@ var bulmaSlider = function (_EventEmitter) {
 
       var instances = new Array();
 
-      var elements = isString(selector) ? document.querySelectorAll(selector) : Array.isArray(selector) ? selector : [selector];
+      var elements = selector ? document.querySelectorAll(selector) : 
+      Array.isArray(selector) ? selector : [selector];
       [].forEach.call(elements, function (element) {
         if (typeof element[_this3.constructor.name] === 'undefined') {
           var instance = new bulmaSlider(element, options);

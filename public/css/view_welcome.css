@@ -6,6 +6,14 @@ html, body {
     font-family: Nirmala UI Semilight;
 	background-color: rgb(245,245,245);
 }
+input[type=range]
+{
+    writing-mode: bt-lr; /* IE */
+    -webkit-appearance: slider-vertical; /* WebKit */
+    width: 8px;
+    height: 175px;
+    padding: 0 5px;
+}
 
 .navbar{
      padding-left: 50px;

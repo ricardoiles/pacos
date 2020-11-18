@@ -15,7 +15,7 @@
         <link href="{{ asset('css/tabs.css') }}" rel="stylesheet">
         <link href="{{ asset('css/iconfont/material-icons.css') }}" rel="stylesheet">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <script src="https://unpkg.com/feather-icons"></script>
+        
         @yield('view_estilos')
     </head>
     <body>
@@ -76,7 +76,7 @@
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}"></script>
         <script src="{{ asset('js/bulmajs/bulma.js') }}"></script>
-        <script>feather.replace()</script>
+        
         <script src="{{ asset('js/tabs.js') }}"></script>
 
         <!-- <script>
@@ -86,5 +86,49 @@
           }
         </script> -->
         <script src="{{ asset('js/scripts/lib_formularios.js') }}"></script>
+        <!-- epayco -->
+        <script type="text/javascript" src="https://checkout.epayco.co/checkout.js"> 
+          var handler = ePayco.checkout.configure({
+                  key: '61b9ceb846023f956ce0c7a6de452b6f',
+                  test: true
+                });
+
+          var data={
+          //Parametros compra (obligatorio)
+          name: "Servicio por reservaciones",
+          description: "Servicio por reservaciones",
+          invoice: "1234",
+          currency: "cop",
+          amount: "12000",
+          tax_base: "0",
+          tax: "0",
+          country: "co",
+          lang: "en",
+
+          //Onpage="false" - Standard="true"
+          external: "true",
+
+
+          //Atributos opcionales
+          extra1: "extra1",
+          extra2: "extra2",
+          extra3: "extra3",
+          confirmation: "http://secure2.payco.co/prueba_curl.php",
+          response: "http://secure2.payco.co/prueba_curl.php",
+
+          //Atributos cliente
+          name_billing: "Andres Perez",
+          address_billing: "Carrera 19 numero 14 91",
+          type_doc_billing: "cc",
+          mobilephone_billing: "3050000000",
+          number_doc_billing: "100000000"
+
+         //atributo deshabilitación metodo de pago
+          //methodsDisable: ["TDC", "PSE","SP","CASH","DP"]
+
+          };
+
+          handler.open(data);
+        </script>
     </body>
 </html>

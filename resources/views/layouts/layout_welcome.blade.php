@@ -75,7 +75,7 @@
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}"></script>
         <script src="{{ asset('js/bulmajs/bulma.js') }}"></script>
-        <script>feather.replace()</script>
+        
         <script src="{{ asset('js/tabs.js') }}"></script>
         <script src="{{ asset('js/scripts/lib_formularios.js') }}"></script>
     </body>
