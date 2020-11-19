@@ -35,7 +35,7 @@ Route::get('/manage/mipacos/{namepacos}', 'ManagePacosController@index')->middle
 // opciones dentro del pacos
 Route::get('/manage/mipacos/{namepacos}/administrar', 'ManagePacosController@adminpacos')->middleware('auth');
 //
-Route::get('/manage/pacos/menu/{namepacos}' , 'MenuComidasController@index')->middleware('auth');
+Route::get('/pacos/{namepacos}/menu' , 'MenuComidasController@index')->middleware('auth');
 Route::get('/manage/{namepacos}/categorias', 'CategoryController@show')->middleware('auth');
 Route::get('/manage/{namepacos}/categorias/nueva', 'CategoryController@agregar')->middleware('auth');
 Route::get('/manage/{namepacos}/{category}/comida', 'ComidaController@show')->middleware('auth');
@@ -54,7 +54,8 @@ Route::get('/user/{iduser}/manage', 'UserManageController@manage')->middleware('
 
 //apis
 Route::get('/api/pacos/{namepacos}/{idcomida}', 'OrdenarComidaController@ordencomida')->middleware('auth');
-Route::get('/api/pacos/{idcat}/comida', 'MenuComidasController@vercomidas')->middleware('auth');
+Route::get('/api/pacos/{idcat}/querycomidas', 'MenuComidasController@vercomidas')->middleware('auth');
+
 //api cantidad de reservasxpacos
 Route::get('/api/manage/pacos/{idpacos}/reservaciones', 'PacosReservacionesController@reservasPacos')->middleware('auth');
 
@@ -69,7 +70,24 @@ Route::any('/epayco/confirmacion', function () {
 });
 //
 Route::any('/api/pacos/validpago/{idrest}', function ($idrest, Request $request) {
-    return $request;
+	//cantidad de elementos dentro del array
+	$idsres = count(collect($request)->get('ids'));
+	//como viene uno demás, debo quitarlo
+	$idsres = $idsres-1;
+	//recorro el arreglo
+	for ($i=0; $i < $idsres; $i++) { 
+		//para que se inserte por cada id
+		while ($i <= $idsres) {
+			$i;
+			DB::table('reservas')
+		        ->where('id_Restaurante', $idrest)
+		        ->where(function ($query) use($i) {
+		                $query->where('id', '=', $i);
+		            })
+		        ->update(['pagado' => '1']);
+			$i++;
+		}
+	}
 });
 
 //Route::resource('registrarPACOS', 'RestaurantesController');

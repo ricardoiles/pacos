@@ -125,10 +125,7 @@ if (response.success) {
 if (response.data.x_cod_response == 1) {
 //Codigo personalizado
 alert('Transaccion Aprobada');
-console.log(response.data.x_extra1);
-console.log(response.data.x_extra2);
 var aux = response.data.x_extra1.split(',');
-console.log(aux);
 console.log('transacción aceptada');
 	document.getElementById("aceptaryvolver").style.display = "block";
   var idrest = response.data.x_extra2;
@@ -143,10 +140,8 @@ $.ajax({
     dataType: "json",
     success: function (data, status, xhr) {
     	//limpiarmodel();
-     console.log(data);
-
     }, error: function (xhr, ajaxOptions, thrownError) {
-        console.log('Lo siento sigue intentando');
+        console.log('Algo salio, mal');
     }
   });
 

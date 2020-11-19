@@ -21,7 +21,7 @@ pacos-btnoptions--infobasica-pacos
       <div class="tile is-parent is-vertical is-3">
         
       </div>
-      <div class="tile is-parent pacos-allinfo-pacos">
+      <div class="tile is-parent pacos-allinfo-pacos" style="padding: 0rem">
         <div class="tile pacos-div-allinfo-pacos">
             <article class="box" style="width: 100%">
               @foreach($pacosinfo as $pacos)
@@ -50,7 +50,8 @@ pacos-btnoptions--infobasica-pacos
                 @foreach($redes as $red)  
                   <div class="columns" style="margin-top: 10px">
                     <div class="column is-12" style="padding: 0px;margin-top: -10px">
-                        <img src="{{ $red->Icono }}" style="width: 15px; height: 15px; border-radius: 20%"> {{ $red->Url }}
+                        <img src="{{ $red->Icono }}" style="width: 15px; height: 15px; border-radius: 20%"> 
+                        {{ $red->Url }}
                     </div>
                   </div>
                 @endforeach

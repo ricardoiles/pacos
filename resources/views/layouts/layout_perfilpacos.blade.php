@@ -23,7 +23,7 @@
                 <div class="navbar-brand">   
                     <a href="{{ url('/home') }}" class="navbar-item">
                         <img src="{{ asset('images/logoPACOS.png') }}"> &nbsp;
-                        <b>PACOS</b>
+                        <b>PACOS</b> <label class="pacos">&nbsp; &middot; Sitios para comer</label>
                     </a>
                     <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
                       <span aria-hidden="true"></span>
@@ -60,6 +60,10 @@
                                         <img class="is-rounded pacos-foto-perfil-nav" src="{{ asset('images/user.png') }}" title="{{ Auth::user()->name }}">
                                     </a>
                                     <div class="navbar-dropdown is-right">
+                                      <p><b>{{ Auth::user()->name.' '.Auth::user()->apellidos  }}</b></p>
+                                        <a class="navbar-item" href="">
+                                          Editar mi perfil
+                                        </a>
                                         <a class="navbar-item" href="{{ route('logout') }}"
                                            onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                             Cerrar sesion
@@ -86,9 +90,9 @@
                     </article>
                 </div>
                 @endforeach
-                <div class="tile">
-                  <div class="tile is-parent is-vertical is-3">
-                    <article class=" is-child box">
+                <div class="tile pacos-tile-allmenu">
+                  <div class="tile is-parent is-vertical is-3 pacos-menu-optionspacos">
+                    <article class=" is-child box pacos-secciones-pacos">
                         <aside class="menu">
                           <ul class="menu-list">
                             <li>@foreach($pacosinfo as $pacos)
@@ -103,7 +107,7 @@
                                 </label>
                             </a></li>@endforeach
                             @foreach($pacosinfo as $pacos)
-                            <li><a href="{{ url('/manage/pacos/menu/'.$pacos->nombre) }}" class="@yield('is-active-1')">@endforeach
+                            <li><a href="{{ url('/pacos/'.$pacos->nombre.'/menu') }}" class="@yield('is-active-1')">@endforeach
                               <button class="button @yield('is-btn-selected-comida')">
                                   <span class="icon is-small">
                                     <span class="material-icons">food_bank</span>

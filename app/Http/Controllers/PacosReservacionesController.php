@@ -33,7 +33,7 @@ class PacosReservacionesController extends Controller
         $reservaciones = DB::table('reservas AS reserv')
                 ->leftjoin('mesas AS mesas', 'mesas.id', '=', 'reserv.id_Mesa')
                 ->leftjoin('restaurantes AS rest', 'rest.id', '=', 'mesas.Restaurante')
-                ->select('rest.id AS idrest', 'rest.nombre AS nombrerest', 'reserv.id AS idreserva', 'reserv.Fecha AS fechareserva', 'reserv.Hora_Ini AS horareserva', 'reserv.Detalle_Reserv AS consincomida', 'reserv.id_Usuario AS iduser', 'reserv.total')
+                ->select('rest.id AS idrest', 'rest.nombre AS nombrerest', 'reserv.id AS idreserva', 'reserv.Fecha AS fechareserva', 'reserv.Hora_Ini AS horareserva', 'reserv.Detalle_Reserv AS consincomida', 'reserv.id_Usuario AS iduser', 'reserv.total', 'reserv.pagado')
                 ->where('rest.nombre', $namepacos)
                 ->get();
 
@@ -45,8 +45,11 @@ class PacosReservacionesController extends Controller
                 ->get();
 
         $reservasxpacos = DB::table('reservas as res')
-                ->select('id as idreserva', 'id_Restaurante')
-                ->where('id_Restaurante', $idpacos)
+                ->select('id as idreserva', 'id_Restaurante', 'pagado')
+                ->where('pagado', '0')
+                ->where(function ($query) use($idpacos) {
+                    $query->where('id_Restaurante', '=', $idpacos);
+                })
                 ->get();
 
 		$cantreservas = count(collect($reservasxpacos));

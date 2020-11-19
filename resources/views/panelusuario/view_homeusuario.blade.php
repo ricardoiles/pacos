@@ -35,23 +35,23 @@
               </figure>
             </div>
             <div class="media-content">
-              <div class="content" style="line-height: 100%; height: 80px; max-height: 90px">
+              <div class="content" style="line-height: 100%; height: 80px; max-height: 80px">
                 <p>
                   <strong> {{ $pacos->namerest }}</strong> &middot; <small>{{ $pacos->catrest }}</small>
                   <br>
                     <small>{{ $pacos->ciudad }} &middot; {{ $pacos->direccion }} &middot; {{ $pacos->barriovere }}</small>
                   <br>
-                    <small>  {{ substr("$pacos->descripcion", 0, -30).'...' }}</small>
+                    <small>  {{ substr("$pacos->descripcion", 0, 40).'...' }}</small>
                 </p>
               </div>
               <nav class="level is-mobile" style="margin-bottom: 5px">
                 <div class="level-left">
-                  <a href="{{ url('/pacos/'.$pacos->namerest.'/reseñas') }}" class="level-item" aria-label="reply">
+                  <a href="{{ url('/pacos/'.$pacos->namerest.'/reseñas') }}" class="level-item tooltip" data-tooltip="Reseñas" aria-label="reply">
                     <span class="icon is-small">
                       <i class="material-icons">how_to_vote</i>
                     </span>
                   </a>
-                  <a href="{{ action('PerfilpacosController@show', ['namepacos' => $pacos->namerest]) }}" class="level-item" aria-label="retweet">
+                  <a href="{{ action('PerfilpacosController@show', ['namepacos' => $pacos->namerest]) }}" class="level-item tooltip" data-tooltip="Ir al sitio" aria-label="retweet">
                     <span class="icon is-small">
                       <i class="material-icons">open_in_new</i>
                     </span>
@@ -86,7 +86,7 @@
     </header>
     <section class="modal-card-body">
       <div class="columns is-mobile">
-        <div class="column is-12 box" style="margin: 5px;">
+        <div class="column is-12" style="margin: 5px;">
             <form method="post" action="{{ url('busqueda/pacos/ciudad')}}">
                 {{ csrf_field() }}                
                 <div class="field is-horizontal">

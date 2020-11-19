@@ -79,7 +79,12 @@ input[type=range]
     margin-right: 10px;
     
 }
-
+.level-item{
+  color: #414d58;
+}
+.pacos{
+  display: none;
+}
 
 
 
@@ -89,4 +94,23 @@ and (max-device-width : 480px) {
     .navbar{
      padding-left: 0px;
 	}
+  .pacos-menu-left{
+    height: 20vh;
+  }
+  .pacos-div-right{
+    margin-top: -20px;
+  }
+  .flex-container{
+    display: block;
+  }
+  .pacos-sitio{
+    margin-right: 0px;
+  }
+  .pacos{
+    display: block;
+  }
+  .modal-content, .modal-card{
+    width: 90%;
+    margin-right: 20px;
+  }
 }

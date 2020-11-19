@@ -141,4 +141,13 @@ and (max-device-width : 480px) {
     .navbar{
      padding-left: 0px;
 	}
+	.pacos-log-left{
+		height: 65vh;
+	}
+	.pacos-log-right{
+		height: 70vh;
+	}
+	.pacos-log-descripcion{
+		width: 70%;
+	}
 }

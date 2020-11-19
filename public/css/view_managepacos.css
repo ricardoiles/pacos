@@ -93,4 +93,14 @@ and (max-device-width : 480px) {
     .navbar{
      padding-left: 0px;
   }
+  .pacos-managepacos-cityimage-hero{
+    width: 100%;
+  }
+  .pacos-managepacos-hero{
+    height: 15%;
+  }
+  .pacos-foto-perfil-pacos{
+    top: 10%;
+    left: 35%;
+  }
 }

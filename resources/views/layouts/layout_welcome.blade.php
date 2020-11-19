@@ -49,9 +49,13 @@
                             @else
                                 <div class="navbar-item has-dropdown is-hoverable">
                                     <a class="navbar-link">
-                                        <img class="is-rounded pacos-foto-perfil-nav" src="https://media.geeksforgeeks.org/wp-content/uploads/20200617121759/bill-gates.jpg" title="{{ Auth::user()->name }}">
+                                        <img class="is-rounded pacos-foto-perfil-nav" src="{{ asset('images/user.png') }}" title="{{ Auth::user()->name }}">
                                     </a>
                                     <div class="navbar-dropdown is-right">
+                                        <p style="text-align: center;"><b>{{ Auth::user()->name }} {{ Auth::user()->apellidos }}</b></p>
+                                        <a class="navbar-item" href="">
+                                          Editar mi perfil
+                                        </a>
                                         <a class="navbar-item" href="{{ route('logout') }}"
                                            onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                             Cerrar sesion

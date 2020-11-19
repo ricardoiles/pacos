@@ -77,8 +77,11 @@
                   <b>{{ $reserva->nombrerest }}</b>
                   <p>Reservacion N° <b>{{ $reserva->idreserva }}</b></p>
                   <p>{{ $reserva->fechareserva }} &middot; {{ $reserva->horareserva }} </p>
-                  <p><b>{{ number_format($reserva->total) }}</b> </p>
-                  
+                  @if($reserva->pagado == 1)
+                    <p><b>$0</b> </p>
+                  @else
+                    <p><b>{{ number_format($reserva->total) }}</b> </p>
+                  @endif
                   @if($reserva->consincomida == 0)
                     @foreach($pacosinfo as $pacos)
                       <p><a href="{{ url('/pacos/'.$pacos->nombre.'/'.$reserva->idreserva.'/ordenarcomida') }}"><b class="pacos-is-active">Sin comida</b></a></p>
@@ -116,7 +119,7 @@
               data-epayco-test="true"
               data-epayco-external="false"
               
-              data-epayco-extra1="@foreach($reservaciones as $reserva){{ $reserva->idreserva.',' }}@endforeach"
+              data-epayco-extra1="@foreach($reservaciones as $reserva){{ $reserva->idreserva }}@endforeach"
               data-epayco-extra2="{{$pacos->idrest}}"
               data-epayco-response="http://192.168.100.2:8000/{{$pacos->nombre}}/{{$pacos->idrest}}/epayco/respuesta"
               data-epayco-confirmation="http://192.168.100.2:8000/epayco/confirmacion"

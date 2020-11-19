@@ -23,7 +23,7 @@
                 <div class="navbar-brand">   
                     <a href="{{ url('/home') }}" class="navbar-item">
                         <img src="{{ asset('images/logoPACOS.png') }}"> &nbsp;
-                        <b>PACOS</b>
+                        <b>PACOS </b> <small class="pacos">&nbsp; &middot; Sitios para comer</small>
                     </a>
                     <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
                       <span aria-hidden="true"></span>
@@ -56,13 +56,17 @@
                                 <a class="navbar-item " href="{{ route('login') }}">Inicar sesión</a>
                                 <a class="navbar-item " href="{{ url('/registrarme') }}">Registrarmee</a>
                             @else
-                                <a class="navbar-item" href="">{{ Auth::user()->name }}</a>
+                                
                                 <div class="navbar-item has-dropdown is-hoverable">
 
                                     <a class="navbar-link">
-                                        <img class="is-rounded pacos-foto-perfil-nav" src="https://media.geeksforgeeks.org/wp-content/uploads/20200617121759/bill-gates.jpg" title="{{ Auth::user()->name }}">
+                                        <img class="is-rounded pacos-foto-perfil-nav" src="{{ asset('images/user.png') }}" title="{{ Auth::user()->name }}">
                                     </a>
                                     <div class="navbar-dropdown is-right">
+                                        <p><b>{{ Auth::user()->name.' '.Auth::user()->apellidos  }}</b></p>
+                                        <a class="navbar-item" href="">
+                                          Editar mi perfil
+                                        </a>
                                         <a class="navbar-item" href="{{ route('logout') }}"
                                            onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                             Cerrar sesion

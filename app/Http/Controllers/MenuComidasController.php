@@ -56,7 +56,7 @@ class MenuComidasController extends Controller
     }
 
     public function vercomidas($idcat){
-        
+        return 'aqui';
         $comidas = DB::table('platos AS pla')
                 ->join('fotoxplato AS fpla', 'fpla.id_Plato', '=', 'pla.id')
                 ->join('foto_vid AS fv', 'fv.id', '=', 'fpla.id_FotoVid')
@@ -65,8 +65,8 @@ class MenuComidasController extends Controller
                 ->select('pla.id AS idcomida', 'pla.Categoria AS catcomida', 'pla.Nombre AS nombrecomida', 'pla.Descripcion AS ingredientes', 'pla.Precio AS preciocomida', 'fv.Url AS fotocomida', 'rest.nombre AS namepacos')
                 ->where('pla.Categoria', $idcat)
                 ->get();
+        $comidas = ['hey'=>'hey answer'];
 
-        
-        return response()->json($comidas);
+        return $comidas;
     }
 }

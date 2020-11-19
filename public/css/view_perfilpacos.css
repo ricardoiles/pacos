@@ -290,4 +290,38 @@ and (max-device-width : 480px) {
     .navbar{
      padding-left: 0px;
 	}
+	.div-pacos-tile-cover{
+		height: 15vh;
+	}
+	.pacos-tile-allmenu{
+		margin-top: -12px;
+	}
+	.pacos-foto-perfil-pacos{
+		top: -40%;
+		right: 35%;
+	    width: 100px;
+	    height: 100px;
+	}
+	.pacos-div-infobasica-pacos{
+		position: absolute;
+	    width: 100%;
+	    right: -0.2px;
+	    height: 150px;
+	    top: 22%;
+	}
+	.pacos-menu-optionspacos{
+		margin-top: 40%;
+	}
+	.pacos-infobasica-pacos{
+		margin-top: 12%;
+	}
+	.pacos-secciones-pacos{
+		margin-top: 10px;
+	}
+	.pacos-div-allinfo-pacos{
+		padding: 0rem;
+	}
+	.pacos-allinfo-pacos{
+		padding: 0px;
+	}
 }

@@ -9,7 +9,7 @@
             <div class="column is-3"></div>
             <div class="column is-6 pacos-search-section">
                 
-                <div class="field is-horizontal">
+                <div class="field is-horizontal title-responsive-4">
                   <div class="field-body">
                     <div class="field">
                       <p class="title is-4">Hey, ¿Dónde quieres ir a comer hoy?</p>
@@ -17,7 +17,7 @@
                   </div>
                 </div>
                 <br>
-                <div class="field is-horizontal">
+                <div class="field is-horizontal fields-herosection">
                   <div class="field-body">
                     <div class="field">
                       <p class="control is-expanded  has-icons-left" >
