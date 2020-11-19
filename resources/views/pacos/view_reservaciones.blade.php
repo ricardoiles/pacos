@@ -21,11 +21,11 @@ pacos-btnmenu-pacos
     
   </div>
   <div class="tile pacos-multimediadiv-pacos" style="margin-top: -40px;">
-        <article class="box" style="width: 100%;">
+        <article class="" style="width: 100%;">
             <b></b>
             <br>
             <div class="tabs is-left main-menu" id="nav" style="margin-top: -30px">
-                <ul>
+                <ul style="border-bottom-style: none;">
                     <li data-target="pane-1" class="is-active" id="1">
                         <a>
                             <span class="icon is-small"><span class="material-icons">receipt_long</span></span>
@@ -40,7 +40,7 @@ pacos-btnmenu-pacos
                     </li>
                 </ul>
             </div>
-            <div class="tab-content">
+            <div class="tab-content"  style="background-color: inherit;">
                 <div class="tab-pane is-active " id="pane-1">
                    <div class="columns is-desktop flex-container">
                     @foreach($reservaciones as $reserva)
@@ -161,28 +161,10 @@ pacos-btnmenu-pacos
                                             </div>
                                           </div>
                                         </div>
-                                        <div class="field is-horizontal">
-                                          <div class="field-body">
-                                            <div class="field">
-                                                <small>Iva</small>
-                                              <p class="control is-expanded ">
-                                                <input class="input" type="number" name="totaliva" required="" placeholder="Total IVA" value="100" readonly="">
-                                              </p>
-                                            </div>
-                                            <div class="field">
-                                                <small>Descuento</small>
-                                              <p class="control is-expanded ">
-                                                <input class="input" type="number" name="totaldcto" required="" placeholder="Total descuento" value="150" readonly="">
-                                              </p>
-                                            </div>
-                                            <div class="field">
-                                                <small>Valor total</small>
-                                              <p class="control is-expanded ">
-                                               <input class="input" type="number" name="valortotal" required="" placeholder="Valor Total" value="1.000" readonly="">
-                                              </p>
-                                            </div>
-                                          </div>
-                                        </div>
+                                        <input class="input" type="hidden" name="totaliva" required="" placeholder="Total IVA" value="100" readonly="">
+                                        <input class="input" type="hidden" name="totaldcto" required="" placeholder="Total descuento" value="150" readonly="">
+                                        <input class="input" type="hidden" name="valortotal" required="" placeholder="Valor Total" value="1.000" readonly="">
+                                        
                                         <div class="field is-horizontal">
                                           <div class="field-body">
                                             <div class="field">

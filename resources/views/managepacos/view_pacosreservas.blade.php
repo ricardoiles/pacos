@@ -3,6 +3,7 @@
 <link href="{{ asset('css/view_managepacos.css') }}" rel="stylesheet">
 @endsection
 @section('content')
+
 <div class="columns is-desktop">
   <div class="column is-12 pacos-managepacos-hero">
   	<img class="pacos-managepacos-cityimage-hero" src="{{ asset('images/cityPACOS.png') }}">
@@ -77,6 +78,7 @@
                   <p>Reservacion N° <b>{{ $reserva->idreserva }}</b></p>
                   <p>{{ $reserva->fechareserva }} &middot; {{ $reserva->horareserva }} </p>
                   <p><b>{{ number_format($reserva->total) }}</b> </p>
+                  
                   @if($reserva->consincomida == 0)
                     @foreach($pacosinfo as $pacos)
                       <p><a href="{{ url('/pacos/'.$pacos->nombre.'/'.$reserva->idreserva.'/ordenarcomida') }}"><b class="pacos-is-active">Sin comida</b></a></p>
@@ -100,6 +102,7 @@
               <input type="hidden" name="" value="{{ $costo = 2000 }}">
             @endif
           <form>
+           
             <script
               src="https://checkout.epayco.co/checkout.js"
               class="epayco-button"
@@ -112,10 +115,14 @@
               data-epayco-country="co"
               data-epayco-test="true"
               data-epayco-external="false"
+              
+              data-epayco-extra1="@foreach($reservaciones as $reserva){{ $reserva->idreserva.',' }}@endforeach"
+              data-epayco-extra2="{{$pacos->idrest}}"
               data-epayco-response="http://192.168.100.2:8000/{{$pacos->nombre}}/{{$pacos->idrest}}/epayco/respuesta"
               data-epayco-confirmation="http://192.168.100.2:8000/epayco/confirmacion"
               >
             </script>
+           
           </form>
         @endforeach
       </div>

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,6 +41,8 @@ Route::get('/manage/{namepacos}/categorias/nueva', 'CategoryController@agregar')
 Route::get('/manage/{namepacos}/{category}/comida', 'ComidaController@show')->middleware('auth');
 //administrar reservaciones
 Route::get('/manage/mipacos/{namepacos}/{idpacos}/reservas', 'PacosReservacionesController@index')->middleware('auth');
+Route::get('/manage/{namepacos}/{idpacos}/reservas', 'PacosReservacionesController@index')->middleware('auth');
+
 // panel usuario
 Route::get('/pacos/{namepacos}', 'PerfilpacosController@show')->middleware('auth');
 Route::get('/pacos/{namepacos}/reservar', 'ReservacionesController@index')->middleware('auth');
@@ -65,6 +67,10 @@ Route::any('/{namepacos}/{idpacos}/epayco/respuesta', function ($namepacos, $idp
 Route::any('/epayco/confirmacion', function () {
     return view('managepacos.epayco.confirmacion');
 });
+//
+Route::any('/api/pacos/validpago/{idrest}', function ($idrest, Request $request) {
+    return $request;
+});
 
 //Route::resource('registrarPACOS', 'RestaurantesController');
 Route::resource('manage/registrarPACOS', 'NuevoPacosController')->middleware('auth');
@@ -72,6 +78,8 @@ Route::resource('manage/agregar/detallesPACOS', 'ManagePacosController')->middle
 Route::resource('manage/categorias/registrarCategoria', 'CategoryController')->middleware('auth');
 Route::resource('manage/categorias/comida/registrarComida', 'ComidaController')->middleware('auth');
 Route::resource('busqueda/pacos/ciudad', 'HomeController')->middleware('auth');
+//store reseñas
+Route::resource('pacos/store/resenas', 'ReseñasController')->middleware('auth');
 //registrar reservacion
 Route::resource('pacos/reservar/nueva', 'ReservacionesController')->middleware('auth');
 //registrar orden de comida

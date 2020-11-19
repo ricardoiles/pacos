@@ -30,6 +30,7 @@ if ($x_signature == $signature) {
  /*Si la firma esta bien podemos verificar los estado de la transacción*/
 
   $x_cod_response = $_REQUEST['x_cod_response'];
+  
 
  switch ((int) $x_cod_response) {
 

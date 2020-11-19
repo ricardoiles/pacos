@@ -51,17 +51,26 @@ class PerfilpacosController extends Controller
                     ->where('rest.nombre', $namepacos)
                     ->get();
 
-        //return $pacosinfo;
         $fotos = DB::table('restaurantes as rest')
                 ->leftjoin('foto_vid as fv', 'rest.FotoPerfil', '=', 'fv.id')
                 ->join('foto_vid as fvp', 'rest.FotoPortada', '=', 'fvp.id')
                 ->select('rest.id as resta', 'fv.Url as Perfil', 'fvp.Url as Portada')
                 ->where('rest.nombre', $namepacos)
                 ->get();
+        //reseñas por pacos
+        $reseñas = DB::table('reseñas AS rese')
+                ->join('users as us', 'us.id', '=', 'rese.Usuario')
+                ->join('restaurantes AS rest', 'rest.id', '=', 'rese.Restaurante')
+                ->select('rese.id AS idreseña', 'rese.hora', 'rese.fecha', 'rese.reseña',
+                        'us.name AS nameuser', 'us.apellidos AS lastnameuser', 'rest.id AS idpacos', 
+                        'rest.nombre AS namepacos')
+                ->where('rest.nombre', $namepacos)
+                ->get();
 
         return view('pacos.view_reseñas')
                 ->with('pacosinfo', $pacosinfo)
-                ->with('fotos', $fotos);
+                ->with('fotos', $fotos)
+                ->with('reseñas', $reseñas);
     }
 
     /**
@@ -72,7 +81,7 @@ class PerfilpacosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**

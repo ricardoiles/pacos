@@ -57,7 +57,7 @@
                             @else
                                 <div class="navbar-item has-dropdown is-hoverable">
                                     <a class="navbar-link">
-                                        <img class="is-rounded pacos-foto-perfil-nav" src="https://media.geeksforgeeks.org/wp-content/uploads/20200617121759/bill-gates.jpg" title="{{ Auth::user()->name }}">
+                                        <img class="is-rounded pacos-foto-perfil-nav" src="{{ asset('images/user.png') }}" title="{{ Auth::user()->name }}">
                                     </a>
                                     <div class="navbar-dropdown is-right">
                                         <a class="navbar-item" href="{{ route('logout') }}"
@@ -113,8 +113,8 @@
                                 Comida
                               </label>
                             </a></li>
-                            <li><a href="{{ url('/pacos/'.$pacos->nombre.'/reseñas') }}">
-                                <button class="button pacos-btnmenu-pacos">
+                            <li><a href="{{ url('/pacos/'.$pacos->nombre.'/reseñas') }}" class="@yield('is-active-2')">
+                                <button class="button pacos-btnmenu-pacos @yield('is-btn-selected-reseñas')" >
                                   <span class="icon is-small">
                                     <span class="material-icons">how_to_vote</span>
                                   </span>

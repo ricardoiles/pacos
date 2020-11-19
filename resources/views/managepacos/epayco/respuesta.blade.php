@@ -4,6 +4,7 @@
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge'>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags --<</meta>
 <title<Formulario Pruebas Respuesta</title> -->
 <!-- Bootstrap -->
@@ -92,6 +93,15 @@
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'> </script>
 <script>
+
+/*$('.categoria').on('click',function(element) {
+
+	var element = this;
+  elemente.value;
+
+});*/
+
+
 function getQueryParam(param) {
 	console.log(param);
 location.search.substr(1)
@@ -108,13 +118,39 @@ var ref_payco = getQueryParam('ref_payco');
  //Url Rest Metodo get, se pasa la llave y la ref_payco como paremetro
  var urlapp = 'https://secure.epayco.co/validation/v1/reference/' + ref_payco;
 $.get(urlapp, function(response) {
+
+console.log(response);
+
 if (response.success) {
 if (response.data.x_cod_response == 1) {
 //Codigo personalizado
 alert('Transaccion Aprobada');
+console.log(response.data.x_extra1);
+console.log(response.data.x_extra2);
+var aux = response.data.x_extra1.split(',');
+console.log(aux);
 console.log('transacción aceptada');
 	document.getElementById("aceptaryvolver").style.display = "block";
-  
+  var idrest = response.data.x_extra2;
+  var rs = response.data.x_cod_response;
+$.ajax({
+	headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+    method: 'POST',
+    url: '/api/pacos/validpago/'+idrest,
+    data:{ ids:aux, estado:rs,  //JSON.stringify()
+    	"_token" : "{{csrf_token() }} "},
+    	//"_token": $("meta[name='csrf_token']").attr("content") },
+    dataType: "json",
+    success: function (data, status, xhr) {
+    	//limpiarmodel();
+     console.log(data);
+
+    }, error: function (xhr, ajaxOptions, thrownError) {
+        console.log('Lo siento sigue intentando');
+    }
+  });
+
+
 } //Transaccion Rechazada
 if (response.data.x_cod_response == 2) {
 console.log('transacción rechazada');
