@@ -44,30 +44,26 @@ pacos-btnoptions--infobasica-pacos
         </aside>
       </div>
       <div class="tile is-parent is-9 pacos-allinfo-pacos flex-container">
-        <div id="Comidas" class="columns is-desktop flex-container">
+        <div id="Comidas" class="columns is-desktop flex-container" style="overflow-y: auto; height: 40vh">
           @foreach($comidas as $comida)
-            <div class='column is-4 box' style='line-height: 100%; text-align: justify; margin-right: 10px; margin-bottom: 10px; height: 130px;    width: 32.16%;'>
+            <div class='column is-4 box' style='line-height: 100%; text-align: justify; margin-right: 5px; margin-bottom: 10px; height: 130px;width: 32.16%;'>
               <div class='columns is-desktop'>
                 <div class='column is-3' style="width: 30%">
                     <image class='pacos-ordenar-fotocomida' src="{{ asset('storage'.'/'.'/'.'/'.$comida->fotocomida) }}">
                 </div>
                 <div class='column is-9' style='font-size: 13px; width: 70%; margin-left: -10px;'>
                     <b> {{ $comida->nombrecomida }} </b>
-                    <p>{{ $comida->ingredientes }}</p>                                                                       
+                    <p>{{ $comida->ingredientes }}</p>                            
                     <p><b class='pacos-is-active'>${{ $comida->preciocomida }}</b></p>
                     <div class="column is-12" style="text-align: left;">
-                      <a href="">
+                      <a href="" style="color: #414d58;">
                         <label class='reseñas'><i class='material-icons'>sms</i></label>
                       </a>
-                      <a href="">
-                        <label class='reseñas'><i class='material-icons'>room_service</i></label>
-                      </a>
-                      <a href="">
-                        <label class='reseñas'><i class='material-icons'>star_border</i></label>
+                      <a href="" style="color: #414d58;">
+                        <label class='ordenar'><i class='material-icons'>room_service</i></label>
                       </a>
                     </div>
                 </div>
-                <label class='more_vert-comida'><i class='material-icons'>more_vert</i></label>
               </div>
             </div>
           @endforeach
