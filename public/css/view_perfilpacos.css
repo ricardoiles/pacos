@@ -278,7 +278,9 @@ input[type=range]
 .pacos-btn-postear:hover{
 	color: white
 }
-
+.pacos{
+	display: none;
+}
 
 @media screen and (min-width: 769px){
 	
@@ -290,11 +292,15 @@ and (max-device-width : 480px) {
     .navbar{
      padding-left: 0px;
 	}
+	.pacos{
+		display: block;
+	}
 	.div-pacos-tile-cover{
 		height: 15vh;
+		width: 97%;
 	}
 	.pacos-tile-allmenu{
-		margin-top: -12px;
+		margin-top: -14px;
 	}
 	.pacos-foto-perfil-pacos{
 		top: -40%;
@@ -316,12 +322,19 @@ and (max-device-width : 480px) {
 		margin-top: 12%;
 	}
 	.pacos-secciones-pacos{
-		margin-top: 10px;
+		margin-top: 0px;
 	}
 	.pacos-div-allinfo-pacos{
 		padding: 0rem;
+		margin-bottom: 20px;
 	}
-	.pacos-allinfo-pacos{
-		padding: 0px;
+	.pacos-article-allinfo{
+		padding-left: 50px;
+	}
+	.tips{
+		display: none;
+	}
+	.pacos-multimediadiv-pacos{
+		margin-top: -15px;
 	}
 }

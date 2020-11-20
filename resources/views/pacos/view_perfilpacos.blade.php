@@ -21,13 +21,13 @@ pacos-btnoptions--infobasica-pacos
       <div class="tile is-parent is-vertical is-3">
         
       </div>
-      <div class="tile is-parent pacos-allinfo-pacos" style="padding: 0rem">
+      <div class="tile is-parent pacos-allinfo-pacos" style="padding: 0rem; margin-top: -25px">
         <div class="tile pacos-div-allinfo-pacos">
-            <article class="box" style="width: 100%">
+            <article class="box pacos-article-allinfo" style="width: 100%">
               @foreach($pacosinfo as $pacos)
                 <b>Ubicacion y horario</b>
                 <p>{{ $pacos->pais }} &middot; {{ $pacos->depto }} </p>
-                <p>{{ $pacos->BarrioVere }} &middot; {{ $pacos->ciudad }}</p>
+                <p>{{ $pacos->ciudad }} &middot; {{ $pacos->BarrioVere }} </p>
                 <p>{{ $pacos->Direccion }}</p>
                 <p><b>Abierto:</b> {{ $pacos->diaopen }} A {{ $pacos->diaclose }}</p>
                 <p>{{ $pacos->horaopen }} A {{ $pacos->horaclose }}</p>
@@ -36,7 +36,7 @@ pacos-btnoptions--infobasica-pacos
 
         </div>
         <div class="tile pacos-div-allinfo-pacos">
-            <article class="box" style="width: 100%; text-align: justify;">
+            <article class="box pacos-article-allinfo" style="width: 100%; text-align: justify;">
                 <b>Descripcion del sitio</b>
                 <p>
                 @foreach($pacosinfo as $pacos)
@@ -45,7 +45,7 @@ pacos-btnoptions--infobasica-pacos
             </article>
         </div>
         <div class="tile pacos-div-allinfo-pacos-last">
-            <article class="box" style="width: 100%">
+            <article class="box pacos-article-allinfo" style="width: 100%; padding-bottom: 30px;">
                 <b>Contacto</b>
                 @foreach($redes as $red)  
                   <div class="columns" style="margin-top: 10px">
@@ -62,7 +62,7 @@ pacos-btnoptions--infobasica-pacos
 @endsection
 @section('content2')
 <div class="tile">
-  <div class="tile is-parent is-vertical is-3">
+  <div class="tile is-parent is-vertical is-3 ">
     
   </div>
   <div class="tile pacos-multimediadiv-pacos">

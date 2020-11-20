@@ -135,28 +135,6 @@
                     @foreach($fotos as $foto)
                       <img class="is-rounded pacos-foto-perfil-pacos" src="{{ asset('storage'.'/'.$foto->Perfil) }}">
                     @endforeach
-                      
-                    
-                    <!-- <div class="dropdown is-right is-hoverable pacos-moreoption-pacos">
-                      <div class="dropdown-trigger">
-                        <label class="pacos-cursor-pointer" aria-haspopup="true" aria-controls="dropdown-menu4">
-                          <span class="material-icons">more_vert</span>
-                          <span class="icon is-small">
-                            <i class="fas fa-angle-down" aria-hidden="true"></i>
-                          </span>
-                        </label>
-                      </div>
-                      <div class="dropdown-menu" id="dropdown-menu4" role="menu">
-                        <div class="dropdown-content">
-                          <a href="#" class="dropdown-item">
-                            Almacenar
-                          </a>
-                          <a href="#" class="dropdown-item">
-                            Reportar
-                          </a>
-                        </div>
-                      </div>
-                    </div> -->
 
                     <article class="pacos-infobasica-pacos">
                       @foreach($pacosinfo as $pacos)
@@ -167,14 +145,14 @@
                       <div class="block pacos-btns-infobasica-pacos">
                           @foreach($pacosinfo as $pacos)
                             @if($pacos->domicilios == 1)
-                              <button class="button pacos-btnoptions--infobasica-pacos tooltip" data-tooltip="Domicilios de comida">
+                              <button class="button pacos-btnoptions--infobasica-pacos tooltip" data-tooltip="Hacemos domicilios de comida">
                                   <span class="icon is-small">
                                     <span class="material-icons pacos-fontsize-btnoptions-pacos">directions_bike</span>
                                   </span>
                               </button>
                             @endif
                             @if($pacos->ordenes == 1)
-                              <button class="button pacos-btnoptions--infobasica-pacos tooltip" data-tooltip="Ordenar comida">
+                              <button class="button pacos-btnoptions--infobasica-pacos tooltip" data-tooltip="Puedes ordenar comida">
                                   <span class="icon is-small">
                                     <span class="material-icons pacos-fontsize-btnoptions-pacos">room_service</span>
                                   </span>
@@ -196,7 +174,7 @@
                                 </span>
                             </button>
                             
-                            <button class="button pacos-btnoptions--infobasica-pacos tooltip" data-tooltip="Enviar mensaje">
+                            <button class="button pacos-btnoptions--infobasica-pacos tooltip" data-tooltip="Enviar mensaje al sitio">
                                 <span class="icon is-small">
                                   <span class="material-icons pacos-fontsize-btnoptions-pacos">chat_bubble</span>
                                 </span>
@@ -209,7 +187,7 @@
 
                 @yield('content2')
                 </div>
-                <div class="tile is-parent">
+                <div class="tile is-parent tips">
                   <article class="" style="margin-top: 20px">
                     <span class="material-icons">batch_prediction</span>
                     Tips  &nbsp;&nbsp;
