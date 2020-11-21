@@ -36,6 +36,9 @@ Route::get('/manage/mipacos/{namepacos}', 'ManagePacosController@index')->middle
 Route::get('/manage/mipacos/{namepacos}/administrar', 'ManagePacosController@adminpacos')->middleware('auth');
 //
 Route::get('/pacos/{namepacos}/menu' , 'MenuComidasController@index')->middleware('auth');
+//reseñas de comidas
+Route::get('/pacos/{namepacos}/{idcomida}/reseña' , 'MenuComidasController@reseñaxcomida')->middleware('auth');
+
 Route::get('/manage/{namepacos}/categorias', 'CategoryController@show')->middleware('auth');
 Route::get('/manage/{namepacos}/categorias/nueva', 'CategoryController@agregar')->middleware('auth');
 Route::get('/manage/{namepacos}/{category}/comida', 'ComidaController@show')->middleware('auth');
@@ -102,6 +105,7 @@ Route::resource('manage/categorias/comida/registrarComida', 'ComidaController')-
 Route::resource('busqueda/pacos/ciudad', 'HomeController')->middleware('auth');
 //store reseñas
 Route::resource('pacos/store/resenas', 'ReseñasController')->middleware('auth');
+Route::resource('pacos/store/resenas/comidas', 'MenuComidasController')->middleware('auth');
 //registrar reservacion
 Route::resource('pacos/reservar/nueva', 'ReservacionesController')->middleware('auth');
 //registrar orden de comida

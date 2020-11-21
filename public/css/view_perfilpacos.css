@@ -314,6 +314,20 @@ input[type=range]
 	left: 10px;
 	width: 100%;
 }
+.pacos-box-reserva{
+	line-height: 100%; 
+	text-align: justify; 
+	margin-right: 10px; 
+	margin-bottom: 10px;
+}
+.pacos-box-comidaordenada{
+	line-height: 100%; 
+	text-align: justify; 
+	margin-left:20px; 
+	margin-right: 5px; 
+	margin-bottom: 10px; 
+	width: 40%
+}
 
 
 
@@ -376,7 +390,7 @@ and (max-device-width : 480px) {
 		max-width: 100%;
 	}
 	.pacos-allinfo-pacos{
-		margin-top: -5%;
+		margin-top: 5%;
 	}
 	.flex-container{
 		display: block;
@@ -394,7 +408,7 @@ and (max-device-width : 480px) {
 	.pacos-column-infocomida{
 		padding-left: 110px;
 		width: 100%;
-		margin-top: -70px;
+		margin-top: -80px;
 	}
 	.pacos-box-reseña{
 		margin-bottom: 7px;
@@ -429,5 +443,63 @@ and (max-device-width : 480px) {
 	}
 	.pacos-tile-reseñas{
 		margin-top: -10px;
+	}
+	.pacos-box-reserva{
+		width: 100% !important;
+	}
+	.pacos-menu-tab-reservas{
+		margin-top: -5px !important;
+	}
+	.pacos-reservas-fotopacos{
+		margin-top: 5px !important;
+	}
+	.pacos-column-inforeserva{
+		margin-top: -80px !important;
+		padding-left: 70px !important;
+	}
+	.pacos-box-reservayorden{
+		margin-top: 15px;
+	}
+	.pacos-column-inforeserva-inorden{
+		margin-top: -80px !important;
+		padding-left: 70px !important;
+		width: 80% !important;
+	}
+	.pacos-seccion-detalles-reserva{
+		border-bottom: 1px solid gray;
+	}
+	/*comidas*/
+	.pacos-box-comidaordenada{
+		width: 100% !important;
+		margin-left: 0px !important;
+
+	}
+	.pacos-columns-commidaordenada{
+		padding-left: 10px !important;
+		padding-right: 10px !important;
+	}
+	.pacos-ordenar-fotocomida{
+		top: 10px !important;
+		height: 60px !important; 
+		width: 60px !important;
+	}
+	.pacos-ordenar-fotocomida-orden{
+		margin-left: 0px !important;
+		position: relative;
+		top: -10px;
+		height:	60px;
+		width: 60px;
+	}
+	.pacos-column-infoorden{
+		margin-top: -100px;
+		padding-left: 90px;
+		width: 90% !important;
+
+	}
+	.pacos-reseñaxcom{
+		margin-left: 0px !important;
+	}
+	.pacos-box-responsive-comida{
+		border-right: 0px !important;
 	}
 }

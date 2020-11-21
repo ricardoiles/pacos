@@ -28,7 +28,7 @@ pacos-btnmenu-pacos
         <article class="" style="width: 100%;">
             <b></b>
             <br>
-            <div class="tabs is-left main-menu" id="nav" style="margin-top: -30px">
+            <div class="tabs is-left main-menu pacos-menu-tab-reservas" id="nav" style="margin-top: -30px">
                 <ul style="border-bottom-style: none;">
                     <li data-target="pane-1" class="is-active" id="1">
                         <a>
@@ -49,14 +49,14 @@ pacos-btnmenu-pacos
                    <div class="columns is-desktop flex-container">
                     @foreach($reservaciones as $reserva)
                     @if($reserva->iduser == Auth::user()->id)
-                       <div class="column is-4 box" style="line-height: 100%; text-align: justify; margin-right: 10px; margin-bottom: 10px;">
+                       <div class="column is-4 box pacos-box-reserva">
                             <div class="columns is-desktop">
                                 @foreach($fotos as $foto)
                                 <div class="column is-3">
                                     <div class="pacos-reservas-fotopacos" style="background-image: url('{{ asset('storage'.'/'.$foto->Perfil) }}');margin-top: 20%"></div>
                                 </div>
                                 @endforeach
-                                <div class="column is-9">
+                                <div class="column is-9 pacos-column-inforeserva">
                                     <b>{{ $reserva->nombrerest }}</b>
                                     <p>Reservacion N° <b>{{ $reserva->idreserva }}</b></p>
                                     <p>{{ $reserva->fechareserva }} &middot; {{ $reserva->horareserva }} </p>

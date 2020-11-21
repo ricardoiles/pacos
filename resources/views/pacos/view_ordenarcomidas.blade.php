@@ -25,7 +25,7 @@ pacos-btnmenu-pacos
     
   </div>
   <div class="tile pacos-multimediadiv-pacos" style="margin-top: -40px;">
-    <article class="box" style="width: 100%">
+    <article class="box pacos-box-reservayorden" style="width: 100%">
         <div class="columns is-desktop">
           @foreach($reservaciones as $reserva)
             @if($reserva->iduser == Auth::user()->id)
@@ -36,7 +36,7 @@ pacos-btnmenu-pacos
                           <div class="pacos-reservas-fotopacos" style="background-image: url('{{ asset('storage'.'/'.$foto->Perfil) }}');margin-top: 20%"></div>
                       </div>
                       @endforeach
-                      <div class="column is-9" style="padding-left: 20px">
+                      <div class="column is-9 pacos-column-inforeserva-inorden" style="padding-left: 20px">
                           <b id="Paccos">{{ $reserva->nombrerest }}</b>
                           <p>Reservacion N° <b>{{ $reserva->idreserva }}</b></p>
                           <p>Fecha: <b>{{ $reserva->fechareserva }}</b></p>
@@ -66,7 +66,6 @@ pacos-btnmenu-pacos
                             </span>
                           </button>
                         </div>
-                        
                       </div>
                     @endif
                   </div>
@@ -75,14 +74,14 @@ pacos-btnmenu-pacos
                 <div class="columns is-desktop">
                   <div class="column is-12" >
                     @if($reserva->consincomida == 1) 
-                      <div class="columns is-desktop flex-container" style="padding-left: 20px">
+                      <div class="columns is-desktop flex-container pacos-columns-commidaordenada" style="padding-left: 20px">
                         @foreach($comidasordenadas as $orden)
-                          <div class='column is-4 box' style='line-height: 100%; text-align: justify; margin-left:20px; margin-right: 5px; margin-bottom: 10px; width: 40%'>
+                          <div class='column is-4 box pacos-box-comidaordenada'>
                             <div class='columns is-desktop pacos-div-ordencomida'>
                                 <div class='column  pacos-ordenar-col-3-fotocomida'>
-                                    <image class='pacos-ordenar-fotocomida' src="{{ asset('storage').'/'.'/'.'/'.$orden->fotocomida }}">
+                                    <image class='pacos-ordenar-fotocomida-orden' src="{{ asset('storage').'/'.'/'.'/'.$orden->fotocomida }}">
                                 </div>
-                                  <div class='column is-9' style='font-size: 13px; width: 70%'>
+                                  <div class='column is-9 pacos-column-infoorden' style='font-size: 13px; width: 70%'>
                                       <b>{{ $orden->nombrecomida }}</b>
                                       <p>{{ $orden->ingredientes }}</p>                                                                         
                                       <p><b>Cantidad: <label>{{ $orden->cantorden }}</label> </b> &middot; <b class='pacos-is-active'>${{ $orden->precio }}</b></p>
@@ -91,7 +90,7 @@ pacos-btnmenu-pacos
                                       <input type='hidden' name='sub_iva[]' min='1' value='"+cmd.preciocomida*7/100+"'>
                                   </div>
                              </div>
-                        </div>
+                          </div>
                         @endforeach
                       </div>
                       <a href="{{ url('/pacos/'.$reserva->nombrerest.'/reservar') }}">

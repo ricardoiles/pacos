@@ -60,11 +60,8 @@ pacos-btnmenu-pacos
                     <p>{{ $comida->ingredientes }}</p>                            
                     <p><b class='pacos-is-active'>${{ $comida->preciocomida }}</b></p>
                     <div class="column is-12" style="text-align: left;">
-                      <a href="" style="color: #414d58;">
+                      <a href="{{ url('/pacos/'.$comida->namepacos.'/'.$comida->idcomida.'/reseña') }}" style="color: #414d58;">
                         <label class='reseñas'><i class='material-icons'>sms</i></label>
-                      </a>
-                      <a href="" style="color: #414d58;">
-                        <label class='ordenar'><i class='material-icons'>room_service</i></label>
                       </a>
                     </div>
                 </div>
