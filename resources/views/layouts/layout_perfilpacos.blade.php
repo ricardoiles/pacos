@@ -60,7 +60,7 @@
                                         <img class="is-rounded pacos-foto-perfil-nav" src="{{ asset('images/user.png') }}" title="{{ Auth::user()->name }}">
                                     </a>
                                     <div class="navbar-dropdown is-right">
-                                      <p><b>{{ Auth::user()->name.' '.Auth::user()->apellidos  }}</b></p>
+                                      <p style="text-align: center;"><b>{{ Auth::user()->name.' '.Auth::user()->apellidos  }}</b></p>
                                         <a class="navbar-item" href="">
                                           Editar mi perfil
                                         </a>
@@ -118,11 +118,11 @@
                               </label>
                             </a></li>
                             <li><a href="{{ url('/pacos/'.$pacos->nombre.'/reseñas') }}" class="@yield('is-active-2')">
-                                <button class="button pacos-btnmenu-pacos @yield('is-btn-selected-reseñas')" >
+                                <button class="button @yield('is-btn-selected-reseñas')">
                                   <span class="icon is-small">
                                     <span class="material-icons">how_to_vote</span>
                                   </span>
-                              </button>
+                                </button>
                               <label class="pacos-title-menu">
                                 Reseñas
                               </label>

@@ -72,7 +72,7 @@ input[type=range]
 }
 
 .flex-container > div {
-  text-align: center;
+  
 }
 .pacos-sitio{
     margin-top: 20px;
@@ -85,8 +85,58 @@ input[type=range]
 .pacos{
   display: none;
 }
-
-
+.pacos-columns-categorias{
+  margin-top: 10px;
+  cursor: pointer;
+}
+.pacos-column-todospacos{
+  background-color: rgb(210,23,52);
+  color: white;
+  width: 90%;
+  height: 45px;
+  border-bottom-right-radius: 30px;
+  border-top-right-radius: 30px;
+  text-align: left;
+  padding-left: 40px;
+  }
+.pacos-column-categoria{
+  background-color: inherit;
+  color: black;
+  width: 90%;
+  height: 45px;
+  border-bottom-right-radius: 30px;
+  border-top-right-radius: 30px;
+  text-align: left;
+  padding-left: 40px;
+}
+.pacos-column-catselected{
+  background-color: rgb(210,23,53);
+  color: white;
+  width: 90%;
+  height: 45px;
+  border-bottom-right-radius: 30px;
+  border-top-right-radius: 30px;
+  text-align: left;
+  padding-left: 40px;
+}
+.pacos-btn-categoria{
+  margin-top: 5px;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  background-color: rgb(245, 245, 245);
+  color: black;
+}
+.pacos-name-categoria{
+  margin-top: 10px;
+  position: absolute;
+  margin-left: 10px;
+}
+.pacos-cant-pacos-categoria{
+  position: absolute;
+  margin-top: 10px;
+  margin-left: 14%;
+}
 
 @media only screen
 and (min-device-width : 320px) 
@@ -95,7 +145,8 @@ and (max-device-width : 480px) {
      padding-left: 0px;
 	}
   .pacos-menu-left{
-    height: 20vh;
+    height: 25vh;
+    overflow-y: auto;
   }
   .pacos-div-right{
     margin-top: -20px;
@@ -112,5 +163,15 @@ and (max-device-width : 480px) {
   .modal-content, .modal-card{
     width: 90%;
     margin-right: 20px;
+  }
+  .pacos-name-categoria{
+    top: 10px;
+    position: relative;
+    left: 0px;
+}
+.pacos-cant-pacos-categoria{
+    position: relative;
+    top: 10px;
+    left: 43%;
   }
 }

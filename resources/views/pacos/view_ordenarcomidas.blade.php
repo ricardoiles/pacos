@@ -15,6 +15,10 @@ pacos-btnmenu-pacos
 pacos-btnmenu-pacos
 @endsection
 
+@section('is-btn-selected-reseñas')
+pacos-btnmenu-pacos
+@endsection
+
 @section('content')
 <div class="tile">
   <div class="tile is-parent is-vertical is-3">

@@ -56,14 +56,12 @@
                                 <a class="navbar-item " href="{{ route('login') }}">Inicar sesión</a>
                                 <a class="navbar-item " href="{{ url('/registrarme') }}">Registrarmee</a>
                             @else
-                                
                                 <div class="navbar-item has-dropdown is-hoverable">
-
                                     <a class="navbar-link">
                                         <img class="is-rounded pacos-foto-perfil-nav" src="{{ asset('images/user.png') }}" title="{{ Auth::user()->name }}">
                                     </a>
                                     <div class="navbar-dropdown is-right">
-                                        <p><b>{{ Auth::user()->name.' '.Auth::user()->apellidos  }}</b></p>
+                                        <p style="text-align: center;"><b>{{ Auth::user()->name.' '.Auth::user()->apellidos  }}</b></p>
                                         <a class="navbar-item" href="">
                                           Editar mi perfil
                                         </a>
@@ -93,5 +91,11 @@
         
         <script src="{{ asset('js/tabs.js') }}"></script>
         <script src="{{ asset('js/scripts/lib_formularios.js') }}"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="{{ asset('js/scripts/comidas.js') }}"></script>
+        <script>
+            var asset_global='{{asset("/storage")}}';
+            var url_reseñas_global = '{{ url("/pacos") }}';
+        </script>
     </body>
 </html>

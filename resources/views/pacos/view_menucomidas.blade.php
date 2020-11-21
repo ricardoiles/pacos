@@ -15,6 +15,10 @@ pacos-btnmenu-pacos
 pacos-btnoptions--infobasica-pacos
 @endsection
 
+@section('is-btn-selected-reseñas')
+pacos-btnmenu-pacos
+@endsection
+
 @section('content')
     <div class="tile">
       <div class="tile is-parent is-vertical is-3 box pacos-perfilpacos-categorias-comida">
@@ -26,15 +30,15 @@ pacos-btnoptions--infobasica-pacos
                     <span class="material-icons">category</span>
                   </span>
               </button>
-              <label class="pacos-title-menu">
-                Categorias
-              </label>
+                  <label>
+                    Categorias
+                  </label>
             </li>
             @foreach($catcomidas as $categoria)
             <li>
               <a onclick="showComida({{ $categoria->idcat }})">
                 <img src="{{ asset('storage'.'/'.'/'.$categoria->fotocat) }}" style="width: 40px; height: 40px; border-radius: 50%;">
-                <label class="pacos-title-menu">
+                <label>
                   {{ $categoria->nombrecat }}
                 </label>
               </a>
@@ -46,12 +50,12 @@ pacos-btnoptions--infobasica-pacos
       <div class="tile is-parent is-9 pacos-allinfo-pacos flex-container">
         <div id="Comidas" class="columns is-desktop flex-container" style="overflow-y: auto; height: 40vh">
           @foreach($comidas as $comida)
-            <div class='column is-4 box' style='line-height: 100%; text-align: justify; margin-right: 5px; margin-bottom: 10px; height: 130px;width: 32.16%;'>
+            <div class='column is-4 box pacos-comida pacos-box-comida'>
               <div class='columns is-desktop'>
                 <div class='column is-3' style="width: 30%">
                     <image class='pacos-ordenar-fotocomida' src="{{ asset('storage'.'/'.'/'.'/'.$comida->fotocomida) }}">
                 </div>
-                <div class='column is-9' style='font-size: 13px; width: 70%; margin-left: -10px;'>
+                <div class='column is-9 pacos-column-infocomida'>
                     <b> {{ $comida->nombrecomida }} </b>
                     <p>{{ $comida->ingredientes }}</p>                            
                     <p><b class='pacos-is-active'>${{ $comida->preciocomida }}</b></p>

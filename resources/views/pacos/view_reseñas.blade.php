@@ -7,16 +7,16 @@
 is-active-pacos
 @endsection
 
-@section('is-btn-selected')
-pacos-btnmenu-pacos
-@endsection
-
 @section('is-btn-selected-reseñas')
 pacos-btnoptions--infobasica-pacos
 @endsection
 
+@section('is-btn-selected')
+pacos-btnmenu-pacos
+@endsection
+
 @section('is-btn-selected-comida')
-pacos-btnoptions--infobasica-pacos
+pacos-btnmenu-pacos
 @endsection
 
 @section('content')
@@ -24,28 +24,28 @@ pacos-btnoptions--infobasica-pacos
   <div class="tile is-parent is-vertical is-3">
     
   </div>
-  <div class="tile">
+  <div class="tile pacos-tile-reseñas">
         <article class="" style="width: 100%;">
-            <div class="tabs is-left main-menu" id="nav">
+            <!-- <div class="tabs is-left main-menu" id="nav">
                 <ul style="border-bottom-style: none;">
-                    <li data-target="pane-1" class="is-active" id="1">
+                    <li data-target="pane-1" class="is-active pacos-li-reseñas" id="1">
                         <a>
                             <span class="icon is-small"><span class="material-icons">how_to_vote</span></span>
                             <span>Reseñas</span>
                         </a>
                     </li>
                 </ul>
-            </div>
+            </div> -->
             <div class="tab-content" style="background-color: inherit; padding-left: 13px; padding-right: 13px">
                 <div class="tab-pane is-active" id="pane-1">
                    <div class="columns is-desktop flex-container" style="overflow-y: scroll; height: 200px">
                     @foreach($reseñas as $reseña)
-                        <div class="column is-12 box" style="text-align: left; margin-bottom: 7px">
+                        <div class="column is-12 box pacos-box-reseña">
                             <div class="columns is-desktop">
-                                <div class="column is-2" style="width: 12%; text-align: center;">
+                                <div class="column is-2 pacos-column-imageuser">
                                     <img src="https://source.unsplash.com/user/erondu/1600x900" title="user" style="width: 70px;height: 70px;border-radius: 50%">
                                 </div>
-                                <div class="column is-10" style="line-height: 110%; margin-left: -5px">
+                                <div class="column is-10 pacos-column-inforeseña">
                                     <p><b> {{ $reseña->nameuser }} {{ $reseña->lastnameuser }} &rsaquo; {{ $reseña->namepacos }}</b></p>
                                     <p><small>{{ $reseña->hora }} &middot; {{ $reseña->fecha }}</small></p>
                                     <p>{{ $reseña->reseña }}</p>
@@ -56,7 +56,7 @@ pacos-btnoptions--infobasica-pacos
                    </div>
                     <form method="post" action="{{ url('pacos/store/resenas') }}">
                     {{ csrf_field() }}
-                        <div class="columns is-desktop" style="position: fixed; top: 27vh; width: 100%;">
+                        <div class="columns is-desktop pacos-footer-nuevareseña">
                             @foreach($pacosinfo as $pacos)
                             <div class="column is-12">
                                 <div class="field is-horizontal">
@@ -64,7 +64,7 @@ pacos-btnoptions--infobasica-pacos
                                     <div class="field" style="flex-grow: 0; width: 50px">
                                         <img src="{{ asset('images/user.png') }}" style="width: 40px;height: 40px;border-radius: 50%" title="Postear como: {{ auth()->user()->name }}">
                                     </div>
-                                    <div class="field" style="flex-grow: 0; width: 100%">
+                                    <div class="field pacos-input-nuevareseña" style="flex-grow: 0; width: 100%">
                                         <input type="hidden" name="idpacos" value="{{ $pacos->idrest }}">
                                         <input type="hidden" name="namepacos" value="{{ $pacos->nombre }}">
                                         <input type="hidden" name="iduser" value="{{ auth()->user()->id }}">
@@ -72,7 +72,7 @@ pacos-btnoptions--infobasica-pacos
                                         <input type="hidden" name="hora" value="{{ date('h:i:s', strtotime('- 1 minute')) }}">
                                         <input class="input" type="text" name="reseña" placeholder="Escribe aqui tu reseña sobre este sitio" required="" style="border-radius: 20px" maxlength="198">
                                     </div>
-                                    <div class="field" style="flex-grow: 0;">
+                                    <div class="field pacos-button-nuevareseña" style="flex-grow: 0;">
                                         <input class="button pacos-btn-postear" type="submit" value="&#10148;" title="Postear">
                                     </div>
                                   </div>

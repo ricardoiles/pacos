@@ -7,7 +7,30 @@
 <div class="columns is-desktop">
   <div class="column is-3 pacos-menu-left">
     <p>¿A dónde iras hoy?</p>
-    <p></p>
+    <div class="columns is-desktop flex-container pacos-columns-categorias" onclick="VerTodosPacos()">
+      <div id="Todos" class="pacos-column-todospacos">
+        <button class="button pacos-btn-categoria">
+          <span class="icon is-small">
+            <span class="material-icons">store</span>
+          </span>
+        </button>
+        <label class="pacos-name-categoria">
+          Todos 
+        </label>
+        <label class="pacos-cant-pacos-categoria">
+          ({{$cantpacos = count(collect($sitios))}})
+        </label>
+      </div>
+    </div>
+    @foreach($categorias as $cat)
+      <div id="{{ $cat->id }}" class="columns is-desktop flex-container pacos-columns-categorias" onclick="VerPacosxCat('{{ $cat->id }} ')">
+        <div class="pacos-column-categoria">
+          <label class="pacos-name-categoria">
+            {{ $cat->nombrecat }} 
+          </label>
+        </div>
+      </div>
+    @endforeach
   </div>
   <div class="column is-9 pacos-div-right" style="width: 93%;">
     <p>
@@ -21,7 +44,7 @@
             <a class="is-active-pacos" onclick="modalOpen()">Elegir ciudad </a></b>
         @endif
     </p>
-    <div class="columns is-desktop flex-container" style="margin-left: 10px;">
+    <div id="Pacos" class="columns is-desktop flex-container" style="margin-left: 10px;">
       @if(empty($sitios))
             
         @else
@@ -57,13 +80,6 @@
                     </span>
                   </a>
                 </div>
-                <!-- <div class="level-right">
-                  <a class="level-item" aria-label="reply">
-                    <span class="icon is-small">
-                      <i class="material-icons">more_vert</i>
-                    </span>
-                  </a>
-                </div> -->
               </nav>
             </div>
           </article>

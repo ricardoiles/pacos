@@ -16,12 +16,16 @@ pacos-btnmenu-pacos
 pacos-btnoptions--infobasica-pacos
 @endsection
 
+@section('is-btn-selected-reseñas')
+pacos-btnmenu-pacos
+@endsection
+
 @section('content')
     <div class="tile">
       <div class="tile is-parent is-vertical is-3">
         
       </div>
-      <div class="tile is-parent pacos-allinfo-pacos" style="padding: 0rem; margin-top: -25px">
+      <div class="tile is-parent pacos-allinfo-pacos">
         <div class="tile pacos-div-allinfo-pacos">
             <article class="box pacos-article-allinfo" style="width: 100%">
               @foreach($pacosinfo as $pacos)

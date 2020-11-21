@@ -54,8 +54,11 @@ Route::get('/user/{iduser}/manage', 'UserManageController@manage')->middleware('
 
 //apis
 Route::get('/api/pacos/{namepacos}/{idcomida}', 'OrdenarComidaController@ordencomida')->middleware('auth');
-//prueba para ver comidas por categorias
-Route::get('/api/comxcat/{idcat}', 'MenuComidasController@vercomidas')->middleware('auth');;
+//ver comidas por categorias
+Route::get('/api/comxcat/{idcat}', 'MenuComidasController@vercomidas')->middleware('auth');
+//sitios por categorias
+Route::get('/api/pacosxcat/{idcat}', 'HomeController@pacosxcat')->middleware('auth');
+Route::get('/api/todopacos', 'HomeController@todopacos')->middleware('auth');
 
 //api cantidad de reservasxpacos
 Route::get('/api/manage/pacos/{idpacos}/reservaciones', 'PacosReservacionesController@reservasPacos')->middleware('auth');

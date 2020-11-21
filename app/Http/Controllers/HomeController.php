@@ -52,11 +52,16 @@ class HomeController extends Controller
             $ciudades = DB::table('ciudades')
                 ->select('id', 'Nombre')
                 ->get();
+
+            $categorias = DB::table('categoria as cat')
+                ->select('cat.id', 'cat.Nombre as nombrecat')
+                ->get();
                 
             return view('/panelusuario.view_homeusuario')
                 ->with('sitios', $sitios)
                 ->with('ciudad', $ciudad)
-                ->with('ciudades', $ciudades);
+                ->with('ciudades', $ciudades)
+                ->with('categorias', $categorias);
         }
         else{
             $myid = auth()->user()->id;
@@ -69,7 +74,7 @@ class HomeController extends Controller
                     ->leftJoin('ciudades as ciu',  'ciu.id', '=', 'rest.Ciudad')
                     ->leftJoin('departamento as dep', 'dep.id', '=', 'ciu.Departamento') 
                     
-                    ->select('cat.Nombre AS category', 'rest.id AS idrest', 'rest.nombre', 'rest.Descripcion',
+                    ->select('cat.id as idcat','cat.Nombre AS category', 'rest.id AS idrest', 'rest.nombre', 'rest.Descripcion',
                             'rest.pais', 'ciu.Nombre AS ciudad', 'dep.Nombre AS depto', 
                             'rest.BarrioVere', 'rest.Direccion', 'hor.DIa_Ini as diaopen', 'hor.Dia_cierre as diaclose', 
                             'hor.Hora_APert as horaopen', 'hor.Hora_cierre as horaclose', 'rest.domicilios', 'rest.reservas', 'rest.ordenes', 'rest.id_usuario')
@@ -86,9 +91,14 @@ class HomeController extends Controller
                 ->where('rest.id_usuario', $myid)
                 ->get();
 
+            $categorias = DB::table('categoria as cat')
+                ->select('cat.id', 'cat.Nombre as nombrecat')
+                ->get();
+
             return view('/managepacos/view_pacos')
                     ->with('pacosinfo', $pacosinfo)
-                    ->with('sitios', $sitios);
+                    ->with('sitios', $sitios)
+                    ->with('categorias', $categorias);
         }
     }
 
@@ -116,10 +126,39 @@ class HomeController extends Controller
                 ->select('id', 'Nombre')
                 ->get();
 
+        $categorias = DB::table('categoria as cat')
+                ->select('cat.id', 'cat.Nombre as nombrecat')
+                ->get();
+
         return view('/panelusuario.view_homeusuario')
                 ->with('sitios', $sitios)
                 ->with('ciudad', $ciudad)
-                ->with('ciudades', $ciudades);
+                ->with('ciudades', $ciudades)
+                ->with('categorias', $categorias);
+    }
+
+    public function pacosxcat($idcat){
+        $pacosxcat = DB::table('restaurantes as rest')
+            ->leftjoin('categoria AS cat', 'cat.id', '=', 'rest.categoria')
+            ->leftjoin('ciudades AS ciud', 'ciud.id', '=', 'rest.Ciudad')
+            ->leftjoin('departamento AS depto', 'depto.id', '=', 'ciud.Departamento')
+            ->leftjoin('foto_vid AS fv', 'fv.id', '=', 'rest.FotoPerfil')
+            
+            ->select('rest.id AS idrest', 'rest.nombre AS namerest', 'rest.categoria', 'rest.Direccion as direccion', 'rest.BarrioVere AS barriovere', 'rest.Ciudad AS ciudad', 'rest.Descripcion AS descripcion', 'cat.id AS idcat', 'cat.Nombre AS catrest', 'ciud.Nombre AS ciudad', 'depto.Nombre AS namedepto', 'fv.Url AS fotoperfil')
+            ->where('rest.categoria', $idcat)
+            ->get();
+        return $pacosxcat;
+    }
+    public function todopacos(){
+        $pacosxcat = DB::table('restaurantes as rest')
+            ->leftjoin('categoria AS cat', 'cat.id', '=', 'rest.categoria')
+            ->leftjoin('ciudades AS ciud', 'ciud.id', '=', 'rest.Ciudad')
+            ->leftjoin('departamento AS depto', 'depto.id', '=', 'ciud.Departamento')
+            ->leftjoin('foto_vid AS fv', 'fv.id', '=', 'rest.FotoPerfil')
+            
+            ->select('rest.id AS idrest', 'rest.nombre AS namerest', 'rest.categoria', 'rest.Direccion as direccion', 'rest.BarrioVere AS barriovere', 'rest.Ciudad AS ciudad', 'rest.Descripcion AS descripcion', 'cat.id AS idcat', 'cat.Nombre AS catrest', 'ciud.Nombre AS ciudad', 'depto.Nombre AS namedepto', 'fv.Url AS fotoperfil')
+            ->get();
+        return $pacosxcat;
     }
         
 }

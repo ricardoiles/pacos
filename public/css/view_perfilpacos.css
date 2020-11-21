@@ -94,8 +94,8 @@ input[type=range]
 	font-size: 16px;
 }
 .pacos-allinfo-pacos{
-	margin-top: -4%;
-	padding: 0px;
+	padding: 0.75rem;
+    margin-top: -40px;
 }
 .pacos-div-allinfo-pacos{
 	padding-right: 20px;
@@ -156,7 +156,7 @@ input[type=range]
 }
 
 .flex-container > div {
-  text-align: center;
+  
 }
 .pacos-reservas-fotopacos{
 	width: 50px;
@@ -281,6 +281,41 @@ input[type=range]
 .pacos{
 	display: none;
 }
+.pacos-comida{
+	line-height: 100%; 
+	text-align: left; 
+	margin-right: 5px; 
+	margin-bottom: 10px; 
+	height: 130px;
+	width: 100%;
+}
+.pacos-column-infocomida{
+	font-size: 13px;
+	width: 70%;
+	margin-left: -10px;
+}
+.pacos-box-reseña{
+	text-align: left;
+	margin-bottom: 7px;
+	height: 50%;
+	max-height: 70%
+}
+.pacos-column-imageuser{
+	width: 12%;
+	text-align: center;
+}
+.pacos-column-inforeseña{
+	line-height: 110%;
+	margin-left: -5px;
+}
+.pacos-footer-nuevareseña{
+	position: fixed; 
+	top: 35vh; 
+	left: 10px;
+	width: 100%;
+}
+
+
 
 @media screen and (min-width: 769px){
 	
@@ -336,5 +371,63 @@ and (max-device-width : 480px) {
 	}
 	.pacos-multimediadiv-pacos{
 		margin-top: -15px;
+	}
+	.pacos-perfilpacos-categorias-comida{
+		max-width: 100%;
+	}
+	.pacos-allinfo-pacos{
+		margin-top: -5%;
+	}
+	.flex-container{
+		display: block;
+	}
+	.pacos-perfilpacos-categorias-comida{
+		max-height: 30vh;
+		height: 30vh;
+		overflow-y: auto;
+	}
+	.pacos-box-comida{
+	    width: 100% !important;
+	    margin-left: 0px;
+	    padding-left: 20px; 
+	}
+	.pacos-column-infocomida{
+		padding-left: 110px;
+		width: 100%;
+		margin-top: -70px;
+	}
+	.pacos-box-reseña{
+		margin-bottom: 7px;
+		height: 60%;
+		max-height: 80%;
+	}
+	.pacos-column-imageuser{
+		width: 100%;
+		text-align: justify;
+	}
+	.pacos-column-inforeseña{
+		margin-top: -26%;
+		margin-left: 20%;
+	}
+	.pacos-input-nuevareseña{
+		width: 80% !important;
+	    margin-top: -60px;
+	    margin-left: 40px;
+	}
+	.pacos-button-nuevareseña{
+		margin-top: -50px;
+		margin-left: 93%;
+	}
+	.pacos-footer-nuevareseña{
+		position: fixed; 
+		top: 35vh; 
+		left: 0px;
+		width: 100%;
+	}
+	.pacos-li-reseñas{
+		margin-left: 20px;
+	}
+	.pacos-tile-reseñas{
+		margin-top: -10px;
 	}
 }
