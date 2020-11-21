@@ -91,7 +91,7 @@ input[type=range]
 }
 .pacos-column-todospacos{
   background-color: rgb(210,23,52);
-  color: white;
+  color: white !important;
   width: 90%;
   height: 45px;
   border-bottom-right-radius: 30px;
@@ -111,7 +111,7 @@ input[type=range]
 }
 .pacos-column-catselected{
   background-color: rgb(210,23,53);
-  color: white;
+  color: black;
   width: 90%;
   height: 45px;
   border-bottom-right-radius: 30px;
@@ -136,6 +136,12 @@ input[type=range]
   position: absolute;
   margin-top: 10px;
   margin-left: 14%;
+}
+.cat-white{
+  color: white !important;
+}
+.cat-black{
+  color: black !important;
 }
 
 @media only screen

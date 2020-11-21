@@ -48,7 +48,7 @@ pacos-btnmenu-pacos
         </aside>
       </div>
       <div class="tile is-parent is-9 pacos-allinfo-pacos flex-container">
-        <div id="Comidas" class="columns is-desktop flex-container" style="overflow-y: auto; height: 40vh">
+        <div id="Comidas" class="columns is-desktop flex-container" style="overflow-y: auto; height: 50vh">
           @foreach($comidas as $comida)
             <div class='column is-4 box pacos-comida pacos-box-comida'>
               <div class='columns is-desktop'>
@@ -60,8 +60,8 @@ pacos-btnmenu-pacos
                     <p>{{ $comida->ingredientes }}</p>                            
                     <p><b class='pacos-is-active'>${{ $comida->preciocomida }}</b></p>
                     <div class="column is-12" style="text-align: left;">
-                      <a href="{{ url('/pacos/'.$comida->namepacos.'/'.$comida->idcomida.'/reseña') }}" style="color: #414d58;">
-                        <label class='reseñas'><i class='material-icons'>sms</i></label>
+                      <a href="{{ url('/pacos/'.$comida->namepacos.'/'.$comida->idcomida.'/reseña') }}" style="color: #414d58; cursor: pointer;">
+                        <label class='reseñas' style="cursor: pointer;"><i class='material-icons'>sms</i></label>
                       </a>
                     </div>
                 </div>

@@ -18,11 +18,8 @@ function showComida(id) {
                     "<p>"+cmd.ingredientes+"</p>"+
                     "<p><b class='pacos-is-active'>$"+cmd.preciocomida+"</b></p>"+
                     "<div class='column is-12' style='text-align: left;'>"+
-                      "<a href='' style='color: #414d58;'>"+
-                        "<label class='reseñas'><i class='material-icons'>sms</i></label>"+
-                      "</a>"+
-                      "<a href='' style='color: #414d58;'>"+
-                        "<label class='ordenar'><i class='material-icons'>room_service</i></label>"+
+                      '<a href="'+url_reseñas_global+'/'+cmd.namepacos+'/'+cmd.idcomida+'/reseña" style="color: #414d58;" style="cursor: pointer;">'+
+                        "<label style='cursor: pointer;' class='reseñas'><i class='material-icons'>sms</i></label>"+
                       "</a>"+
                     "</div>"+
                 "</div>"+
@@ -90,46 +87,14 @@ function VerPacosxCat(idcat) {
       }
       $('#Pacos').html(platos);
 
-
-      /*var divs = $(document).find("div");
-//console.log(divs);
-
-      //divs.forEach(function(d){ 
-
-       Array.prototype.forEach.call(divs, function(d){ 
-
-          //console.log(d.class);
-          //console.log($(d));          
-
-          if($(d)[0].className != ""){
-
-              console.log($(d)[0].className);
-              console.log($(d)[0]);
-            
-            var t=$(d)[0].className;
-
-            if(t.includes("pacos-column-catselected")) {
-
-              
-
-              $d.removeClass("pacos-column-catselected");
-              $("."+d.className).addClass("pacos-column-todospacos"); 
-
-                
-
-              } 
-
-          }           
-
-        });*/
-
       console.log($('.pacos-column-catselected')); 
       console.log($('.pacos-column-catselected').length);    
-
       despint();
 
       $("#"+idcat+"").removeClass("pacos-column-categoria");
-      $("#"+idcat+"").addClass("pacos-column-catselected");
+      $("#"+idcat+"").addClass("pacos-column-catselected");   
+      
+      $("#labelid").addClass("cat-white");
       
     }, error: function (xhr, ajaxOptions, thrownError) {
         
@@ -142,11 +107,11 @@ function despint(){
   if($('.pacos-column-catselected').length != 0){
       $('.pacos-column-catselected').addClass('pacos-column-categoria'); 
       $('.pacos-column-catselected').removeClass('pacos-column-catselected');
-
-        
+      $("#labelid").addClass("cat-black");
 
       }else{
         $("#Todos").removeClass("pacos-column-todospacos");
+        $("#labelid").addClass("cat-white");
         $("#Todos").addClass("pacos-column-categoria");
       }
 }

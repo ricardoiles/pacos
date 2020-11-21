@@ -229,6 +229,7 @@
         </script>
         <script>
             var asset_global='{{asset("/storage")}}';
+            var url_reseñas_global = '{{ url("/pacos") }}';
         </script>
     </body>
 </html>

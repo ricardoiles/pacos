@@ -25,7 +25,7 @@
     @foreach($categorias as $cat)
       <div id="{{ $cat->id }}" class="columns is-desktop flex-container pacos-columns-categorias" onclick="VerPacosxCat('{{ $cat->id }} ')">
         <div class="pacos-column-categoria">
-          <label class="pacos-name-categoria">
+          <label id="labelid" class="pacos-name-categoria">
             {{ $cat->nombrecat }} 
           </label>
         </div>
