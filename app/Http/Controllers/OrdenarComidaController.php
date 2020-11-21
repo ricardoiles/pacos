@@ -100,38 +100,38 @@ class OrdenarComidaController extends Controller{
             $idres = $request->idres;
             $namepacos = $request->nombrepacos;
             //actulizar estado de la reserva: sin comida u ordenaste comida
-            // DB::table('reservas')
-            //     ->where('id', $idres)
-            //     ->update(['Detalle_Reserv' => '1']);
+            DB::table('reservas')
+                ->where('id', $idres)
+                ->update(['Detalle_Reserv' => '1']);
 
             // contar cuantos id vienen
             $idplatos = count(collect($request)->get('idcomida'));
     
-            for ($i = 1; $i < $idplatos; $i++) { 
+            for ($i = 0; $i < $idplatos; $i++) { 
                 //para que se inserte por cada id
-                while ($i <= $idplatos) {
+                while ($i < $idplatos) {
                     $i;
-                    echo $i;
-                    $ide = request()->idcomida;
-                    echo $ide;
-                    // return $arrayName = array('platoid' => $platoid, 'platoprecio' => $platoprecio, 
-                    //                    'platocant' => $platocant, 'platosubtotal' => $platosubtotal,
-                    //                    'platosubdesc' => $platosubdesc, 'platosubiva' => $platosubiva);
-                    $i++;
-                    
-                    // $platoid = $request->get('idcomida')[$i];
-                    // $platonombre = $request->get('nombrecomida')[$i];
-                    // $platoprecio = $request->get('preciocomida')[$i];
-                    // $platocant = $request->get('cant')[$i];
-                    // $platosubtotal = $request->get('sub_total')[$i];
-                    // $platosubdesc = $request->get('sub_desc')[$i];
-                    // $platosubiva = $request->get('sub_iva')[$i];
+                    $platoid = request()->idcomida[$i];
+                    $platoprecio = request()->preciocomida[$i];
+                    $platocant = request()->cant[$i];
+                    $platosubtotal = request()->sub_total[$i];
+                    $platosubdesc = request()->sub_desc[$i];
+                    $platosubiva = request()->sub_iva[$i];
+                    $idres = request()->idcomida[$i];
 
-                    // return $arrayName = array('platoid' => $platoid, 'platoprecio' => $platoprecio, 
-                    //                     'platocant' => $platocant, 'platosubtotal' => $platosubtotal,
-                    //                     'platosubdesc' => $platosubdesc, 'platosubiva' => $platosubiva);
+                    //para insertar en BD
+                    DB::table('detalle_reserv')->insert(
+                        ['id_Plato' => $platoid, 'precio' => $platoprecio,  'cant' => $platocant, 
+                        'Subtotal' => $platosubtotal, 'Sub_desc' => $platosubdesc, 'Sub_Iva' => $platosubiva, 
+                        'id_reserva' => $idres]
+                    );
+                    
+                    $i++;
+
                 }
+
             }
+            return redirect('/pacos/'.$namepacos.'/'.$idres.'/ordenarcomida');
         }
         
     }

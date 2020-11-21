@@ -65,7 +65,9 @@ pacos-btnmenu-pacos
                                         <p><a href="{{ url('/pacos/'.$pacos->nombre.'/'.$reserva->idreserva.'/ordenarcomida') }}"><b class="pacos-is-active">Ordenar comida</b></a></p>
                                       @endforeach
                                     @else
+                                      @foreach($pacosinfo as $pacos)
                                       <p><a href="{{ url('/pacos/'.$pacos->nombre.'/'.$reserva->idreserva.'/ordenarcomida') }}"><b style="color: green">Ordenaste comida</b></a></p>
+                                      @endforeach
                                     @endif
                                 </div>
                             </div>

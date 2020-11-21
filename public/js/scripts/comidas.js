@@ -85,17 +85,70 @@ function VerPacosxCat(idcat) {
           '</article>'+
         "</div>"
         );
-        const temp = idcat;
-        limpiar(temp);
       }else{
         pacos.forEach(cmd => platos += "<b>Esta categoria aun no tiene comida</b>");
       }
       $('#Pacos').html(platos);
+
+
+      /*var divs = $(document).find("div");
+//console.log(divs);
+
+      //divs.forEach(function(d){ 
+
+       Array.prototype.forEach.call(divs, function(d){ 
+
+          //console.log(d.class);
+          //console.log($(d));          
+
+          if($(d)[0].className != ""){
+
+              console.log($(d)[0].className);
+              console.log($(d)[0]);
+            
+            var t=$(d)[0].className;
+
+            if(t.includes("pacos-column-catselected")) {
+
+              
+
+              $d.removeClass("pacos-column-catselected");
+              $("."+d.className).addClass("pacos-column-todospacos"); 
+
+                
+
+              } 
+
+          }           
+
+        });*/
+
+      console.log($('.pacos-column-catselected')); 
+      console.log($('.pacos-column-catselected').length);    
+
+      despint();
+
+      $("#"+idcat+"").removeClass("pacos-column-categoria");
+      $("#"+idcat+"").addClass("pacos-column-catselected");
       
     }, error: function (xhr, ajaxOptions, thrownError) {
         
     }
   });
+}
+
+function despint(){
+
+  if($('.pacos-column-catselected').length != 0){
+      $('.pacos-column-catselected').addClass('pacos-column-categoria'); 
+      $('.pacos-column-catselected').removeClass('pacos-column-catselected');
+
+        
+
+      }else{
+        $("#Todos").removeClass("pacos-column-todospacos");
+        $("#Todos").addClass("pacos-column-categoria");
+      }
 }
 
 function VerTodosPacos() {
@@ -148,10 +201,13 @@ function VerTodosPacos() {
         pacos.forEach(cmd => platos += "<b>Esta categoria aun no tiene comida</b>");
       }
       $('#Pacos').html(platos);
+
+        despint();
+
       $("#Todos").addClass("pacos-column-todospacos");
       $("#Todos").removeClass("pacos-column-categoria");
 
-      $(".pacos-columns-categorias").removeClass("pacos-column-todospacos");
+      //$(".pacos-columns-categorias").removeClass("pacos-column-todospacos");
     }, error: function (xhr, ajaxOptions, thrownError) {
         
     }
