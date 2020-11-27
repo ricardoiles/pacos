@@ -15,6 +15,7 @@
         <link href="{{ asset('css/tabs.css') }}" rel="stylesheet">
         <link href="{{ asset('css/iconfont/material-icons.css') }}" rel="stylesheet">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="icon" type="image/png" href="{{ asset('images/logoPACOS.png') }}">
         @yield('view_estilos')
     </head>
     <body>

@@ -112,4 +112,4 @@ Route::resource('pacos/reservar/nueva', 'ReservacionesController')->middleware('
 Route::resource('pacos/reservar/registrarOrden', 'OrdenarComidaController')->middleware('auth');
 //store users
 Route::resource('user/manage/edit', 'UserManageController')->middleware('auth');
-Route::resource('user/manage/edit', 'UserManageController')->middleware('auth');
+

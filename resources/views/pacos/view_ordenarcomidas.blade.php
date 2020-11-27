@@ -1,6 +1,25 @@
 @extends('layouts.layout_perfilpacos')
 @section('view_estilos')
 <link href="{{ asset('css/view_perfilpacos.css') }}" rel="stylesheet">
+<style type="text/css">
+  .pacos-div-fotocomidaordenada{
+    width: 60px; height: 60px; width: 30%;
+  }
+  .pacos-img-comidaordenada{
+     border-radius: 50%; height: 60px; height: 60px;
+  }
+  @media only screen
+  and (min-device-width : 320px) 
+  and (max-device-width : 480px) {
+    .pacos-div-fotocomidaordenada{
+     height: 20px;
+     width: 20px;
+    }
+    .pacos-img-comidaordenada{
+      width: 20px; height: 20px;
+      }
+  }
+</style>
 @endsection
 
 @section('is-active-1')
@@ -76,10 +95,10 @@ pacos-btnmenu-pacos
                     @if($reserva->consincomida == 1) 
                       <div class="columns is-desktop flex-container pacos-columns-commidaordenada" style="padding-left: 20px">
                         @foreach($comidasordenadas as $orden)
-                          <div class='column is-4 box pacos-box-comidaordenada'>
+                          <div class='column is-5 box pacos-box-comidaordenada'>
                             <div class='columns is-desktop pacos-div-ordencomida'>
-                                <div class='column  pacos-ordenar-col-3-fotocomida'>
-                                    <image class='pacos-ordenar-fotocomida-orden' src="{{ asset('storage').'/'.'/'.'/'.$orden->fotocomida }}">
+                                <div class='column  pacos-ordenar-col-3-fotocomida pacos-div-fotocomidaordenada'>
+                                    <img class='pacos-ordenar-fotocomida-orden pacos-img-comidaordenada' src="{{ asset('storage').'/'.'/'.'/'.$orden->fotocomida }}">
                                 </div>
                                   <div class='column is-9 pacos-column-infoorden' style='font-size: 13px; width: 70%'>
                                       <b>{{ $orden->nombrecomida }}</b>

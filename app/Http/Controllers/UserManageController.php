@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 class UserManageController extends Controller
 {
     public function manage($iduser){
+
     	$users = DB::table('users')
                 ->select('id', 'name', 'apellidos', 'direccion', 'email', 'contrasena', 'password', 'telefono', 'ciudad')
                 ->where('id', $iduser)
@@ -18,7 +19,7 @@ class UserManageController extends Controller
     	return view('panelusuario.view_usermanage')->with('users', $users)->with('city', $city);
     }
     public function store(Request $request){
-    	
+    
     	$iduser = request()->id_usuario;
     	$nombres = request()->nombres;
     	$apellidos = request()->apellidos;
@@ -32,7 +33,9 @@ class UserManageController extends Controller
             ->update(['name' => $nombres, 'apellidos' => $apellidos, 'email' => $email, 'contrasena' => $contraseña,
             		'password' => Hash::make($contraseña), 'telefono' => $telefono, 'ciudad' => $ciudad]);
         //
-        $sitios = DB::table('restaurantes as rest')
+        $ciudad = auth()->user()->ciudad;
+            
+            $sitios = DB::table('restaurantes as rest')
                 ->leftjoin('categoria AS cat', 'cat.id', '=', 'rest.categoria')
                 ->leftjoin('ciudades AS ciud', 'ciud.id', '=', 'rest.Ciudad')
                 ->leftjoin('departamento AS depto', 'depto.id', '=', 'ciud.Departamento')
@@ -42,12 +45,23 @@ class UserManageController extends Controller
                 ->where('ciud.id', $ciudad)
                 ->get();
 
-        $ciudad = DB::table('ciudades')
-        		->select('id', 'Nombre')
-        		->where('id', $ciudad)
-        		->get();
+            $ciudad = DB::table('ciudades')
+                    ->select('id', 'Nombre')
+                    ->where('id', $ciudad)
+                    ->get();
 
-        return view('/panelusuario.view_homeusuario')->with('sitios', $sitios)->with('ciudad', $ciudad);
-        
+            $ciudades = DB::table('ciudades')
+                ->select('id', 'Nombre')
+                ->get();
+
+            $categorias = DB::table('categoria as cat')
+                ->select('cat.id', 'cat.Nombre as nombrecat')
+                ->get();
+                
+            return view('/panelusuario.view_homeusuario')
+                ->with('sitios', $sitios)
+                ->with('ciudad', $ciudad)
+                ->with('ciudades', $ciudades)
+                ->with('categorias', $categorias);
     }
 }
